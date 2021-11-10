@@ -24,6 +24,8 @@ import Logo from './Logo'
 import SidebarItem from './SidebarItem'
 import variables from '@/styles/variables.scss'
 
+import { CustomRoutes } from './CustomRoutes'
+
 export default {
   components: { SidebarItem, Logo },
   computed: {
@@ -31,7 +33,12 @@ export default {
       'sidebar'
     ]),
     routes() {
-      return this.$router.options.routes
+      // console.log(this.$router.options.routes)
+      // 完整路径
+      // return this.$router.options.routes
+
+      // 部分路由, 控制页面显示
+      return CustomRoutes;
     },
     activeMenu() {
       const route = this.$route
