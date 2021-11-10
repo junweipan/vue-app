@@ -32,12 +32,15 @@ export const constantRoutes= [
       component: () => import('@/views/login/index'),
       hidden: true
     },
-
     {
       path: '/404',
       component: () => import('@/views/404'),
       hidden: true
     },
+    {
+      path: '/',
+      component: () => import('@/home/index'),
+      children:[
     {
       path: '/',
       component: ModuleOneLayout,
@@ -181,6 +184,8 @@ export const constantRoutes= [
           }
         ]
       },
+      ]
+    },
       // 标签导航刷新
       {
         path: '/redirect',
