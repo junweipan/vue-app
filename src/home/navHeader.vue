@@ -47,4 +47,8 @@ import MessageList from './messageList.vue'
 .newMessage {
   float: right;
 }
+.el-menu-demo{
+  width: 100%;
+  position: fixed;
+}
 </style>

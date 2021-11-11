@@ -2,6 +2,10 @@
   <div class="dashboard-container">
     <div class="dashboard-text">
       {{name}}
+
+    </div>
+    <div class="dashboard-text">
+     当前用户: {{user}} 
     </div>
   </div>
 </template>
@@ -14,13 +18,19 @@ export default {
   
   data() {
     return {
-      name: {}
+      name: {},
+      user: 'admin'
     }
   },
   created() {
     this.fetchData()
   },
-
+  watch: {
+    $route(to, from) {
+      // react to route changes...
+      this.user = this.$route.query.user
+    }
+  },
   methods: {
     fetchData() {
       api.test().then(response => {

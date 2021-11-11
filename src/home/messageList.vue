@@ -12,7 +12,7 @@
             </el-table>
              <el-button type="text" slot="reference" style="margin-bottom: 6px">新消息</el-button>
         </el-popover>
-        <el-badge :value="4" class="item">
+        <el-badge :value="4" class="item" style="margin-left: -5px; margin-top: -5px">
         </el-badge>
         
     </div>

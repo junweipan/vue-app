@@ -16,12 +16,14 @@
               Home
             </el-dropdown-item>
           </router-link> -->
-          <a target="_blank" href="/module1">
+          <router-link to="/module2?user=admin">
             <el-dropdown-item>Admin User</el-dropdown-item>
-          </a>
-          <a target="_blank" href="/module2">
+          </router-link>
+
+          <router-link to="/module2?user=normal">
             <el-dropdown-item>Normal User</el-dropdown-item>
-          </a>
+          </router-link>
+
           <el-dropdown-item divided @click.native="logout">
             <span style="display:block;">Log Out</span>
           </el-dropdown-item>
