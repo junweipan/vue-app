@@ -41,17 +41,28 @@ export const constantRoutes= [
       path: '/',
       component: () => import('@/home/index'),
       children:[
-    {
-      path: '/',
-      component: ModuleOneLayout,
-      redirect: '/module1/dashboard',
-      children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: '总首页', icon: 'dashboard', affix: true }
-    }]
-    },
+        {
+          path: '/',
+          component: ModuleTwoLayout,
+          redirect: '/module2/dashboard2',
+          children: [{
+          path: 'dashboard2',
+          name: 'Dashboard2',
+          component: () => import('@/views/dashboard2/index'),
+          meta: { title: '模块二首页', icon: 'dashboard2', affix: false }
+        }]
+      },
+    // {
+    //   path: '/',
+    //   component: ModuleOneLayout,
+    //   redirect: '/module1/dashboard',
+    //   children: [{
+    //   path: 'dashboard',
+    //   name: 'Dashboard',
+    //   component: () => import('@/views/dashboard/index'),
+    //   meta: { title: '总首页', icon: 'dashboard', affix: true }
+    // }]
+    // },
     {
       path: '/module1',
       component: ModuleOneLayout,
@@ -148,12 +159,12 @@ export const constantRoutes= [
         {
           path: '/module2',
           component: ModuleTwoLayout,
-          redirect: '/module2/dashboard',
+          redirect: '/module2/dashboard2',
           children: [{
-          path: 'dashboard',
-          name: 'Dashboard',
-          component: () => import('@/views/dashboard/index'),
-          meta: { title: '模块二首页', icon: 'dashboard', affix: false }
+          path: 'dashboard2',
+          name: 'Dashboard2',
+          component: () => import('@/views/dashboard2/index'),
+          meta: { title: '模块二首页', icon: 'dashboard2', affix: false }
         }]
       },
       // 博客管理

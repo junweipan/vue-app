@@ -38,15 +38,16 @@ module.exports = {
     },
     before: require('./mock/mock-server.js'),
     // 解决跨域问题
-    proxy: {
-      [process.env.VUE_APP_BASE_API]: { // /dev-api
-        target: 'https://www.fastmock.site/mock/a0555be868bad796bfaf6dce4c57e8d7/vue-admin',
-        changeOrigin: true, // 开启代理服务器,    
-        pathRewrite: {
-          [ '^' + process.env.VUE_APP_BASE_API]: '' // /dev-api/test
-        }
-      }
-    }
+    // proxy: {
+    //   [process.env.VUE_APP_BASE_API]: { // /dev-api
+    //     target: 'http://localhost:8080',
+    //     //target: 'https://www.fastmock.site/mock/a0555be868bad796bfaf6dce4c57e8d7/vue-admin',
+    //     changeOrigin: true, // 开启代理服务器,    
+    //     pathRewrite: {
+    //       [ '^' + process.env.VUE_APP_BASE_API]: '' // /dev-api/test
+    //     }
+    //   }
+    // }
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that

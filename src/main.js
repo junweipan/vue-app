@@ -37,6 +37,9 @@ Vue.use(ElementUI)
 
 Vue.config.productionTip = false
 
+//全局过滤器 - e.g. 0 -> 女, 1-> 男
+import '@/filter/db2uiFilter'
+
 new Vue({
   el: '#app',
   router,

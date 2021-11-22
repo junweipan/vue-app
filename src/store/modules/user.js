@@ -1,6 +1,8 @@
 import { login, logout, getInfo } from '@/api/user'
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { getToken, setToken, removeToken, getUserInfo } from '@/utils/auth'
 import { resetRouter } from '@/router'
+
+
 
 const getDefaultState = () => {
   return {
@@ -32,10 +34,10 @@ const actions = {
   login({ commit }, userInfo) {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
+      login({ userKey: username.trim(), userSecret: password }).then(response => {
         const { data } = response
-        commit('SET_TOKEN', data.token)
-        setToken(data.token)
+        commit('SET_TOKEN', data) //存入 store
+        setToken(data) // 存入cookie
         resolve()
       }).catch(error => {
         reject(error)
@@ -43,38 +45,51 @@ const actions = {
     })
   },
 
-  // get user info
+  // 根据Cookie中的token, 解析出用户姓名, 头像
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
-        const { data } = response
+      // getInfo(state.token).then(response => {
+      //   const { data } = response
 
-        if (!data) {
-          return reject('Verification failed, please Login again.')
-        }
+      //   if (!data) {
+      //     return reject('Verification failed, please Login again.')
+      //   }
 
-        const { name, avatar } = data
+      //   const { name, avatar } = data
 
-        commit('SET_NAME', name)
-        commit('SET_AVATAR', avatar)
-        resolve(data)
-      }).catch(error => {
-        reject(error)
-      })
+      //   commit('SET_NAME', name)
+      //   commit('SET_AVATAR', avatar)
+      //   resolve(data)
+      // }).catch(error => {
+      //   reject(error)
+      // })
+      // getUserInfo 返回浏览器中的Cookie对象 (json)
+      var UserInfo = getUserInfo()
+      const { userKey, headUrl } = JSON.parse(UserInfo)
+      // console.log('UserInfo',UserInfo)
+      // console.log('userKey',userKey)
+      // console.log('headUrl',headUrl)
+      commit('SET_NAME', userKey)
+      commit('SET_AVATAR', headUrl)
+      resolve(JSON.parse(UserInfo))
     })
   },
 
   // user logout
   logout({ commit, state }) {
     return new Promise((resolve, reject) => {
-      logout(state.token).then(() => {
-        removeToken() // must remove  token  first
+      // logout(state.token).then(() => {
+      //   removeToken() // must remove  token  first
+      //   resetRouter()
+      //   commit('RESET_STATE')
+      //   resolve()
+      // }).catch(error => {
+      //   reject(error)
+      // })
+      removeToken() // must remove  token  first
         resetRouter()
         commit('RESET_STATE')
         resolve()
-      }).catch(error => {
-        reject(error)
-      })
     })
   },
 

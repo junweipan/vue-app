@@ -9,11 +9,11 @@ export const CustomRoutes = [
     },
     {
         "path": "/module2",
-        "redirect": "/module2/dashboard",
+        "redirect": "/module2/dashboard2",
         "children": [
             {
-                "path": "dashboard",
-                "name": "Dashboard",
+                "path": "dashboard2",
+                "name": "Dashboard2",
                 "meta": {
                     "title": "模块二首页",
                     "icon": "dashboard",
