@@ -7,27 +7,27 @@ export const CustomRoutes = [
         "path": "/404",
         "hidden": true
     },
-    {
-        "path": "/module2",
-        "redirect": "/module2/dashboard2",
-        "children": [
-            {
-                "path": "dashboard2",
-                "name": "Dashboard2",
-                "meta": {
-                    "title": "模块二首页",
-                    "icon": "dashboard",
-                    "affix": false
-                }
-            }
-        ]
-    },
+    // {
+    //     "path": "/module2",
+    //     "redirect": "/module2/dashboard2",
+    //     "children": [
+    //         {
+    //             "path": "dashboard2",
+    //             "name": "Dashboard2",
+    //             "meta": {
+    //                 "title": "新增模块",
+    //                 "icon": "dashboard",
+    //                 "affix": false
+    //             }
+    //         }
+    //     ]
+    // },
     {
         "path": "/module2/blog",
         "redirect": "/module2/blog/article",
         "name": "Blog",
         "meta": {
-            "title": "博客管理",
+            "title": "新增模块",
             "icon": "el-icon-notebook-2"
         },
         "children": [
@@ -35,7 +35,7 @@ export const CustomRoutes = [
                 "path": "article",
                 "name": "Article",
                 "meta": {
-                    "title": "文章管理",
+                    "title": "一级分组",
                     "icon": "el-icon-notebook-1"
                 }
             },
@@ -43,18 +43,18 @@ export const CustomRoutes = [
                 "path": "category",
                 "name": "Category",
                 "meta": {
-                    "title": "分类管理",
+                    "title": "菜单功能1",
                     "icon": "el-icon-s-order"
                 }
             },
-            {
-                "path": "label",
-                "name": "Label",
-                "meta": {
-                    "title": "标签管理",
-                    "icon": "el-icon-collection-tag"
-                }
-            }
+            // {
+            //     "path": "label",
+            //     "name": "Label",
+            //     "meta": {
+            //         "title": "标签管理",
+            //         "icon": "el-icon-collection-tag"
+            //     }
+            // }
         ]
     },
     {

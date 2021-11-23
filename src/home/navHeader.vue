@@ -1,8 +1,8 @@
 <template>
     <div>
      <el-menu :default-active="activeIndex" router :class="classObj" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-        <el-menu-item index="/module1">功能模块一</el-menu-item>
-        <el-menu-item index="/module2">功能模块二</el-menu-item>
+        <el-menu-item index="/module1">默认模块</el-menu-item>
+        <el-menu-item index="/module2">新增模块</el-menu-item>
         
           <!-- <el-submenu index="2">
           <template slot="title">我的工作台</template>

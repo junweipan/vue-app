@@ -26,10 +26,27 @@ const mutations = {
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
+  },
+  SET_ROUTES: (state, routes) => {
+    state.routes = routes
   }
 }
 
 const actions = {
+  //  用户登录后获得其路由表
+  // getRoutes() {
+  //   return new Promise((resolve, reject) => {
+  //     getRoutes().then(response => {
+  //       const { data } = response
+  //       // format routes
+  //       var formatRoutes = {}
+
+  //       resolve()
+  //     }).catch(error => {
+  //       reject(error)
+  //     })
+  //   })
+  // },
   // user login
   login({ commit }, userInfo) {
     const { username, password } = userInfo

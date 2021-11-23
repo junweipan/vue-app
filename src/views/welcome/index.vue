@@ -1,19 +1,17 @@
 <template>
-    <div>
-        <h1>Hello world</h1>
-        <button type="button" @click="fetchData()">click</button>
-        {{routes}}
-    </div>
+  <div class="dashboard-container">
+      <H1>Welcome Page</H1>
+  </div>
 </template>
 
 <script>
 
 export default {
-  name: 'Dashboard2',
- 
+  name: 'Welcome',
   data() {
     return {
-      routes:{}
+
+
     }
   },
   filters:{
@@ -28,9 +26,12 @@ export default {
 
   },
   methods: {
-    fetchData() {
-      
-    }
+
+
   }
 }
 </script>
+
+<style lang="scss" scoped>
+
+</style>
