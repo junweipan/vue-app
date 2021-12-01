@@ -14,6 +14,9 @@ import router from './router'
 
 import '@/icons' // icon
 import '@/permission' // permission control
+import * as echarts from 'echarts'
+
+
 
 /**
  * If you don't want to use mock-server
@@ -39,6 +42,9 @@ Vue.config.productionTip = false
 
 //全局过滤器 - e.g. 0 -> 女, 1-> 男
 import '@/filter/db2uiFilter'
+
+//使用echarts 作图, 设置为全局
+Vue.prototype.$echarts = echarts
 
 new Vue({
   el: '#app',

@@ -15,22 +15,14 @@ export const CustomRoutes = [
     //     ]
     // },
     {
-        "path": "/module1/blog",
-        "redirect": "/module1/blog/article",
+        "path": "/module1",
+        "redirect": "/module1/category",
         "name": "Blog",
         "meta": {
-            "title": "默认模块",
+            "title": "系统功能",
             "icon": "el-icon-notebook-2"
         },
         "children": [
-            {
-                "path": "article",
-                "name": "Article",
-                "meta": {
-                    "title": "系统功能",
-                    "icon": "el-icon-notebook-1"
-                }
-            },
             {
                 "path": "category",
                 "name": "Category",
@@ -40,11 +32,19 @@ export const CustomRoutes = [
                 }
             },
             {
-                "path": "label",
-                "name": "Label",
+                "path": "funmanager",
+                "name": "FunManager",
                 "meta": {
                     "title": "功能管理",
                     "icon": "el-icon-collection-tag"
+                }
+            },
+            {
+                "path": "tabledata",
+                "name": "Tabledata",
+                "meta": {
+                    "title": "数据测试",
+                    "icon": "el-icon-s-grid"
                 }
             }
         ]

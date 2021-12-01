@@ -47,8 +47,9 @@ service.interceptors.response.use(
   response => {
     const res = response.data
 
-    // if the custom code is not 20000, it is judged as an error.
-    if (res.status !== 200) {
+    // if the custom code is not 200, it is judged as an error.
+    // backend return 200 or 0, 任何一个code都可以表示是成功
+    if (res.status !== 200 && res.status !== 0) {
       Message({
         message: res.message || 'Error',
         type: 'error',

@@ -1,12 +1,12 @@
 <template>
   <div class="dashboard-container">
-    <h1>默认模块首页</h1>
+    <h1>数据测试首页</h1>
     <!-- <div>
       <button type="button" @click="fetchData()">click</button>
     </div> -->
   
         <!-- 条件查询 -->
-        <!-- <el-form :inline="true" :model="query" size="mini">
+        <el-form :inline="true" :model="query" size="mini">
             <el-form-item label="员工姓名：">
                 <el-input v-model.trim="query.name" ></el-input>
             </el-form-item>
@@ -25,9 +25,9 @@
                 <el-button icon="el-icon-circle-plus-outline" type="warning" disabled>更新</el-button>
                 <el-button icon="el-icon-circle-plus-outline" type="danger" @click="multiDelete" >批量删除</el-button>
             </el-form-item>
-        </el-form> -->
+        </el-form>
         <!--显示主要数据table-->
-        <!-- <el-table
+        <el-table
         ref="multipleTable"
         :data="tableData"
         tooltip-effect="dark"
@@ -154,10 +154,10 @@
 
         
 
-      </el-table> -->
+      </el-table>
 
        <!-- 分页组件 -->
-       <!-- <div class="pagination">
+       <div class="pagination">
          <el-pagination
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
@@ -168,7 +168,7 @@
             :total="page.total">
         </el-pagination>
        </div> -->
-    <!-- <edit :title="edit.title" :visible="edit.visible" :formData="edit.formData" :remoteClose="remoteClose"/> -->
+    <edit :title="edit.title" :visible="edit.visible" :formData="edit.formData" :remoteClose="remoteClose"/>
   </div>
 </template>
 
@@ -180,7 +180,7 @@ const regOptions = [
     {code: 1, name: '非农'}
 ]
 export default {
-  name: 'Dashboard',
+  name: 'tableData',
   components: { 
         Edit // Edit: Edit
     },

@@ -61,7 +61,28 @@ export const constantRoutes= [
           name: 'Dashboard',
           component: () => import('@/views/dashboard/index'),
           meta: { title: '默认模块', icon: 'dashboard', affix: false }
-        }]
+        },
+        {
+          path: 'category',
+          name: 'Category',
+          component: () => import('@/views/category/index'),
+          meta: { title: '系统日志', icon: 'el-icon-s-order' }
+        },
+        {
+          path: 'funmanager',
+          name: 'FunManager',
+          component: () => import('@/views/defaultModule/funManager/index'),
+          meta: { title: '功能管理', icon: 'el-icon-collection-tag' }
+        },
+        {
+          path: 'tabledata',
+          name: 'Tabledata',
+          component: () => import('@/views/tableData/index'),
+          meta: {
+              title: '数据测试',
+              icon: 'el-icon-s-grid'
+          }
+      }]
         },
         {
           path: '/module2',
@@ -72,134 +93,22 @@ export const constantRoutes= [
           name: 'Dashboard2',
           component: () => import('@/views/dashboard2/index'),
           meta: { title: '新增模块', icon: 'dashboard2', affix: false }
-        }]
-      },
-
-
-    // 博客管理
-    {
-      path: '/module1/blog',
-      component: ModuleOneLayout,
-      redirect: '/module1/blog/article',
-      name: 'Blog',
-      meta: { title: '默认模块', icon: 'el-icon-notebook-2' },
-      children: [
+        },
         {
           path: 'article',
           name: 'Article',
           component: () => import('@/views/article/index'),
-          meta: { title: '系统功能', icon: 'el-icon-notebook-1' }
+          meta: { title: '菜单功能1', icon: 'el-icon-notebook-1' }
         },
         {
           path: 'category',
           name: 'Category',
           component: () => import('@/views/category/index'),
-          meta: { title: '系统日志', icon: 'el-icon-s-order' }
-        },
-        {
-          path: 'label',
-          name: 'Label',
-          component: () => import('@/views/label/index'),
-          meta: { title: '功能管理', icon: 'el-icon-collection-tag' }
-        }
+          meta: { title: '菜单功能2', icon: 'el-icon-s-order' }
+        }]
+      }
       ]
     },
-      // // 广告管理
-      // {
-      //   path: '/module1/advert',
-      //   component: ModuleOneLayout,
-      //   children: [
-      //     {
-      //       path: 'index',
-      //       name: 'Advert',
-      //       component: () => import('@/views/advert/index'),
-      //       meta: { title: '广告管理', icon: 'el-icon-picture-outline-round' }
-      //     }
-      //   ]
-      // },
-
-      // // 系统管理
-      // {
-      //   path: '/module1/system',
-      //   component: ModuleOneLayout,
-      //   redirect: '/module1/system/user',
-      //   name: 'System',
-      //   meta: { title: '系统管理', icon: 'el-icon-setting' },
-      //   children: [
-      //     {
-      //       path: 'user',
-      //       name: 'User',
-      //       component: () => import('@/views/user/index'),
-      //       meta: { title: '用户管理', icon: 'el-icon-user-solid' }
-      //     },
-      //     {
-      //       path: 'role',
-      //       name: 'Role',
-      //       component: () => import('@/views/role/index'),
-      //       meta: { title: '角色管理', icon: 'el-icon-coin' }
-      //     },
-      //     {
-      //       path: 'menu',
-      //       name: 'Menu',
-      //       component: () => import('@/views/menu/index'),
-      //       meta: { title: '菜单管理', icon: 'el-icon-menu' }
-      //     }
-      //   ]
-      // },
-
-      // // 跳转外网
-      // {
-      //   path: '/module1/gg',
-      //   component: ModuleOneLayout,
-      //   children: [
-      //     {
-      //       path: 'http://www.google.com',
-      //       meta: { title: '谷歌', icon: 'el-icon-link' }
-      //     }
-      //   ]
-      // },
-      //   {
-      //     path: '/module2',
-      //     component: ModuleTwoLayout,
-      //     redirect: '/module2/dashboard2',
-      //     children: [{
-      //     path: 'dashboard2',
-      //     name: 'Dashboard2',
-      //     component: () => import('@/views/dashboard2/index'),
-      //     meta: { title: '模块二首页', icon: 'dashboard2', affix: false }
-      //   }]
-      // },
-      // 博客管理
-      {
-        path: '/module2/blog',
-        component: ModuleTwoLayout,
-        redirect: '/module2/blog/article',
-        name: 'Blog',
-        meta: { title: '新增模块', icon: 'el-icon-notebook-2' },
-        children: [
-          {
-            path: 'article',
-            name: 'Article',
-            component: () => import('@/views/article/index'),
-            meta: { title: '一级分组', icon: 'el-icon-notebook-1' }
-          },
-          {
-            path: 'category',
-            name: 'Category',
-            component: () => import('@/views/category/index'),
-            meta: { title: '菜单功能1', icon: 'el-icon-s-order' }
-          },
-          // {
-          //   path: 'label',
-          //   name: 'Label',
-          //   component: () => import('@/views/label/index'),
-          //   meta: { title: '标签管理', icon: 'el-icon-collection-tag' }
-          // }
-        ]
-      },
-      ]
-    },
-      // 标签导航刷新
       {
         path: '/redirect',
         component: ModuleOneLayout,

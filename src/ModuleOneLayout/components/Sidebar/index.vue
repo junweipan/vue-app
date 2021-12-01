@@ -41,7 +41,7 @@ export default {
 
       // 部分路由, 控制页面显示
       const hasToken = getToken()
-      console.log('token',hasToken)
+      // console.log('token',hasToken)
       return CustomRoutes;
     },
     activeMenu() {

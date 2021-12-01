@@ -1,8 +1,6 @@
 <template>
-    <div>
-        <h1>Hello world</h1>
-        <button type="button" @click="fetchData()">click</button>
-        {{routes}}
+    <div class="dashboard-container">
+        <h1>新增模块首页</h1>
     </div>
 </template>
 
@@ -34,3 +32,19 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .dashboard {
+    &-container {
+      margin: 30px;
+    }
+    &-text {
+      font-size: 30px;
+      line-height: 46px;
+    }
+  }
+  .pagination{
+    float:right;
+    margin-top: 20px;
+  }
+</style>
