@@ -24,8 +24,8 @@ export const CustomRoutes = [
         },
         "children": [
             {
-                "path": "category",
-                "name": "Category",
+                "path": "sysLog",
+                "name": "SysLog",
                 "meta": {
                     "title": "系统日志",
                     "icon": "el-icon-s-order"

@@ -67,7 +67,7 @@
           label="功能类型"
           width="auto"
           show-overflow-tooltip>
-          <template slot-scope="scope">{{ scope.row.funType }}</template>
+          <template slot-scope="scope">{{ scope.row.funType | funTypeFormat}}</template>
         </el-table-column>
 
         <el-table-column
@@ -117,7 +117,6 @@
 <script>
 import api from '@/api/defaultModule'
 import Edit from './edit'
-import { filter } from '../../../../mock/user'
 const moduleOptions = [
     {code: 0, name: '默认模块'},
     {code: 1, name: '新增模块'}
@@ -196,6 +195,7 @@ export default {
            this.edit.formData = this.tableData.find((item)=>{
              return item.funId === funId
            })
+           console.log("formData item:", this.edit.formData)
           this.edit.title = '编辑'
           this.edit.visible = true
           //  api.getPersonInfoById(this.query).then(response => {

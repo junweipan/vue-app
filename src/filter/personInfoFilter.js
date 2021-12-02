@@ -1,5 +1,7 @@
 import Vue from 'vue'
 
+
+// personInfo
 const sexTypeList = ['请选择', '女', '男'];
 const eduTypeList = ['请选择', '初中及以下', '高中', '专科', '本科', '硕士', '博士及以上'];
 const regTypeList = ['请选择', '农', '非农'];

@@ -63,9 +63,9 @@ export const constantRoutes= [
           meta: { title: '默认模块', icon: 'dashboard', affix: false }
         },
         {
-          path: 'category',
-          name: 'Category',
-          component: () => import('@/views/category/index'),
+          path: 'sysLog',
+          name: 'SysLog',
+          component: () => import('@/views/defaultModule/sysLog/index'),
           meta: { title: '系统日志', icon: 'el-icon-s-order' }
         },
         {
