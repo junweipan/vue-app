@@ -111,12 +111,12 @@ export default {
 
     methods: {
         fetchData() {
-            api.getList(this.query, this.page.current, this.page.size).then(response => {
-                // console.log('response', response)
-                // 列表数据
-                this.list = response.data.records
-                this.page.total = response.data.total
-            })
+            // api.getList(this.query, this.page.current, this.page.size).then(response => {
+            //     // console.log('response', response)
+            //     // 列表数据
+            //     this.list = response.data.records
+            //     this.page.total = response.data.total
+            // })
         },
 
 

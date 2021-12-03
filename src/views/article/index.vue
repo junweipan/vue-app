@@ -119,10 +119,10 @@ export default {
     methods: {
         // 分页条件查询文章列表
         async fetchData() {
-            const { data } = 
-                await api.getList(this.query, this.page.current, this.page.size)
-            this.list = data.records
-            this.page.total = data.total
+            // const { data } = 
+            //     await api.getList(this.query, this.page.current, this.page.size)
+            // this.list = data.records
+            // this.page.total = data.total
         },
 
         // 组件模板中调用此方法格式化日期

@@ -6,7 +6,7 @@
         <el-col :span="6">
           <el-card shadow="always">
             <div slot="header" class="clearfix">
-            <span>用户统计 实时</span>
+            <span>用户统计 <el-tag type="danger">实时</el-tag></span>
             <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
           </div>
               {{30}}
@@ -15,7 +15,7 @@
         <el-col :span="6">
           <el-card shadow="hover">
              <div slot="header" class="clearfix">
-            <span>今日访问用户  实时</span>
+            <span>今日访问用户  <el-tag type="danger">实时</el-tag></span>
             <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
           </div>
           {{12}}
@@ -27,7 +27,7 @@
         <el-col :span="6">
           <el-card shadow="never">
             <div slot="header" class="clearfix">
-            <span>今日后台请求  实时</span>
+            <span>今日后台请求  <el-tag type="danger">实时</el-tag></span>
             <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
           </div>
           {{123}}
@@ -37,7 +37,7 @@
         <el-col :span="6">
           <el-card shadow="never">
              <div slot="header" class="clearfix">
-            <span>关键数据监控  实时</span>
+            <span>关键数据监控  <el-tag type="danger">实时</el-tag></span>
             <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
           </div>
           {{1234}}
