@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import VueCropper from 'vue-cropper'
 
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 
@@ -34,6 +35,9 @@ if (process.env.NODE_ENV === 'production') {
 // set ElementUI lang to EN
 // Vue.use(ElementUI, { locale })
 Vue.use(ElementUI)
+
+//引入vue-cropper图片裁剪工具
+Vue.use(VueCropper)
 
 // 如果想要中文版 element-ui，按如下方式声明
 // Vue.use(ElementUI)

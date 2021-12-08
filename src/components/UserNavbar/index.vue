@@ -11,11 +11,6 @@
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
-          <!-- <router-link to="/">
-            <el-dropdown-item>
-              Home
-            </el-dropdown-item>
-          </router-link> -->
           <router-link to="/module1?user=admin">
             <el-dropdown-item>Admin User</el-dropdown-item>
           </router-link>
@@ -24,12 +19,25 @@
             <el-dropdown-item>Normal User</el-dropdown-item>
           </router-link>
 
+          <a class="router-link-active">
+            <li class="el-dropdown-menu__item"  @click="openUserEditInfo">
+              个人信息
+            </li>
+          </a>
+
+          <a class="router-link-active">
+            <li class="el-dropdown-menu__item"  @click="openUserEditPassword">
+              修改密码
+            </li>
+          </a>
+
           <el-dropdown-item divided @click.native="logout">
             <span style="display:block;">Log Out</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
+    <user-info-edit :visible="editVisible" :infoData="userInfo" :remoteClose="onRemoteClose"/>
   </div>
 </template>
 
@@ -37,16 +45,25 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
+import userInfoEdit from './userInfoEdit.vue'
 
 export default {
   components: {
     Breadcrumb,
-    Hamburger
+    Hamburger,
+    userInfoEdit
+  },
+  data(){
+    return {
+      editVisible:false,
+      passwordVisible:false
+    }
   },
   computed: {
     ...mapGetters([
       'sidebar',
-      'avatar'
+      'avatar',
+      'userInfo'
     ])
   },
   methods: {
@@ -54,12 +71,26 @@ export default {
       this.$store.dispatch('app/toggleSideBar')
     },
     async logout() {
+      console.log(this.userInfo)
       await this.$store.dispatch('user/logout')
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
-    }
-  }
+    },
+    // 打开user edit窗口
+      openUserEditInfo() {
+          this.editVisible = true
+      },
+      openUserEditPassword() {
+          this.passwordVisible = true
+      },
+    // 子组件会触发此事件方法来关闭窗口
+    onRemoteClose() {
+      this.editVisible = false
+    },
+  },
+  mounted: ()=>{}
 }
 </script>
+
 
 <style lang="scss" scoped>
 .navbar {
@@ -139,3 +170,4 @@ export default {
   }
 }
 </style>
+

@@ -8,7 +8,8 @@ const getDefaultState = () => {
   return {
     token: getToken(),
     name: '',
-    avatar: ''
+    avatar: '',
+    userInfo:{}
   }
 }
 
@@ -26,6 +27,9 @@ const mutations = {
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
+  },
+  SET_USERINFO: (state, userInfo) => {
+    state.userInfo = userInfo
   },
   SET_ROUTES: (state, routes) => {
     state.routes = routes
@@ -83,12 +87,15 @@ const actions = {
       // getUserInfo 返回浏览器中的Cookie对象 (json)
       var UserInfo = getUserInfo()
       const { userKey, headUrl } = JSON.parse(UserInfo)
+      // 整体打包个人信息,用于前端展示和修改
+      const userInfo = JSON.parse(UserInfo)
       // console.log('UserInfo',UserInfo)
       // console.log('userKey',userKey)
       // console.log('headUrl',headUrl)
       commit('SET_NAME', userKey)
       commit('SET_AVATAR', headUrl)
-      resolve(JSON.parse(UserInfo))
+      commit('SET_USERINFO',userInfo)
+      resolve(userInfo)
     })
   },
 
