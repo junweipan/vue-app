@@ -51,7 +51,8 @@ service.interceptors.response.use(
     // backend return 200 or 0, 任何一个code都可以表示是成功
     if (res.status !== 200 && res.status !== 0) {
       Message({
-        message: res.message || 'Error',
+        // message: res.message || 'Error',
+        message: res.msg || 'Error',
         type: 'error',
         duration: 5 * 1000
       })

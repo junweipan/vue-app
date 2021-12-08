@@ -95,7 +95,6 @@ export default {
             type: Object, 
             default: {}
         },
-        
         remoteClose: Function // 用于关闭窗口
     },
     data() {

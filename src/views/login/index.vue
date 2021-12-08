@@ -41,6 +41,21 @@
         </span>
       </el-form-item>
 
+      <el-form-item v-if="loginCount >=3 " prop="verifycode" style="line-height:0px;" >
+        <el-row :gutter="20">
+        <el-col :span="12">
+          <el-input v-model="loginForm.verifycode" ref="verifycode" placeholder="验证码" style="width:100%;"></el-input>
+          </el-col>
+        <el-col :span="12">
+          <img :src="identifyimg" alt="验证码图片" @click="refreshCode" class="captcha_img"/>
+        </el-col>
+      </el-row>
+       
+        
+      </el-form-item>
+
+      
+
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
 
       <div class="tips">
@@ -53,18 +68,18 @@
 </template>
 
 <script>
-import { validUsername } from '@/utils/validate'
-
+// import { validUsername } from '@/utils/validate'
+import { getCaptcha } from '@/api/user'
 export default {
   name: 'Login',
   data() {
-    const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
-        callback(new Error('Please enter the correct user name'))
-      } else {
-        callback()
-      }
-    }
+    // const validateUsername = (rule, value, callback) => {
+    //   if (!validUsername(value)) {
+    //     callback(new Error('Please enter the correct user name'))
+    //   } else {
+    //     callback()
+    //   }
+    // }
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
         callback(new Error('The password can not be less than 6 digits'))
@@ -75,13 +90,17 @@ export default {
     return {
       loginForm: {
         username: 'admin',
-        password: '123456'
+        password: '123456',
+        verifycode: ''
       },
+      identifyCode : "",
+      identifyimg: '',
       loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        // username: [{ required: true, trigger: 'blur', validator: validateUsername }],
         password: [{ required: true, trigger: 'blur', validator: validatePassword }]
       },
       loading: false,
+      loginCount:0, //记录错误密码或用户名输入次数, 超过三次需要验证码
       passwordType: 'password',
       redirect: undefined
     }
@@ -95,6 +114,12 @@ export default {
     }
   },
   methods: {
+    refreshCode(){
+      getCaptcha().then(response => {
+      this.identifyCode = response.data.key
+      this.identifyimg = response.data.value
+      })
+    },
     showPwd() {
       if (this.passwordType === 'password') {
         this.passwordType = ''
@@ -105,18 +130,41 @@ export default {
         this.$refs.password.focus()
       })
     },
+    checkCaptcha(){
+        if(this.loginCount < 3){
+          return true
+        }
+        else if(this.loginCount >= 3){
+           this.refreshCode()
+           if(this.identifyCode === this.loginForm.verifycode){
+             console.log(this.identifyCode,this.loginForm.verifycode)
+             return true
+        }else{
+             return false
+           }
+        }
+    },
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
-        if (valid) {
+        // 累计登录次数
+        this.loginCount ++
+        // 首先做前端验证码校验
+        const CapchaPass = this.checkCaptcha()
+        if (valid && CapchaPass) {
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm).then(() => {
+            // 重置登录次数
+            this.loginCount = 0
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false
           }).catch(() => {
             this.loading = false
+            // this.$message('这是一条消息提示 wrong crecidental');
+            console.log('wrong crecidental',this.loginCount)
           })
         } else {
-          console.log('error submit!!')
+          // .$message('这是一条消息提示 capcha is wrong');
+          console.log('capcha is wrong')
           return false
         }
       })
@@ -124,6 +172,7 @@ export default {
   }
 }
 </script>
+
 
 <style lang="scss">
 /* 修复input 背景不协调 和光标变色 */
@@ -233,5 +282,12 @@ $light_gray:#eee;
     cursor: pointer;
     user-select: none;
   }
+}
+
+.captcha_img{
+  cursor: pointer;
+  margin-top: 15px;
+  width: 40%;
+  margin-left: 75px;
 }
 </style>

@@ -52,13 +52,13 @@ const actions = {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
       login({ userKey: username.trim(), userSecret: password }).then(response => {
-        const { data } = response
+       const { data } = response
         commit('SET_TOKEN', data) //存入 store
         setToken(data) // 存入cookie
         resolve()
       }).catch(error => {
         reject(error)
-      })
+     })
     })
   },
 

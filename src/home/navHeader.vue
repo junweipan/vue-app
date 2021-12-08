@@ -37,7 +37,7 @@ import MessageList from './messageList.vue'
     },
     methods: {
       handleSelect(key, keyPath) {
-        console.log(key, keyPath);
+        // console.log(key, keyPath);
       }
     },
     computed:{
