@@ -1,6 +1,6 @@
 import service from '@/utils/request'
 import qs from 'qs'
-
+const baseUrl = 'https://localhost:443'
 export default {
 
     // 条件查询fun列表 
@@ -9,7 +9,7 @@ export default {
              ...query
          })
         return service({ // Promise
-            url:'https://localhost/fun/query',
+            url: baseUrl + '/fun/query',
             method: 'post',
             data: qs_data
         })

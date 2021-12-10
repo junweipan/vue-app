@@ -1,6 +1,6 @@
 import service from '@/utils/request'
 import qs from 'qs'
-
+const baseUrl = 'https://localhost:443'
 export default {
 
     // 分页条件查询分类列表 
@@ -12,7 +12,7 @@ export default {
              "needPage":true
          })
         return service({ // Promise
-            url:'https://localhost/log/query',
+            url: baseUrl + '/log/query',
             // url: '/getMockPersonInfo', //  /dev-api/test
             method: 'post',
             data: qs_data

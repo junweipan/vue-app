@@ -44,7 +44,7 @@
     </el-dialog>
 </template>
 <script>
-import api from '@/api/category'
+
 import cropperImage from '@/components/CropperImage/index'
 
 export default {

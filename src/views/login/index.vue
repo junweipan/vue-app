@@ -91,9 +91,9 @@ export default {
       loginForm: {
         username: 'admin',
         password: '123456',
-        verifycode: ''
+        verifycode: '请输入右边验证码'
       },
-      identifyCode : "",
+      identifyCode : '',
       identifyimg: '',
       loginRules: {
         // username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -132,11 +132,13 @@ export default {
     },
     checkCaptcha(){
         if(this.loginCount < 3){
-          return true
+          return null
         }
         else if(this.loginCount >= 3){
            this.refreshCode()
            if(this.identifyCode === this.loginForm.verifycode){
+             // 重置登录次数
+             this.loginCount = 0
              console.log(this.identifyCode,this.loginForm.verifycode)
              return true
         }else{
@@ -148,13 +150,12 @@ export default {
       this.$refs.loginForm.validate(valid => {
         // 累计登录次数
         this.loginCount ++
-        // 首先做前端验证码校验
-        const CapchaPass = this.checkCaptcha()
-        if (valid && CapchaPass) {
+        // 首先做前端验证码校验, loginCount<3时,CapchaPass为null
+        let CapchaPass = this.checkCaptcha()
+        if (valid && (CapchaPass || CapchaPass === null)) {
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm).then(() => {
-            // 重置登录次数
-            this.loginCount = 0
+            console.log('loginCount',this.loginCount)
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false
           }).catch(() => {
@@ -163,8 +164,8 @@ export default {
             console.log('wrong crecidental',this.loginCount)
           })
         } else {
-          // .$message('这是一条消息提示 capcha is wrong');
-          console.log('capcha is wrong')
+          this.$message.warning('请输入正确验证码');
+          //console.log('capcha is wrong')
           return false
         }
       })

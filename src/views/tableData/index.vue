@@ -235,9 +235,9 @@ export default {
           this.fetchData()
       },
     fetchData() {
-      // api.getPersonInfo(this.query, this.page.current, this.page.size).then(response => {
-      // this.tableData = response.data.rows
-      // })
+      api.getPersonInfo(this.query, this.page.current, this.page.size).then(response => {
+      this.tableData = response.data.rows
+      })
     },
     // fetchData() {
     //         api.getList(this.query, this.page.current, this.page.size).then(response => {

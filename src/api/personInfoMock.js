@@ -1,6 +1,7 @@
 import service from '@/utils/request'
 import qs from 'qs'
 
+const baseUrl = 'http://localhost:8080'
 export default {
 
     // 分页条件查询分类列表 
@@ -11,7 +12,7 @@ export default {
              "curpage":current
          })
         return service({ // Promise
-            url:'http://172.16.16.115:8080/dev-api/getMockPersonInfo',
+            url: baseUrl + '/dev-api/getMockPersonInfo',
             // url: '/getMockPersonInfo', //  /dev-api/test
             method: 'post',
             data: qs_data
@@ -22,7 +23,7 @@ export default {
              ...query,
          })
         return service({ // Promise
-            url:'http://localhost:8080/dev-api/getMockPersonInfoById',
+            url: baseUrl + '/dev-api/getMockPersonInfoById',
             // url: '/getMockPersonInfo', //  /dev-api/test
             method: 'post',
             data: qs_data
