@@ -44,7 +44,7 @@
           </el-card>
         </el-col>
       </el-row>
-    </el-card>
+      </el-card>
 
       <div class="Echarts">
     <div id="main" style="width: 100%;height: 400px;"></div>
@@ -54,13 +54,13 @@
 </template>
 
 <script>
-
 export default {
   name: 'Welcome',
+  components:{
+
+  },
   data() {
     return {
-
-
     }
   },
   filters:{
@@ -112,6 +112,30 @@ var option = {
 </script>
 
 <style lang="scss" scoped>
+
+// 顶级下拉菜单图标的样式
+.back-sky-layout-header-app-dropdown-body-item-icon {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    margin: 8px auto 6px;
+    color: #fff;
+    background-color: #0f60b8;
+    cursor: pointer;
+}
+.back-sky-layout-header-app-dropdown-body-item-icon:hover {
+  background-color: #0f41e7;
+}
+.el-button--text:hover {
+    color: #0f41e7;
+}
+
+.iconyingyong {
+    height: 40px;
+    width: 40px;
+}
+
  .text {
     font-size: 14px;
   }
@@ -131,6 +155,15 @@ var option = {
 
   .box-card {
     width: 90%;
+  }
+  .box-card-2 {
+    width: 300px
+  }
+  .el-col {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;/*主轴上居中*/
+    align-items:center;/*侧轴上居中*/
   }
   .dashboard {
   &-container {
