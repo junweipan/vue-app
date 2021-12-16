@@ -1,8 +1,31 @@
 <template>
     <div>
      <el-menu :default-active="activeIndex" router :class="classObj" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-        <el-menu-item index="/module1">默认模块</el-menu-item>
-        <el-menu-item index="/module2">新增模块</el-menu-item>
+       <el-menu-item>
+          <el-dropdown>
+          <span class="el-dropdown-link">
+            下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu :class = "elDropdownMenuClass" slot="dropdown">
+            
+            <el-dropdown-item>
+              <el-card class="box-card">
+              <div slot="header" class="clearfix">
+                <span>卡片名称</span>
+                <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
+              </div>
+              <div v-for="o in 4" :key="o" class="text item">
+                {{'列表内容 ' + o }}
+              </div>
+            </el-card>
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+        
+       </el-menu-item>
+       
+        <!-- <el-menu-item index="/module1">默认模块</el-menu-item>
+        <el-menu-item index="/module2">新增模块</el-menu-item> -->
         
           <!-- <el-submenu index="2">
           <template slot="title">我的工作台</template>
@@ -17,7 +40,7 @@
           </el-submenu>
         </el-submenu> -->
        <el-menu-item class="newMessage"><message-list></message-list></el-menu-item>
-    <!-- <el-menu-item index="4" disabled><a disabled href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item> -->
+    
     </el-menu>
     </div>
 </template>
@@ -51,12 +74,35 @@ import MessageList from './messageList.vue'
         withoutAnimation: this.sidebar.withoutAnimation,
         mobile: this.device === 'mobile'
       }
+    },
+    elDropdownMenuClass() {
+      return {
+        elDropdownMenuHideSidebar:!this.sidebar.opened,
+        elDropdownMenuOpenSidebar:this.sidebar.opened,
     }
+      } 
     }
   }
 </script>
 
 <style lang='scss' scoped>
+  @import "~@/styles/mixin.scss";
+  @import "~@/styles/variables.scss";
+.elDropdownMenuHideSidebar{
+    margin-left: 54px;
+}
+.elDropdownMenuOpenSidebar{
+    margin-left: $sideBarWidth; // 210px
+}
+.el-dropdown-menu{
+  margin-top: -15px;
+  box-shadow: none;
+  background-color: rgb(255 255 255 / 0%);
+  border: hidden;
+}
+.el-dropdown-menu__item {
+  padding: 0;
+}
 .newMessage {
   float: right;
 }
@@ -83,5 +129,26 @@ import MessageList from './messageList.vue'
 .openSidebar{
     width: calc(100% - 210px);
     transition: width 0.28s;
+  }
+
+  .text {
+    font-size: 14px;
+  }
+
+  .item {
+    margin-bottom: 18px;
+  }
+
+  .clearfix:before,
+  .clearfix:after {
+    display: table;
+    content: "";
+  }
+  .clearfix:after {
+    clear: both
+  }
+
+  .box-card {
+    width: 480px;
   }
 </style>
