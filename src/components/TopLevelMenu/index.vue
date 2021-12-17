@@ -85,4 +85,7 @@ import IconTextButton from './iconTextButton.vue'
 .box-card {
     width: 300px;
   }
+.el-popper ::v-deep .popper__arrow {
+    visibility: hidden;
+  }
 </style>

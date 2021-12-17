@@ -2,7 +2,20 @@
     <div>
      <el-menu :default-active="activeIndex" router :class="classObj" class="el-menu-demo" mode="horizontal" @select="handleSelect">
        <top-level-menu></top-level-menu>
-       <el-menu-item class="newMessage"><message-list></message-list></el-menu-item>
+       
+      <el-menu-item class="userList">
+        <el-select v-model="value" placeholder="请选择">
+          <el-option
+            v-for="item in cities"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+            <span style="float: left">{{ item.label }}</span>
+            <span style="float: right; color: #8492a6; font-size: 13px">{{ item.value }}</span>
+          </el-option>
+        </el-select>
+      </el-menu-item>
+      <el-menu-item class="messageList"><message-list></message-list></el-menu-item>
     </el-menu>
     </div>
 </template>
@@ -15,7 +28,27 @@ import TopLevalMenu from '@/components/TopLevelMenu'
     data() {
       return {
         activeIndex: '1',
-        activeIndex2: '1'
+        activeIndex2: '1',
+        cities: [{
+          value: 'Beijing',
+          label: '北京'
+        }, {
+          value: 'Shanghai',
+          label: '上海'
+        }, {
+          value: 'Nanjing',
+          label: '南京'
+        }, {
+          value: 'Chengdu',
+          label: '成都'
+        }, {
+          value: 'Shenzhen',
+          label: '深圳'
+        }, {
+          value: 'Guangzhou',
+          label: '广州'
+        }],
+        value: ''
       };
     },
     components:{
@@ -46,8 +79,7 @@ import TopLevalMenu from '@/components/TopLevelMenu'
 <style lang='scss' scoped>
 .el-menu-demo{
   width: 100%;
-  position: fixed;
-  right: 0;
+  position:absolute;
   z-index: 9;
   /* width: calc(100% - 210px);
   -webkit-transition: width 0.28s;
@@ -56,7 +88,13 @@ import TopLevalMenu from '@/components/TopLevelMenu'
   //   left: 0;
   // }
 }
-
+.messageList{
+  float: right;
+  margin-top: 5px;
+}
+.userList {
+  float: right;
+}
 .hideSidebar{
     width: calc(100% - 54px);
     transition: width 0.28s;
