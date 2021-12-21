@@ -1,6 +1,4 @@
-# vue-admin-template
-
-> 根据 PanJiaChen 的 vue项目开发
+> 根据 PanJiaChen 的 vue项目 vue-admin-template 开发
 
 **Live demo:** http://panjiachen.github.io/vue-admin-template
 
