@@ -1,13 +1,13 @@
 const getters = {
-  sidebar: state => state.app.sidebar,
-  device: state => state.app.device,
-  token: state => state.user.token,
-  avatar: state => state.user.avatar,
-  name: state => state.user.name,
-  userInfo: state => state.user.userInfo,
-  visitedViews: state => state.tagsView.visitedViews,
-  cachedViews: state => state.tagsView.cachedViews,
-  moduleTwoVisitedViews: state => state.moduleTwoTagsView.visitedViews,
-  moduleTwoCachedViews: state => state.moduleTwoTagsView.cachedViews,
+  sidebar: store => store.app.sidebar,
+  device: store => store.app.device,
+  token: store => store.user.token,
+  avatar: store => store.user.avatar,
+  name: store => store.user.name,
+  userInfo: store => store.user.userInfo,
+  visitedViews: store => store.tagsView.visitedViews,
+  cachedViews: store => store.tagsView.cachedViews,
+  moduleTwoVisitedViews: store => store.moduleTwoTagsView.visitedViews,
+  moduleTwoCachedViews: store => store.moduleTwoTagsView.cachedViews,
 }
 export default getters
