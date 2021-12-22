@@ -1,6 +1,7 @@
 /* Layout - ModuleOne */
 import ModuleOneLayout from '@/ModuleOneLayout'
 import ModuleTwoLayout from '@/ModuleTwoLayout'
+import ModuleSetting from '@/ModuleSetting'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -106,7 +107,19 @@ export const constantRoutes= [
           component: () => import('@/views/category/index'),
           meta: { title: '菜单功能2', icon: 'el-icon-s-order' }
         }]
-      }
+      },
+      {
+        path: '/setting-module',
+        component: ModuleSetting,
+        redirect: '/setting-module/user-info',
+        children: [{
+        path: 'user-info',
+        name: 'UserInfo',
+        component: () => import('@/views/userInfo/index'),
+        meta: { title: '用户信息', icon: 'userInfo', affix: false }
+        }
+      ]
+    }
       ]
     },
       {

@@ -5,11 +5,11 @@
       <el-menu-item class="userList">
         <el-select v-model="value" @change="setAcivateType">
           <el-option
-            v-for="item in items"
-            :key="item.id"
-            :label="item.client"
-            :value="item.id">
-            <user-card :client="item.client" :level="item.level" :type="item.type" :autority="item.autority"></user-card>
+            v-for="user in users"
+            :key="user.id"
+            :label="user.client"
+            :value="user.id">
+            <user-card :id="user.id" :client="user.client" :level="user.level" :type="user.type" :autority="user.autority"></user-card>
           </el-option>
         </el-select>
       </el-menu-item>
@@ -28,7 +28,7 @@ import UserCard from '@/components/UserCard'
       return {
         activeIndex: '1',
         activeIndex2: '1',
-        items: [{
+        users: [{
           id:'1',
           client: '舟山市规划建筑设计院有限公司',
           level: '本级',
@@ -56,12 +56,12 @@ import UserCard from '@/components/UserCard'
       setAcivateType(id){
         // TODO 把当前client 发给服务器, 再刷一下服务器数据
         
-        const index = this.items.findIndex(item=>item.id == id)
+        const index = this.users.findIndex(item=>item.id == id)
         // 把其他type置成info, 把选中的item type 置成success
-        this.$data.items.forEach(element => {
+        this.$data.users.forEach(element => {
           element.type = 'info'
         });
-        this.$data.items[index].type = 'success'
+        this.$data.users[index].type = 'success'
         
       }
     },

@@ -1,6 +1,7 @@
 <template>
     <el-menu-item>
-        <el-dropdown :hide-on-click="false">
+        <!-- <el-dropdown :hide-on-click="false"> 点击后不隐藏-->
+       <el-dropdown trigger="click">
         <span class="el-dropdown-link">
         <i class="el-icon-menu"></i>合同管理
         </span>
@@ -12,10 +13,14 @@
             </div>
             <el-row :gutter="20">
             <el-col :span="8">
-                <icon-text-button :imgUrl="require('@/assets/touzi.png')" menuText="合同管理"></icon-text-button>
+              <router-link to="/module1">
+                <icon-text-button  :imgUrl="require('@/assets/touzi.png')" menuText="合同管理"></icon-text-button>
+              </router-link>
             </el-col>
             <el-col :span="8">
+              <router-link to="/module2">
                 <icon-text-button :imgUrl="require('@/assets/shangpu.png')" menuText="产值分配"></icon-text-button>
+              </router-link>
             </el-col>
             <el-col :span="8">
                 <icon-text-button :imgUrl="require('@/assets/tjfx.png')" menuText="统计分析"></icon-text-button>

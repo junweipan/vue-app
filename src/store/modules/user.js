@@ -9,7 +9,29 @@ const getDefaultState = () => {
     token: getToken(),
     name: '',
     avatar: '',
-    userInfo:{}
+    // mock user info db
+    userInfo:{
+      users: [{
+        id:'1',
+        client: '舟山市规划建筑设计院有限公司',
+        level: '本级',
+        type:'success',
+        autority:'开发人员'
+      }, {
+        id:'2',
+        client: 'XXXX有限公司',
+        level: '一级',
+        type:'info',
+        autority:'普通用户'
+      },
+      {
+        id:'3',
+        client: 'YYYY有限公司',
+        level: '二级',
+        type:'info',
+        autority:'开发人员'
+      }]
+    }
   }
 }
 

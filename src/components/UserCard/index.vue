@@ -1,7 +1,5 @@
 <template>
     <div class="userCard"> 
-
-
         <span><i class="el-icon-location"></i>{{client}}</span>
         <div class="checkTag">
             <span><i class="el-icon-s-custom"></i>{{level}} </span>
@@ -9,8 +7,16 @@
         </div>  
 
           <el-row v-if="type=='success' ? true:false" class="editUser">
-            <el-col :span="12">修改信息</el-col>
-            <el-col :span="12">退出</el-col>
+              <el-col  @click.native = "onEditInfo" :span="12">
+                修改信息
+              </el-col>
+
+            <router-link to="/welcome">
+              <el-col :span="12">
+                退出
+              </el-col>
+            </router-link>
+              
           </el-row>
     </div>
 </template>
@@ -22,6 +28,10 @@ export default {
 
   },
   props:{
+    id: { // e.g.1
+            type: String,
+            default: ""
+        },
     client: { // e.g.舟山市规划建筑设计院有限公司
             type: String,
             default: ""
@@ -60,7 +70,15 @@ export default {
 
   },
   methods: {
-
+    onEditInfo(){
+      console.log(this.id)
+      this.$router.push({
+        path:'/setting-module/user-info',
+        query:{
+          id:this.id
+        }
+      })
+    }
   }
 }
 </script>

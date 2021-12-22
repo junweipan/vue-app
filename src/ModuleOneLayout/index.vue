@@ -16,7 +16,7 @@
 <script>
 // 1. 导入标签导航组件TagsView
 import { Sidebar, AppMain, TagsView } from './components'
-import Navbar from '@/components/UserNavbar'
+import Navbar from '@/components/UserSetting'
 import ResizeMixin from './mixin/ResizeHandler'
 
 export default {
