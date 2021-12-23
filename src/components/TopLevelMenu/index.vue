@@ -18,7 +18,7 @@
               </router-link>
             </el-col>
             <el-col :span="8">
-              <router-link to="/module2">
+              <router-link to="/value-module">
                 <icon-text-button :imgUrl="require('@/assets/shangpu.png')" menuText="产值分配"></icon-text-button>
               </router-link>
             </el-col>

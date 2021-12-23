@@ -2,7 +2,7 @@
 import ModuleContract from '@/ModuleContract'
 
 import { contractRoutes } from './contractRoutes'
-import { module2Routes } from './module2Routes'
+import { valueRoutes } from './valueRoutes'
 import { settingRoutes } from './settingRoutes'
 import { analysisRoutes } from './analysisRoutes'
 
@@ -57,7 +57,7 @@ export const constantRoutes= [
         }]
         },
         contractRoutes,
-        module2Routes,
+        valueRoutes,
         analysisRoutes,
         settingRoutes,
       ]

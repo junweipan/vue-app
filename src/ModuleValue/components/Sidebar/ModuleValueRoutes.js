@@ -1,4 +1,4 @@
-export const CustomRoutes = [
+export const ModuleValueRoutes = [
     {
         "path": "/login",
         "hidden": true
@@ -8,19 +8,19 @@ export const CustomRoutes = [
         "hidden": true
     },
     {
-        "path": "/module2",
-        "redirect": "/module2/article",
-        "name": "Blog",
+        "path": "/value-module",
+        "redirect": "/value-module/dashboard",
+        "name": "Dashboard",
         "meta": {
             "title": "产值分配",
             "icon": "el-icon-notebook-2"
         },
         "children": [
             {
-                "path": "dashboard2",
-                "name": "Dashboard2",
+                "path": "dashboard",
+                "name": "Dashboard",
                 "meta": {
-                    "title": "产值主页",
+                    "title": "Home page",
                     "icon": "el-icon-notebook-1"
                 }
             },
