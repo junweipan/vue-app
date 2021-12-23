@@ -1,6 +1,6 @@
 <template>
     <div class="dashboard-container">
-        <!-- <cropper-image></cropper-image> -->
+        <cropper-image></cropper-image>
         <el-form ref="user" :model="user" label-width="100px" 
             label-position="right" style="width:400px;" status-icon>
 

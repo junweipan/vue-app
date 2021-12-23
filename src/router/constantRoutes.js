@@ -1,7 +1,9 @@
 /* Layout - ModuleOne */
 import ModuleOneLayout from '@/ModuleOneLayout'
-import ModuleTwoLayout from '@/ModuleTwoLayout'
-import ModuleSetting from '@/ModuleSetting'
+
+import { module1Routes } from './module1Routes'
+import { module2Routes } from './module2Routes'
+import { settingRoutes } from './settingRoutes'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -53,73 +55,9 @@ export const constantRoutes= [
           meta: { title: '欢迎页', icon: 'dashboard', affix: true }
         }]
         },
-        {
-          path: '/module1',
-          component: ModuleOneLayout,
-          redirect: '/module1/dashboard',
-          children: [{
-          path: 'dashboard',
-          name: 'Dashboard',
-          component: () => import('@/views/dashboard/index'),
-          meta: { title: '默认模块', icon: 'dashboard', affix: false }
-        },
-        {
-          path: 'sysLog',
-          name: 'SysLog',
-          component: () => import('@/views/defaultModule/sysLog/index'),
-          meta: { title: '系统日志', icon: 'el-icon-s-order' }
-        },
-        {
-          path: 'funmanager',
-          name: 'FunManager',
-          component: () => import('@/views/defaultModule/funManager/index'),
-          meta: { title: '功能管理', icon: 'el-icon-collection-tag' }
-        },
-        {
-          path: 'tabledata',
-          name: 'Tabledata',
-          component: () => import('@/views/tableData/index'),
-          meta: {
-              title: '数据测试',
-              icon: 'el-icon-s-grid'
-          }
-      }]
-        },
-        {
-          path: '/module2',
-          component: ModuleTwoLayout,
-          redirect: '/module2/dashboard2',
-          children: [{
-          path: 'dashboard2',
-          name: 'Dashboard2',
-          component: () => import('@/views/dashboard2/index'),
-          meta: { title: '新增模块', icon: 'dashboard2', affix: false }
-        },
-        {
-          path: 'article',
-          name: 'Article',
-          component: () => import('@/views/article/index'),
-          meta: { title: '菜单功能1', icon: 'el-icon-notebook-1' }
-        },
-        {
-          path: 'category',
-          name: 'Category',
-          component: () => import('@/views/category/index'),
-          meta: { title: '菜单功能2', icon: 'el-icon-s-order' }
-        }]
-      },
-      {
-        path: '/setting-module',
-        component: ModuleSetting,
-        redirect: '/setting-module/user-info',
-        children: [{
-        path: 'user-info',
-        name: 'UserInfo',
-        component: () => import('@/views/userInfo/index'),
-        meta: { title: '用户信息', icon: 'userInfo', affix: false }
-        }
-      ]
-    }
+        module1Routes,
+        module2Routes,
+        settingRoutes,
       ]
     },
       {

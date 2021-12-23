@@ -28,7 +28,9 @@
             </el-row>   
             <el-row :gutter="20">
             <el-col :span="8">
-                <icon-text-button :imgUrl="require('@/assets/tongyong.png')" menuText="系统配置"></icon-text-button>
+              <router-link to="/setting-module">
+                <icon-text-button :imgUrl="require('@/assets/tongyong.png')" menuText="系统设置"></icon-text-button>
+              </router-link>
             </el-col>
             </el-row>            
         </el-card>
