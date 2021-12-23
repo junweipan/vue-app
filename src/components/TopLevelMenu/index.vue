@@ -13,7 +13,7 @@
             </div>
             <el-row :gutter="20">
             <el-col :span="8">
-              <router-link to="/module1">
+              <router-link to="/contract-module">
                 <icon-text-button  :imgUrl="require('@/assets/touzi.png')" menuText="合同管理"></icon-text-button>
               </router-link>
             </el-col>
@@ -23,7 +23,9 @@
               </router-link>
             </el-col>
             <el-col :span="8">
+              <router-link to="/analysis-module">
                 <icon-text-button :imgUrl="require('@/assets/tjfx.png')" menuText="统计分析"></icon-text-button>
+              </router-link>
             </el-col>
             </el-row>   
             <el-row :gutter="20">

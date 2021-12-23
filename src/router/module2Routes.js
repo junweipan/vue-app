@@ -7,7 +7,7 @@ export const module2Routes = {
     children: [{
     path: 'dashboard2',
     name: 'Dashboard2',
-    component: () => import('@/views/dashboard2/index'),
+    component: () => import('@/views/moduleValue/dashboard2/index'),
     meta: { title: '新增模块', icon: 'dashboard2', affix: false }
   },
   {

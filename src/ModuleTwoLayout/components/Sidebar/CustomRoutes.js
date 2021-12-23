@@ -7,30 +7,23 @@ export const CustomRoutes = [
         "path": "/404",
         "hidden": true
     },
-    // {
-    //     "path": "/module2",
-    //     "redirect": "/module2/dashboard2",
-    //     "children": [
-    //         {
-    //             "path": "dashboard2",
-    //             "name": "Dashboard2",
-    //             "meta": {
-    //                 "title": "新增模块",
-    //                 "icon": "dashboard",
-    //                 "affix": false
-    //             }
-    //         }
-    //     ]
-    // },
     {
         "path": "/module2",
         "redirect": "/module2/article",
         "name": "Blog",
         "meta": {
-            "title": "一级分组",
+            "title": "产值分配",
             "icon": "el-icon-notebook-2"
         },
         "children": [
+            {
+                "path": "dashboard2",
+                "name": "Dashboard2",
+                "meta": {
+                    "title": "产值主页",
+                    "icon": "el-icon-notebook-1"
+                }
+            },
             {
                 "path": "article",
                 "name": "Article",
@@ -47,14 +40,6 @@ export const CustomRoutes = [
                     "icon": "el-icon-s-order"
                 }
             },
-            // {
-            //     "path": "label",
-            //     "name": "Label",
-            //     "meta": {
-            //         "title": "标签管理",
-            //         "icon": "el-icon-collection-tag"
-            //     }
-            // }
         ]
     },
     {

@@ -1,5 +1,15 @@
 <template>
     <div class="dashboard-container">
+        <div style="display: flex; flex-direction: column; ">
+            
+            <a href="https://echarts.apache.org/zh/index.html">
+            <h2>统计图插件库: Ecahrts</h2>
+            </a>
+            <a href="https://echarts.apache.org/zh/option.html#title">
+            <h2>API 配置文档</h2>
+            </a>
+        </div>
+
         <el-row :gutter="20">
             <el-col :span="12">
                 <line-chart></line-chart>
@@ -17,11 +27,6 @@
                 <dot-chart></dot-chart>
             </el-col>
         </el-row>
-
-
-     
-     
-    
     </div>
 </template>
 
@@ -43,12 +48,6 @@ export default {
 </script>
 
 <style>
-  .el-row {
-    margin-bottom: 20px;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
   .el-col {
     border-radius: 4px;
   }

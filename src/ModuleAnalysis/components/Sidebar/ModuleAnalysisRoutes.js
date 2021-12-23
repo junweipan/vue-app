@@ -1,4 +1,4 @@
-export const ModuleSettingRoutes = [
+export const ModuleAnalysisRoutes = [
     {
         "path": "/login",
         "hidden": true
@@ -8,11 +8,11 @@ export const ModuleSettingRoutes = [
         "hidden": true
     },
     {
-        "path": "/setting-module",
-        "redirect": "/setting-module/dashboard",
-        "name": "设置页",
+        "path": "/analysis-module",
+        "redirect": "/analysis-module/dashboard",
+        "name": "统计分析页",
         "meta": {
-            "title": "设置",
+            "title": "统计分析",
             "icon": "el-icon-notebook-2"
         },
         "children": [
@@ -25,13 +25,13 @@ export const ModuleSettingRoutes = [
                 }
             },
             {
-                "path": "user-info",
-                "name": "UserInfo",
+                "path": "charts-demo",
+                "name": "ChartsDemo",
                 "meta": {
-                    "title": "用户信息",
-                    "icon": "el-icon-s-custom"
+                    "title": "图形展示",
+                    "icon": "el-icon-s-marketing"
                 }
-            }
+            },
         ]
     },
     {

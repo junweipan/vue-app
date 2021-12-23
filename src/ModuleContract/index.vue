@@ -20,7 +20,7 @@ import Navbar from '@/components/UserSetting'
 import ResizeMixin from './mixin/ResizeHandler'
 
 export default {
-  name: 'ModuleOneLayout',
+  name: 'ModuleContract',
   components: {
     Navbar,
     Sidebar,

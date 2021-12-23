@@ -1,9 +1,10 @@
 /* Layout - ModuleOne */
-import ModuleOneLayout from '@/ModuleOneLayout'
+import ModuleContract from '@/ModuleContract'
 
-import { module1Routes } from './module1Routes'
+import { contractRoutes } from './contractRoutes'
 import { module2Routes } from './module2Routes'
 import { settingRoutes } from './settingRoutes'
+import { analysisRoutes } from './analysisRoutes'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -46,7 +47,7 @@ export const constantRoutes= [
       children:[
         {
           path: '/',
-          component: ModuleOneLayout,
+          component: ModuleContract,
           redirect: '/welcome',
           children: [{
           path: 'welcome',
@@ -55,14 +56,15 @@ export const constantRoutes= [
           meta: { title: '欢迎页', icon: 'dashboard', affix: true }
         }]
         },
-        module1Routes,
+        contractRoutes,
         module2Routes,
+        analysisRoutes,
         settingRoutes,
       ]
     },
       {
         path: '/redirect',
-        component: ModuleOneLayout,
+        component: ModuleContract,
         hidden: true,
         children: [
           {

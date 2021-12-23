@@ -24,7 +24,7 @@ import Logo from './Logo'
 import SidebarItem from './SidebarItem'
 import variables from '@/styles/variables.scss'
 
-import { CustomRoutes } from './CustomRoutes'
+import { ModuleContractRoutes } from './ModuleContractRoutes'
 
 import { getToken } from '@/utils/auth' // get token from cookie
 
@@ -42,7 +42,7 @@ export default {
       // 部分路由, 控制页面显示
       const hasToken = getToken()
       // console.log('token',hasToken)
-      return CustomRoutes;
+      return ModuleContractRoutes;
     },
     activeMenu() {
       const route = this.$route

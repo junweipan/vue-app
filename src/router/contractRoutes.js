@@ -1,30 +1,30 @@
-import ModuleOneLayout from '@/ModuleOneLayout'
-export const module1Routes = {
-    path: '/module1',
-    component: ModuleOneLayout,
-    redirect: '/module1/dashboard',
+import ModuleContract from '@/ModuleContract'
+export const contractRoutes = {
+    path: '/contract-module',
+    component: ModuleContract,
+    redirect: '/contract-module/dashboard',
     children: [{
     path: 'dashboard',
     name: 'Dashboard',
-    component: () => import('@/views/dashboard/index'),
+    component: () => import('@/views/moduleContract/dashboard/index'),
     meta: { title: '默认模块', icon: 'dashboard', affix: false }
   },
   {
     path: 'sysLog',
     name: 'SysLog',
-    component: () => import('@/views/defaultModule/sysLog/index'),
+    component: () => import('@/views/moduleContract/sysLog/index'),
     meta: { title: '系统日志', icon: 'el-icon-s-order' }
   },
   {
     path: 'funmanager',
     name: 'FunManager',
-    component: () => import('@/views/defaultModule/funManager/index'),
+    component: () => import('@/views/moduleContract/funManager/index'),
     meta: { title: '功能管理', icon: 'el-icon-collection-tag' }
   },
   {
     path: 'tabledata',
     name: 'Tabledata',
-    component: () => import('@/views/tableData/index'),
+    component: () => import('@/views/moduleContract/tableData/index'),
     meta: {
         title: '数据测试',
         icon: 'el-icon-s-grid'
