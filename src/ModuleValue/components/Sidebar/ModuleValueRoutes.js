@@ -21,7 +21,7 @@ export const ModuleValueRoutes = [
                 "name": "Dashboard",
                 "meta": {
                     "title": "Home page",
-                    "icon": "el-icon-notebook-1"
+                    "icon": "el-icon-s-home"
                 }
             },
             {

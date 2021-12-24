@@ -7,26 +7,26 @@ export const contractRoutes = {
     path: 'dashboard',
     name: 'Dashboard',
     component: () => import('@/views/moduleContract/dashboard/index'),
-    meta: { title: '默认模块', icon: 'dashboard', affix: false }
+    meta: { title: '合同管理-主页', icon: 'dashboard', affix: false }
   },
   {
     path: 'sysLog',
     name: 'SysLog',
     component: () => import('@/views/moduleContract/sysLog/index'),
-    meta: { title: '系统日志', icon: 'el-icon-s-order' }
+    meta: { title: '合同管理-系统日志', icon: 'el-icon-s-order' }
   },
   {
     path: 'funmanager',
     name: 'FunManager',
     component: () => import('@/views/moduleContract/funManager/index'),
-    meta: { title: '功能管理', icon: 'el-icon-collection-tag' }
+    meta: { title: '合同管理-功能管理', icon: 'el-icon-collection-tag' }
   },
   {
     path: 'tabledata',
     name: 'Tabledata',
     component: () => import('@/views/moduleContract/tableData/index'),
     meta: {
-        title: '数据测试',
+        title: '合同管理-数据测试',
         icon: 'el-icon-s-grid'
     }
 }]

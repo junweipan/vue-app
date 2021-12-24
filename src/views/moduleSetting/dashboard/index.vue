@@ -1,5 +1,5 @@
 <template>
     <div class="dashboard-container">
-        <h1>Setting 主页</h1>
+        <h1>系统设置 主页</h1>
     </div>
 </template>

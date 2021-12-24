@@ -10,7 +10,7 @@ export const ModuleAnalysisRoutes = [
     {
         "path": "/analysis-module",
         "redirect": "/analysis-module/dashboard",
-        "name": "统计分析页",
+        "name": "dashboard",
         "meta": {
             "title": "统计分析",
             "icon": "el-icon-notebook-2"

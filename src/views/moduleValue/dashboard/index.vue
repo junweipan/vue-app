@@ -1,6 +1,6 @@
 <template>
     <div class="dashboard-container">
-        <h1>新增模块首页</h1>
+        <h1>产值管理 首页</h1>
     </div>
 </template>
 

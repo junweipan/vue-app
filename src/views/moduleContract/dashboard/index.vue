@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard-container">
-    <h1>默认模块首页</h1>
+    <h1>合同管理 首页</h1>
     <!-- <div>
       <button type="button" @click="fetchData()">click</button>
     </div> -->

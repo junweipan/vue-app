@@ -21,7 +21,7 @@ export const ModuleContractRoutes = [
                 "name": "Dashboard",
                 "meta": {
                     "title": "Home page",
-                    "icon": "el-icon-s-order"
+                    "icon": "el-icon-s-home"
                 }
             },
             {

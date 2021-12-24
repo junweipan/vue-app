@@ -10,9 +10,9 @@ export const ModuleSettingRoutes = [
     {
         "path": "/setting-module",
         "redirect": "/setting-module/dashboard",
-        "name": "设置页",
+        "name": "dashboard",
         "meta": {
-            "title": "设置",
+            "title": "系统设置",
             "icon": "el-icon-notebook-2"
         },
         "children": [
@@ -29,6 +29,14 @@ export const ModuleSettingRoutes = [
                 "name": "UserInfo",
                 "meta": {
                     "title": "用户信息",
+                    "icon": "el-icon-s-custom"
+                }
+            },
+            {
+                "path": "upload",
+                "name": "Upload",
+                "meta": {
+                    "title": "文件上传",
                     "icon": "el-icon-s-custom"
                 }
             }
