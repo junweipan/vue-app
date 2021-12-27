@@ -1,23 +1,21 @@
 <template>
   <div class="dashboard-container">
       <h1>upload</h1>
-
+      <div class="uploads">
       <drag-upload></drag-upload>  
       <normal-upload></normal-upload>
-      <module-pdf></module-pdf>
+      </div>
   </div>
 </template>
 
 <script>
 import DragUpload from './dragUpload.vue'
 import NormalUpload from './normalUpload.vue'
-import ModulePdf from './modulePdf.vue'
 export default {
   props: {},
   components: {
       'drag-upload': DragUpload,
       'normal-upload':NormalUpload,
-      'module-pdf': ModulePdf
   },
   data() {
     return {
@@ -39,5 +37,8 @@ export default {
 .dashboard-container {
     margin:50px
 }
-
+.uploads{
+  display: flex;
+  justify-content: space-evenly;
+}
 </style>

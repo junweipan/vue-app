@@ -46,14 +46,18 @@
       </el-row>
     </el-card>
 
+    <photo-viewer></photo-viewer>
+
   </div>
 </template>
 
 <script>
+import PhotoViewer from '@/components/PhotoViewer'
 
 export default {
   name: 'Welcome',
   components:{
+    'photo-viewer': PhotoViewer
   },
   data() {
     return {

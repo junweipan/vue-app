@@ -17,7 +17,9 @@ import '@/icons' // icon
 import '@/permission' // permission control
 import * as echarts from 'echarts'
 
-
+// 图片
+// import Viewer from 'v-viewer'
+// import 'viewerjs/dist/viewer.css'
 
 /**
  * If you don't want to use mock-server

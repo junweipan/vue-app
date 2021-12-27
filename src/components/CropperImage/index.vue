@@ -3,7 +3,11 @@
     <div class="main">
       <div class="uploadBox">
         <div class="cropper-con">
-          <vue-cropper
+          <div class="previewBox">
+            <img v-if='option.img ==""' :src="avatar" alt="" />
+          </div>
+          <vue-cropper v-if='option.img !==""'
+            style="background-image: none"
             ref="cropper"
             :img="option.img"
             :outputSize="option.outputSize"
@@ -35,13 +39,8 @@
 
       <div class="btn">
         <input id="upload" type="file" @change="selectImg" />
-        <label for="upload" class="btn-item">上传图片</label>
+        <label for="upload" class="btn-item">上传头像</label>
       </div>
-
-      <div class="previewBox">
-        <img :src="avatar" alt="" />
-      </div>
-
     </div>
   </div>
 </template>
@@ -53,7 +52,7 @@ export default {
     return {
       previews: {},
       // 设置一个默认头像图片-纯白色
-      avatar: require("@/assets/white.png"),
+      avatar: require("@/assets/defaultProfile.png"),
       option: {
         img: "", //裁剪图片的地址
         outputSize: 1, //裁剪生成图片的质量(可选0.1 - 1)
@@ -170,11 +169,10 @@ export default {
   .previewBox {
     // width: 300px;
     img {
-      margin-top: 70px;
-      margin-bottom: 30px;
       width: 150px;
       height: 150px;
-      border-radius: 50%;
+      margin-left: 10px;
+      // border-radius: 50%;
     }
   }
   .uploadBox {
