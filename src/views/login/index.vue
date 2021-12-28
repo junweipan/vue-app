@@ -1,10 +1,16 @@
 <template>
   <div class="login-container">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
-
+    <el-form
+      ref="loginForm"
+      :model="loginForm"
+      :rules="loginRules"
+      class="login-form"
+      auto-complete="on"
+      label-position="left"
+    >
       <div class="title-container">
         <h3 class="title">舟山智慧城市管理系统</h3>
-        <h2 class="title">登录页面</h2>
+        <!-- <h2 class="title">登录页面</h2> -->
       </div>
 
       <el-form-item prop="username">
@@ -38,41 +44,66 @@
           @keyup.enter.native="handleLogin"
         />
         <span class="show-pwd" @click="showPwd">
-          <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
+          <svg-icon
+            :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'"
+          />
         </span>
       </el-form-item>
 
-      <el-form-item v-if="loginCount >=3 " prop="verifycode" style="line-height:0px;" >
+      <el-form-item
+        v-if="loginCount >= 3"
+        prop="verifycode"
+        style="line-height: 0px"
+      >
         <el-row :gutter="20">
-        <el-col :span="12">
-          <el-input v-model="loginForm.verifycode" ref="verifycode" placeholder="验证码" style="width:100%;"></el-input>
+          <el-col :span="12">
+            <el-input
+              v-model="loginForm.verifycode"
+              ref="verifycode"
+              placeholder="验证码"
+              style="width: 100%"
+            ></el-input>
           </el-col>
-        <el-col :span="12">
-          <img :src="identifyimg" alt="验证码图片" @click="refreshCode" class="captcha_img"/>
-        </el-col>
-      </el-row>
-       
-        
+          <el-col :span="12">
+            <img
+              :src="identifyimg"
+              alt="验证码图片"
+              @click="refreshCode"
+              class="captcha_img"
+            />
+          </el-col>
+        </el-row>
       </el-form-item>
 
-      
-
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">登录</el-button>
+      <el-button
+        :loading="loading"
+        type="primary"
+        style="width: 50%; 
+        margin-bottom: 30px;"
+        @click.native.prevent="handleLogin"
+        >登录</el-button
+      >
 
       <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
+        <span> username: admin</span>
         <span> password: 123456</span>
       </div>
 
+
+      <div class="title-container">
+      <p class="copyright">© 2021 舟山市智慧城市运营有限公司 版权所有</p>
+    </div>
     </el-form>
+
+    
   </div>
 </template>
 
 <script>
 // import { validUsername } from '@/utils/validate'
-import { getCaptcha } from '@/api/user'
+import { getCaptcha } from "@/api/user";
 export default {
-  name: 'Login',
+  name: "Login",
   data() {
     // const validateUsername = (rule, value, callback) => {
     //   if (!validUsername(value)) {
@@ -83,96 +114,100 @@ export default {
     // }
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
-        callback(new Error('The password can not be less than 6 digits'))
+        callback(new Error("The password can not be less than 6 digits"));
       } else {
-        callback()
+        callback();
       }
-    }
+    };
     return {
       loginForm: {
-        username: 'admin',
-        password: '123456',
-        verifycode: '请输入右边验证码'
+        username: "admin",
+        password: "123456",
+        verifycode: "请输入右边验证码",
       },
-      identifyCode : '',
-      identifyimg: '',
+      identifyCode: "",
+      identifyimg: "",
       loginRules: {
         // username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }]
+        password: [
+          { required: true, trigger: "blur", validator: validatePassword },
+        ],
       },
       loading: false,
-      loginCount:0, //记录错误密码或用户名输入次数, 超过三次需要验证码
-      passwordType: 'password',
-      redirect: undefined
-    }
+      loginCount: 0, //记录错误密码或用户名输入次数, 超过三次需要验证码
+      passwordType: "password",
+      redirect: undefined,
+    };
   },
   watch: {
     $route: {
-      handler: function(route) {
-        this.redirect = route.query && route.query.redirect
+      handler: function (route) {
+        this.redirect = route.query && route.query.redirect;
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   methods: {
-    refreshCode(){
-      getCaptcha().then(response => {
-      this.identifyCode = response.data.key
-      this.identifyimg = response.data.value
-      })
+    refreshCode() {
+      getCaptcha().then((response) => {
+        this.identifyCode = response.data.key;
+        this.identifyimg = response.data.value;
+      });
     },
     showPwd() {
-      if (this.passwordType === 'password') {
-        this.passwordType = ''
+      if (this.passwordType === "password") {
+        this.passwordType = "";
       } else {
-        this.passwordType = 'password'
+        this.passwordType = "password";
       }
       this.$nextTick(() => {
-        this.$refs.password.focus()
-      })
+        this.$refs.password.focus();
+      });
     },
-    checkCaptcha(){
-        if(this.loginCount < 3){
-          return null
+    checkCaptcha() {
+      if (this.loginCount < 3) {
+        return null;
+      } else if (this.loginCount >= 3) {
+        this.refreshCode();
+        if (this.identifyCode === this.loginForm.verifycode) {
+          // 重置登录次数
+          this.loginCount = 0;
+          console.log(this.identifyCode, this.loginForm.verifycode);
+          return true;
+        } else {
+          return false;
         }
-        else if(this.loginCount >= 3){
-           this.refreshCode()
-           if(this.identifyCode === this.loginForm.verifycode){
-             // 重置登录次数
-             this.loginCount = 0
-             console.log(this.identifyCode,this.loginForm.verifycode)
-             return true
-        }else{
-             return false
-           }
-        }
+      }
     },
     handleLogin() {
-      this.$refs.loginForm.validate(valid => {
+      this.$refs.loginForm.validate((valid) => {
         // 累计登录次数
-        this.loginCount ++
+        this.loginCount++;
         // 首先做前端验证码校验, loginCount<3时,CapchaPass为null
-        let CapchaPass = this.checkCaptcha()
+        let CapchaPass = this.checkCaptcha();
         if (valid && (CapchaPass || CapchaPass === null)) {
-          this.loading = true
-          this.$store.dispatch('user/login', this.loginForm).then(() => {
-            console.log('loginCount',this.loginCount)
-            this.$router.push({ path: this.redirect || '/' })
-            this.loading = false
-          }).catch(() => {
-            this.loading = false
-            // this.$message('这是一条消息提示 wrong crecidental');
-            console.log('wrong crecidental',this.loginCount)
-          })
+          this.loading = true;
+          this.$store
+            .dispatch("user/login", this.loginForm)
+            .then(() => {
+              console.log("loginCount", this.loginCount);
+              this.$router.push({ path: this.redirect || "/" });
+              this.loading = false;
+            })
+            .catch(() => {
+              this.loading = false;
+              // this.$message('这是一条消息提示 wrong crecidental');
+              console.log("wrong crecidental", this.loginCount);
+            });
         } else {
-          this.$message.warning('请输入正确验证码');
+          this.$message.warning("请输入正确验证码");
           //console.log('capcha is wrong')
-          return false
+          return false;
         }
-      })
-    }
-  }
-}
+      });
+    },
+  },
+};
 </script>
 
 
@@ -180,8 +215,8 @@ export default {
 /* 修复input 背景不协调 和光标变色 */
 /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 
-$bg:#283443;
-$light_gray:#fff;
+$bg: #283443;
+$light_gray: #fff;
 $cursor: #fff;
 
 @supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
@@ -224,23 +259,25 @@ $cursor: #fff;
 </style>
 
 <style lang="scss" scoped>
-$bg:#2d3a4b;
-$dark_gray:#889aa4;
-$light_gray:#eee;
+$bg: #2d3a4b;
+$dark_gray: #889aa4;
+$light_gray: #eee;
 
 .login-container {
   min-height: 100%;
   width: 100%;
   background-color: $bg;
   overflow: hidden;
-
+  text-align: center;
+  background-image: url('/login-bg.jpg');
   .login-form {
     position: relative;
-    width: 520px;
+    width: 700px;
     max-width: 100%;
-    padding: 160px 35px 0;
-    margin: 0 auto;
-    overflow: hidden;
+    padding: 50px 100px 50px 100px;
+    margin: 300px auto;
+    background-color: rgb(28, 164, 168,0.6);
+    border-radius: 2%;
   }
 
   .tips {
@@ -274,7 +311,12 @@ $light_gray:#eee;
       font-weight: bold;
     }
   }
-
+  .copyright {
+    font-size: 15px;
+    color: $light_gray;
+    margin: 50px auto 40px auto;
+    text-align: center;
+  }
   .show-pwd {
     position: absolute;
     right: 10px;
@@ -286,7 +328,7 @@ $light_gray:#eee;
   }
 }
 
-.captcha_img{
+.captcha_img {
   cursor: pointer;
   margin-top: 15px;
   width: 40%;
