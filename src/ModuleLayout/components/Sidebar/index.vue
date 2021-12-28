@@ -20,10 +20,10 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import Logo from '@/ModuleLayout/components/Sidebar/Logo'
-import SidebarItem from '@/ModuleLayout/components/Sidebar/SidebarItem'
+import Logo from './Logo'
+import SidebarItem from './SidebarItem'
 import variables from '@/styles/variables.scss'
-import { ModuleAnalysisRoutes } from './ModuleAnalysisRoutes'
+import { ModuleSettingRoutes } from './ModuleSettingRoutes'
 
 import { getToken } from '@/utils/auth' // get token from cookie
 
@@ -40,7 +40,7 @@ export default {
 
       // 部分路由, 控制页面显示
       const hasToken = getToken()
-      return ModuleAnalysisRoutes;
+      return ModuleSettingRoutes;
     },
     activeMenu() {
       const route = this.$route
