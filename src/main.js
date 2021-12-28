@@ -17,9 +17,9 @@ import '@/icons' // icon
 import '@/permission' // permission control
 import * as echarts from 'echarts'
 
-// 图片
-// import Viewer from 'v-viewer'
-// import 'viewerjs/dist/viewer.css'
+// 登录页粒子效果
+import VueParticles from 'vue-particles'
+Vue.use(VueParticles)
 
 /**
  * If you don't want to use mock-server

@@ -1,5 +1,6 @@
 <template>
   <div class="login-container">
+      <vue-particles color="#dedede" class="particles-js"></vue-particles>
     <el-form
       ref="loginForm"
       :model="loginForm"
@@ -95,8 +96,9 @@
     </div>
     </el-form>
 
-    
   </div>
+
+
 </template>
 
 <script>
@@ -262,20 +264,25 @@ $cursor: #fff;
 $bg: #2d3a4b;
 $dark_gray: #889aa4;
 $light_gray: #eee;
-
+.particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
 .login-container {
   min-height: 100%;
   width: 100%;
   background-color: $bg;
+  background-image: url(/login-bg.jpg);
+  background-size: cover;
   overflow: hidden;
   text-align: center;
-  background-image: url('/login-bg.jpg');
   .login-form {
-    position: relative;
+    position: absolute;
     width: 700px;
-    max-width: 100%;
     padding: 50px 100px 50px 100px;
-    margin: 300px auto;
+    top: 100px;
+    left: 1100px;
     background-color: rgb(28, 164, 168,0.6);
     border-radius: 2%;
   }
@@ -283,7 +290,7 @@ $light_gray: #eee;
   .tips {
     font-size: 14px;
     color: #fff;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
 
     span {
       &:first-of-type {
@@ -293,7 +300,7 @@ $light_gray: #eee;
   }
 
   .svg-container {
-    padding: 6px 5px 6px 15px;
+    padding: 5px 5px 5px 15px;
     color: $dark_gray;
     vertical-align: middle;
     width: 30px;
@@ -306,7 +313,7 @@ $light_gray: #eee;
     .title {
       font-size: 26px;
       color: $light_gray;
-      margin: 0px auto 40px auto;
+      margin: 20px auto 40px auto;
       text-align: center;
       font-weight: bold;
     }
@@ -314,7 +321,7 @@ $light_gray: #eee;
   .copyright {
     font-size: 15px;
     color: $light_gray;
-    margin: 50px auto 40px auto;
+    margin: 0px auto 0px auto;
     text-align: center;
   }
   .show-pwd {
