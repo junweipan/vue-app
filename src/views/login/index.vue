@@ -273,16 +273,16 @@ $light_gray: #eee;
   min-height: 100%;
   width: 100%;
   background-color: $bg;
-  background-image: url(/login-bg.jpg);
+  background-image: url(/login-bg2.jpg);
   background-size: cover;
   overflow: hidden;
   text-align: center;
   .login-form {
-    position: absolute;
+    position: relative;
     width: 700px;
     padding: 50px 100px 50px 100px;
-    top: 100px;
-    left: 1100px;
+    top: 300px;
+    left: 600px;
     background-color: rgb(28, 164, 168,0.6);
     border-radius: 2%;
   }

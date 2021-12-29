@@ -182,7 +182,7 @@ const regOptions = [
 export default {
   name: 'Dashboard',
   components: { 
-        Edit // Edit: Edit
+        'edit':Edit // Edit: Edit
     },
   data() {
     return {

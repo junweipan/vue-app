@@ -167,7 +167,7 @@
             layout="total, sizes, prev, pager, next, jumper"
             :total="page.total">
         </el-pagination>
-       </div> -->
+       </div>
     <edit :title="edit.title" :visible="edit.visible" :formData="edit.formData" :remoteClose="remoteClose"/>
   </div>
 </template>
@@ -182,7 +182,7 @@ const regOptions = [
 export default {
   name: 'tableData',
   components: { 
-        Edit // Edit: Edit
+      'edit': Edit // Edit: Edit
     },
   data() {
     return {
