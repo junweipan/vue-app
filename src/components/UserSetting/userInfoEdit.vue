@@ -2,7 +2,7 @@
     <el-dialog :append-to-body="true" title="用户信息" :visible.sync="visible" width="500px"
     :before-close="handleClose">
         <cropper-image></cropper-image>
-        <el-form ref="infoData" :model="infoData" label-width="100px" 
+        <!-- <el-form ref="infoData" :model="infoData" label-width="100px" 
             label-position="right" style="width:400px;" status-icon>
             
             <el-form-item label="身份证号码" prop="certNo">
@@ -40,7 +40,7 @@
                 <el-button type="primary" @click="submitForm('formData')" size="mini">确定</el-button>
                 <el-button size="mini" @click="handleClose">取消</el-button>
             </el-form-item>
-            </el-form>
+            </el-form> -->
     </el-dialog>
 </template>
 <script>
@@ -53,10 +53,10 @@ export default {
             type: Boolean,
             default: false
         },
-        infoData: { // 提交表单数据
-            type: Object, 
-            default: {}
-        },
+        // infoData: { // 提交表单数据
+        //     type: Object, 
+        //     default: {}
+        // },
         remoteClose: Function // 用于关闭窗口
     },
     components:{

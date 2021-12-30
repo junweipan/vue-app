@@ -9,9 +9,16 @@ const getDefaultState = () => {
     token: getToken(),
     name: '',
     avatar: '',
+    // 默认当前用户
+    currentUser:{
+      id:'1',
+      client: '舟山市规划建筑设计院有限公司',
+      level: '本级',
+      type:'success',
+      autority:'开发人员'
+    },
     // mock user info db
-    userInfo:{
-      users: [{
+    usersdb: [{
         id:'1',
         client: '舟山市规划建筑设计院有限公司',
         level: '本级',
@@ -23,15 +30,7 @@ const getDefaultState = () => {
         level: '一级',
         type:'info',
         autority:'普通用户'
-      },
-      {
-        id:'3',
-        client: 'YYYY有限公司',
-        level: '二级',
-        type:'info',
-        autority:'开发人员'
       }]
-    }
   }
 }
 
@@ -50,8 +49,11 @@ const mutations = {
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
   },
-  SET_USERINFO: (state, userInfo) => {
-    state.userInfo = userInfo
+  SET_CURRENTUSER: (state, currentUser) => {
+    state.currentUser = currentUser
+  },
+  SET_USERINFO: (state, usersdb) => {
+    state.usersdb = usersdb
   },
   SET_ROUTES: (state, routes) => {
     state.routes = routes
@@ -59,6 +61,12 @@ const mutations = {
 }
 
 const actions = {
+  switchCurrentUser({ commit, state }, userId){
+    const user = state.usersdb.find((user)=>{
+      return user.id == userId
+    })
+    commit('SET_CURRENTUSER', user)
+  },
   //  用户登录后获得其路由表
   // getRoutes() {
   //   return new Promise((resolve, reject) => {
@@ -117,6 +125,7 @@ const actions = {
       commit('SET_NAME', userKey)
       commit('SET_AVATAR', headUrl)
       commit('SET_USERINFO',userInfo)
+      //Todo: 把数据库user 放入currentUser
       resolve(userInfo)
     })
   },

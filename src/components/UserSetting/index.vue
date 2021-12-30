@@ -38,7 +38,7 @@
         </el-dropdown-menu>
       </el-dropdown> -->
     </div>
-    <user-info-edit :visible="editVisible" :infoData="userInfo" :remoteClose="onRemoteUserInfoClose"/>
+    <user-info-edit :visible="editVisible" :infoData="usersdb" :remoteClose="onRemoteUserInfoClose"/>
     <change-password :visible="passwordVisible" :remoteClose="onRemotePasswordClose"/>
   </div>
 </template>
@@ -68,7 +68,7 @@ export default {
     ...mapGetters([
       'sidebar',
       'avatar',
-      'userInfo'
+      'usersdb'
     ])
   },
   methods: {
@@ -76,7 +76,6 @@ export default {
       this.$store.dispatch('app/toggleSideBar')
     },
     async logout() {
-      console.log(this.userInfo)
       await this.$store.dispatch('user/logout')
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     },

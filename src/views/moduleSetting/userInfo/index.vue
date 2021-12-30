@@ -35,31 +35,40 @@
         <el-button type="primary" @click="submitForm('formData')" size="mini"
           >确定</el-button
         >
+        <el-button type="warning" @click="onRemotePasswordOpen" size="mini"
+          >修改密码</el-button
+        >
         <!-- <el-button size="mini" @click="handleClose">取消</el-button> -->
       </el-form-item>
     </el-form>
-
     <cropper-image style="width: 50%"></cropper-image>
+    <change-password
+      :visible="passwordVisible"
+      :remoteClose="onRemotePasswordClose"
+    />
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import cropperImage from "@/components/CropperImage/index";
+import CropperImage from "@/components/CropperImage/index";
+import ChangePassword from "./changePassword.vue";
 
 export default {
   props: {},
   components: {
-    cropperImage,
+    "cropper-image": CropperImage,
+    "change-password": ChangePassword,
   },
   data() {
     return {
       imageUrl: "",
       user: {},
+      passwordVisible: false,
     };
   },
   computed: {
-    ...mapGetters(["userInfo"]),
+    ...mapGetters(["usersdb", "currentUser"]),
   },
   watch: {
     $route() {
@@ -70,29 +79,20 @@ export default {
     this.freshUserEditInfo();
   },
   methods: {
-    // 关闭窗口
-    handleClose() {},
-    // 用户信息修改界面:如果从外部跳转进来, 或者内部url改变, 都要重新获取用户信息
-    freshUserEditInfo() {
-      // 如果直接从系统设置进入, 则修改对象是当前用户
-      if (!this.$route.query.id) {
-        // 这里给一个定值
-        this.user = this.userInfo.users[0];
-        return;
-      }
-
-      const userId = this.$route.query.id;
-      // this.$store.state.user.userInfo.users
-      const editUser = this.userInfo.users.find((user) => {
-        return user.id == userId;
-      });
-      this.user = editUser;
+    onRemotePasswordOpen() {
+      this.passwordVisible = true;
     },
-
+    onRemotePasswordClose() {
+      this.passwordVisible = false;
+    },
+    freshUserEditInfo() {
+      // 修改对象是当前用户store中获取
+      // this.$store.state.user.currentUser
+      this.user = this.currentUser;
+    },
     // 提交表单数据
     submitForm(formName) {
       console.log("提交对象", this.formData);
-      this.handleClose();
       // this.$refs[formName].validate((valid) => {
       //     if (valid) {
       //         // 校验通过，提交表单数据
@@ -103,7 +103,6 @@ export default {
       //     }
       // })
     },
-
     async submitData() {
       let response = null;
       if (this.formData.id) {

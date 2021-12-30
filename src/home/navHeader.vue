@@ -12,7 +12,7 @@
       <el-menu-item class="userList">
         <el-select v-model="value" @change="setAcivateType">
           <el-option
-            v-for="user in users"
+            v-for="user in usersdb"
             :key="user.id"
             :label="user.client"
             :value="user.id"
@@ -26,6 +26,14 @@
             ></user-card>
           </el-option>
 
+          <el-row class="editUser">
+            <el-col :span="12" style="width: 100%; text-align: center">
+              <el-button type="primary" @click.native="onEditInfo" plain>修改信息</el-button>
+            </el-col>
+            <el-col :span="12" style="width: 100%; text-align: center"> 
+              <el-button type="info" @click.native="onLogout" plain>安全退出</el-button> 
+              </el-col>
+          </el-row>
         </el-select>
       </el-menu-item>
       <el-menu-item class="messageList"
@@ -37,31 +45,17 @@
 
 
 <script>
+import { mapGetters } from "vuex";
 import MessageList from "./messageList.vue";
 import TopLevalMenu from "@/components/TopLevelMenu";
 import UserCard from "@/components/UserCard";
 export default {
   data() {
     return {
+      id:"",
       activeIndex: "1",
       activeIndex2: "1",
-      users: [
-        {
-          id: "1",
-          client: "舟山市规划建筑设计院有限公司",
-          level: "本级",
-          type: "success",
-          autority: "开发人员",
-        },
-        {
-          id: "2",
-          client: "XXXX有限公司",
-          level: "一级",
-          type: "info",
-          autority: "普通用户",
-        },
-      ],
-      value: "舟山市规划建筑设计院有限公司",
+      value: "",
     };
   },
   components: {
@@ -69,20 +63,29 @@ export default {
     "top-level-menu": TopLevalMenu,
     "user-card": UserCard,
   },
+  created(){
+    this.value = this.currentUser.client
+  },
   methods: {
     handleSelect(key, keyPath) {
       // console.log(key, keyPath);
     },
     setAcivateType(id) {
       // TODO 把当前client 发给服务器, 再刷一下服务器数据 - users 信息需要放在store里
+      this.$store.dispatch('user/switchCurrentUser',id);
+     
+     // 样式设置
+      const index = this.usersdb.findIndex((item) => item.id == id);
+      // 把其他type置成info, 把选中的item type 置成success
+      this.usersdb.forEach((element) => {
+        element.type = "info";
+      });
+      this.usersdb[index].type = "success";
 
-        const index = this.users.findIndex(item=>item.id == id)
-        // 把其他type置成info, 把选中的item type 置成success
-        this.$data.users.forEach(element => {
-          element.type = 'info'
-        });
-        this.$data.users[index].type = 'success'
-
+      // 切换用户会跳出当前用户登录状态
+      this.$router.push({
+        path: "/",
+      });
       //   // 跳转到该用户下的路由界面->模拟效果
       //   if(id == '1'){
       //       this.$router.push('/value-module');
@@ -90,17 +93,21 @@ export default {
       //       this.$router.push('/analysis-module');
       //   }
     },
-        onEditInfo(){
-      console.log(this.id)
+    onEditInfo() {
+      // console.log(this.currentUser)
       this.$router.push({
-        path:'/setting-module/user-info',
-        query:{
-          id:this.id
-        }
-      })
-    }
+        path: "/setting-module/user-info",
+      });
+    },
+    onLogout() {
+      // todo: 清除用户信息, 跳转回首页或login页面
+      this.$router.push({
+        path: "/welcome",
+      });
+    },
   },
   computed: {
+    ...mapGetters(["usersdb", "currentUser"]),
     sidebar() {
       return this.$store.state.app.sidebar;
     },
@@ -117,10 +124,10 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.editUser{
-   display: flex;
-   justify-content: space-between;
- }
+.editUser {
+  display: flex;
+  justify-content: center;
+}
 
 .el-menu-demo {
   // 这段css控制顶级菜单和sidebar, 不能轻易更改
@@ -151,6 +158,8 @@ export default {
 .el-select-dropdown__item {
   height: auto;
   cursor: auto;
+  margin-bottom: 5px;
+  border-bottom-style: inset;
 }
 
 .messageList {
@@ -173,7 +182,7 @@ export default {
 }
 
 .text {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .item {
