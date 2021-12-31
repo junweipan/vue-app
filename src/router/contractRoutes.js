@@ -1,9 +1,9 @@
 import ModuleContract from '@/ModuleContract'
 export const contractRoutes = {
-    path: '/contract-module',
-    component: ModuleContract,
-    redirect: '/contract-module/dashboard',
-    children: [{
+  path: '/contract-module',
+  component: ModuleContract,
+  redirect: '/contract-module/dashboard',
+  children: [{
     path: 'dashboard',
     name: 'Dashboard',
     component: () => import('@/views/moduleContract/dashboard/index'),
@@ -26,8 +26,17 @@ export const contractRoutes = {
     name: 'Tabledata',
     component: () => import('@/views/moduleContract/tableData/index'),
     meta: {
-        title: '合同管理-数据测试',
-        icon: 'el-icon-s-grid'
+      title: '合同管理-数据测试',
+      icon: 'el-icon-s-grid'
     }
-}]
+  },
+  {
+    path: 'tabledata-edit',
+    name: 'TabledataEdit',
+    component: () => import('@/views/moduleContract/tableData/edit'),
+    meta: {
+      title: '合同管理-数据测试-修改',
+    }
   }
+  ]
+}

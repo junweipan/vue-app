@@ -47,6 +47,15 @@ export const ModuleContractRoutes = [
                     "title": "数据测试",
                     "icon": "el-icon-s-grid"
                 }
+            },
+            {
+                "path": "tabledata-edit",
+                "hidden":true,
+                "name": "TabledataEdit",
+                "meta": {
+                    "title": "数据修改",
+                    "icon": "el-icon-s-grid"
+                }
             }
         ]
     },
