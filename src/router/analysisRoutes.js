@@ -6,7 +6,7 @@ export const analysisRoutes = {
     redirect: '/analysis-module/dashboard',
     children: [{
     path: 'dashboard',
-    name: 'Dashboard',
+    name: 'Dashboard-Analysis',
     component: () => import('@/views/moduleAnalysis/dashboard/index'),
     meta: { title: '统计分析-主页', icon: 'userInfo', affix: false }
     },

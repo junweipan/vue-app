@@ -5,7 +5,7 @@ export const contractRoutes = {
   redirect: '/contract-module/dashboard',
   children: [{
     path: 'dashboard',
-    name: 'Dashboard',
+    name: 'Dashboard-Contract',
     component: () => import('@/views/moduleContract/dashboard/index'),
     meta: { title: '合同管理-主页', icon: 'dashboard', affix: false }
   },

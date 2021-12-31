@@ -1,62 +1,58 @@
 <template>
-  <div>
-    <div>
-      <message-detail
-        :date="message.date"
-        :title="message.title"
-        :visible="dialogVisible"
-        :message="message.detail"
-        :handleDialogVisible="closeMessageDialog"
-      ></message-detail>
-      <el-popover
-        ref="popoverRef"
-        placement="right"
-        width="400"
-        trigger="click"
-      >
-        <div style="text-align: right; margin: 0">
-          <el-table
-            :data="tableData"
-            stripe
-            style="width: 100%"
-            @cell-click="openMessageDialog"
-          >
-            <el-table-column prop="date" label="日期" width="auto">
-            </el-table-column>
-            <el-table-column prop="title" label="标题" width="auto">
-            </el-table-column>
-          </el-table>
-        </div>
-        <router-link to="/setting-module/message-list">
-          <span style="float: right; margin-top: 15px">更多>></span>
-        </router-link>
+<div class="dashboard-container">
+  <el-table
+    :data="tableData"
+    stripe
+    style="width: 100%">
+    <el-table-column
+      prop="id"
+      label="ID"
+      width="auto">
+    </el-table-column>
+        <el-table-column
+      prop="date"
+      label="日期"
+      width="auto">
+    </el-table-column>
+        <el-table-column
+      prop="title"
+      label="标题"
+      width="auto">
+    </el-table-column>
+        <el-table-column
+      prop="detail"
+      label="详情"
+      width="600px">
+    </el-table-column>
+    <el-table-column
+      prop=""
+      label="创建时间"
+      width="auto">
+    </el-table-column>
+    <el-table-column
+      prop=""
+      label="修改时间"
+      width="auto">
+    </el-table-column>
+        <el-table-column
+      prop=""
+      label="其他栏-1"
+      width="auto">
+    </el-table-column>
+        <el-table-column
+      prop=""
+      label="其他栏-2"
+      width="auto">
+    </el-table-column>
+  </el-table>
+</div>
 
-        <el-button type="text" slot="reference" style="margin-bottom: 6px"
-          >新消息</el-button
-        >
-      </el-popover>
-      <el-badge
-        :value="4"
-        class="item"
-        style="margin-left: -5px; margin-top: -5px"
-      >
-      </el-badge>
-    </div>
-  </div>
 </template>
 
-
 <script>
-import messageDetail from "./messageDetail.vue";
-
-export default {
-  name: "Message",
-  components: {
-    "message-detail": messageDetail,
-  },
-  data() {
-    return {
-      dialogVisible: false,
+  export default {
+    data() {
+      return {
       tableData: [
         {
           id: "1",
@@ -97,27 +93,23 @@ export default {
           这次会面将加强双方在交通领域方面的合作。易华仁将同欧盟贸易专员东布洛夫斯基斯（Valdis Dombrovskis）主持欧盟—新加坡自贸协定（EUSFTA）贸易委员会会议`,
         },
       ],
-      message: {},
-    };
-  },
-  methods: {
-    openMessageDialog(item) {
-      // close current dialog
-      this.$refs.popoverRef.doClose();
-      this.dialogVisible = true;
-      // 传入具体一条信息
-      this.message = item;
-    },
-    closeMessageDialog() {
-      this.dialogVisible = false;
-    },
-    handleClose(done) {
-      this.$confirm("确认关闭？")
-        .then((_) => {
-          done();
-        })
-        .catch((_) => {});
-    },
-  },
-};
+      }
+    }
+  }
 </script>
+
+<style lang="scss" scoped>
+.dashboard {
+  &-container {
+    margin: 30px;
+  }
+  &-text {
+    font-size: 30px;
+    line-height: 46px;
+  }
+}
+.pagination {
+  float: right;
+  margin-top: 20px;
+}
+</style>

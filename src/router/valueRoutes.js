@@ -6,7 +6,7 @@ export const valueRoutes = {
     
     children: [{
     path: 'dashboard',
-    name: 'Dashboard',
+    name: 'Dashboard-Value',
     component: () => import('@/views/moduleValue/dashboard/index'),
     meta: { title: '产值分配-主页', icon: 'dashboard', affix: false }
   },

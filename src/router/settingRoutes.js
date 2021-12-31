@@ -6,7 +6,7 @@ export const settingRoutes = {
     redirect: '/setting-module/dashboard',
     children: [{
     path: 'dashboard',
-    name: 'Dashboard',
+    name: 'Dashboard-Setting',
     component: () => import('@/views/moduleSetting/dashboard/index'),
     meta: { title: '系统设置-主页', icon: 'userInfo', affix: false }
     },
@@ -21,6 +21,13 @@ export const settingRoutes = {
       name: 'Upload',
       component: () => import('@/views/moduleSetting/upload/index'),
       meta: { title: '系统设置-文件上传', icon: 'userInfo', affix: false }
-    }
+    },
+    ,
+    {
+      path: 'message-list',
+      name: 'MessageList',
+      component: () => import('@/views/moduleSetting/message'),
+      meta: { title: '系统设置-消息列表', icon: 'userInfo', affix: false }
+    },
   ]
 }

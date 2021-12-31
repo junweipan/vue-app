@@ -39,6 +39,14 @@ export const ModuleSettingRoutes = [
                     "title": "文件上传",
                     "icon": "el-icon-s-custom"
                 }
+            },
+            {
+                "path": "message-list",
+                "name": "MessageList",
+                "meta": {
+                    "title": "消息列表",
+                    "icon": "el-icon-s-custom"
+                }
             }
         ]
     },

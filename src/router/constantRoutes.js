@@ -30,50 +30,50 @@ import { analysisRoutes } from './analysisRoutes'
  * a base page that does not have permission requirements
  * all roles can be accessed 
  */
-export const constantRoutes= [
-    {
-      path: '/login',
-      component: () => import('@/views/login/index'),
-      hidden: true
-    },
-    {
-      path: '/404',
-      component: () => import('@/views/404'),
-      hidden: true
-    },
-    {
-      path: '/',
-      component: () => import('@/home/index'),
-      children:[
-        {
-          path: '/',
-          component: ModuleContract,
-          redirect: '/welcome',
-          children: [{
+export const constantRoutes = [
+  {
+    path: '/login',
+    component: () => import('@/views/login/index'),
+    hidden: true
+  },
+  {
+    path: '/404',
+    component: () => import('@/views/404'),
+    hidden: true
+  },
+  {
+    path: '/',
+    component: () => import('@/home/index'),
+    children: [
+      {
+        path: '/',
+        component: ModuleContract,
+        redirect: '/welcome',
+        children: [{
           path: 'welcome',
           name: 'Welcome',
           component: () => import('@/views/welcome/index'),
           meta: { title: '欢迎页', icon: 'dashboard', affix: true }
         }]
-        },
-        contractRoutes,
-        valueRoutes,
-        analysisRoutes,
-        settingRoutes,
-      ]
-    },
-      {
-        path: '/redirect',
-        component: ModuleContract,
-        hidden: true,
-        children: [
-          {
-            path: '/redirect/:path(.*)',
-            component: () => import('@/views/redirect/index')
-          }
-        ]
       },
+      contractRoutes,
+      valueRoutes,
+      analysisRoutes,
+      settingRoutes,
+    ]
+  },
+  {
+    path: '/redirect',
+    component: ModuleContract,
+    hidden: true,
+    children: [
+      {
+        path: '/redirect/:path(.*)',
+        component: () => import('@/views/redirect/index')
+      }
+    ]
+  },
 
-      // 404 page must be placed at the end !!!
-      { path: '*', redirect: '/404', hidden: true }
+  // 404 page must be placed at the end !!!
+  { path: '*', redirect: '/404', hidden: true }
 ]
