@@ -257,7 +257,7 @@ export default {
       this.$router.push({
         path: "/contract-module/tabledata-edit",
         query: {
-          title: "新增数据"
+          title: "新增数据",
         },
       });
     },
@@ -307,9 +307,14 @@ export default {
         if (response.status === 200) {
           // 将查询的详情传递
           //console.log(response.data)
-          this.edit.formData = response.data.rows[0];
-          this.edit.title = "编辑";
-          this.edit.visible = true;
+          //跳转到新增页面, 携带title参数, formdata
+          this.$router.push({
+            path: "/contract-module/tabledata-edit",
+            query: {
+              title: "编辑数据",
+              formData:response.data.rows[0]
+            },
+          });
         }
       });
     },

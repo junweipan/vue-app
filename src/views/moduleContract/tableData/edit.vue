@@ -148,6 +148,7 @@ export default {
   },
   created() {
     this.title = this.$route.query.title;
+    this.formData = this.$route.query.formData;
   },
   methods: {
     // 重置
