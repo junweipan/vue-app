@@ -23,7 +23,6 @@ import { mapGetters } from 'vuex'
 import Logo from './Logo'
 import SidebarItem from './SidebarItem'
 import variables from '@/styles/variables.scss'
-import { ModuleSettingRoutes } from './ModuleSettingRoutes'
 
 import { getToken } from '@/utils/auth' // get token from cookie
 
@@ -40,7 +39,6 @@ export default {
 
       // 部分路由, 控制页面显示
       const hasToken = getToken()
-      return ModuleSettingRoutes;
     },
     activeMenu() {
       const route = this.$route

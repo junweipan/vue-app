@@ -38,8 +38,6 @@
         </el-dropdown-menu>
       </el-dropdown> -->
     </div>
-    <user-info-edit :visible="editVisible" :infoData="usersdb" :remoteClose="onRemoteUserInfoClose"/>
-    <change-password :visible="passwordVisible" :remoteClose="onRemotePasswordClose"/>
   </div>
 </template>
 
@@ -47,21 +45,15 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
-import userInfoEdit from './userInfoEdit.vue'
-import changePassword from './changePassword.vue'
 
 
 export default {
   components: {
-    Breadcrumb,
-    Hamburger,
-    userInfoEdit,
-    changePassword
+    'breadcrumb':Breadcrumb,
+    'hamburger':Hamburger
   },
   data(){
     return {
-      editVisible:false,
-      passwordVisible:false,
     }
   },
   computed: {
@@ -79,20 +71,6 @@ export default {
       await this.$store.dispatch('user/logout')
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     },
-    // 打开user edit窗口
-      openUserEditInfo() {
-          this.editVisible = true
-      },
-      openUserEditPassword() {
-          this.passwordVisible = true
-      },
-    // 子组件会触发此事件方法来关闭窗口
-    onRemoteUserInfoClose() {
-      this.editVisible = false
-    },
-    onRemotePasswordClose(){
-      this.passwordVisible = false
-    }
   },
   mounted: ()=>{}
 }

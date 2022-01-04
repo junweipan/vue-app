@@ -101,7 +101,6 @@
   </div>
 </template>
 <script>
-import api from "@/api/category";
 
 export default {
   props: {},
@@ -185,10 +184,10 @@ export default {
       let response = null;
       if (this.formData.id) {
         // 编辑
-        response = await api.update(this.formData);
+        // response = await api.update(this.formData);
       } else {
         // 新增
-        response = await api.add(this.formData);
+        // response = await api.add(this.formData);
       }
 
       if (response.code === 20000) {

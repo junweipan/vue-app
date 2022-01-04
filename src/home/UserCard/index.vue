@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: "userCard",
+  name: "UserCard",
   components: {},
   props: {
     id: {

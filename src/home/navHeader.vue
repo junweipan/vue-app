@@ -47,8 +47,8 @@
 <script>
 import { mapGetters } from "vuex";
 import MessageList from "./messageList.vue";
-import TopLevalMenu from "@/components/TopLevelMenu";
-import UserCard from "@/components/UserCard";
+import TopLevalMenu from "./TopLevelMenu";
+import UserCard from "./UserCard";
 export default {
   data() {
     return {

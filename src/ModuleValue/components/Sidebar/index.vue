@@ -34,11 +34,6 @@ export default {
       'sidebar'
     ]),
     routes() {
-      // console.log(this.$router.options.routes)
-      // 完整路径
-      // return this.$router.options.routes
-
-      // 部分路由, 控制页面显示
       const hasToken = getToken()
       return ModuleValueRoutes;
     },
