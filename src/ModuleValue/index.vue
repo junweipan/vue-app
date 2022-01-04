@@ -15,7 +15,7 @@
 
 <script>
 // 1. 导入标签导航组件TagsView
-import Sidebar from './components/Sidebar'
+import Sidebar from './Sidebar'
 import AppMain from '@/ModuleLayout/components/AppMain'
 import TagsView from '@/ModuleLayout/components/TagsView'
 import Navbar from '@/components/NavBar'

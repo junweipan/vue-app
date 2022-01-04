@@ -46,7 +46,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import MessageList from "./messageList.vue";
+import MessageList from "./Messages/messageList.vue";
 import TopLevalMenu from "./TopLevelMenu";
 import UserCard from "./UserCard";
 export default {
@@ -82,7 +82,7 @@ export default {
       });
       this.usersdb[index].type = "success";
 
-      // 切换用户会跳出当前用户登录状态
+      // 切换用户-若token未失效:直接切换, 否则会跳出当前用户登录状态
       this.$router.push({
         path: "/",
       });
@@ -101,9 +101,10 @@ export default {
     },
     onLogout() {
       // todo: 清除用户信息, 跳转回首页或login页面
-      this.$router.push({
-        path: "/welcome",
-      });
+      this.$store.dispatch('user/logout').then((res)=>{
+        // 刷新整个浏览器, 会通过permission.js 中的逻辑返回login页面
+        this.$router.go(0)
+      })
     },
   },
   computed: {

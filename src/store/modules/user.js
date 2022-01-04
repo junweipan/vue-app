@@ -52,7 +52,7 @@ const mutations = {
   SET_CURRENTUSER: (state, currentUser) => {
     state.currentUser = currentUser
   },
-  SET_USERINFO: (state, usersdb) => {
+  SET_USERSDB: (state, usersdb) => {
     state.usersdb = usersdb
   },
   SET_ROUTES: (state, routes) => {
@@ -98,36 +98,36 @@ const actions = {
 
   // 根据Cookie中的token, 解析出用户姓名, 头像
   getInfo({ commit, state }) {
-    return new Promise((resolve, reject) => {
-      // getInfo(state.token).then(response => {
-      //   const { data } = response
+    // return new Promise((resolve, reject) => {
+    //   // getInfo(state.token).then(response => {
+    //   //   const { data } = response
 
-      //   if (!data) {
-      //     return reject('Verification failed, please Login again.')
-      //   }
+    //   //   if (!data) {
+    //   //     return reject('Verification failed, please Login again.')
+    //   //   }
 
-      //   const { name, avatar } = data
+    //   //   const { name, avatar } = data
 
-      //   commit('SET_NAME', name)
-      //   commit('SET_AVATAR', avatar)
-      //   resolve(data)
-      // }).catch(error => {
-      //   reject(error)
-      // })
-      // getUserInfo 返回浏览器中的Cookie对象 (json)
-      var UserInfo = getUserInfo()
-      const { userKey, headUrl } = JSON.parse(UserInfo)
-      // 整体打包个人信息,用于前端展示和修改
-      const userInfo = JSON.parse(UserInfo)
-      // console.log('UserInfo',UserInfo)
-      // console.log('userKey',userKey)
-      // console.log('headUrl',headUrl)
-      commit('SET_NAME', userKey)
-      commit('SET_AVATAR', headUrl)
-      commit('SET_USERINFO',userInfo)
-      //Todo: 把数据库user 放入currentUser
-      resolve(userInfo)
-    })
+    //   //   commit('SET_NAME', name)
+    //   //   commit('SET_AVATAR', avatar)
+    //   //   resolve(data)
+    //   // }).catch(error => {
+    //   //   reject(error)
+    //   // })
+    //   // getUserInfo 返回浏览器中的Cookie对象 (json)
+    //   var UserInfo = getUserInfo()
+    //   const { userKey, headUrl } = JSON.parse(UserInfo)
+    //   // 整体打包个人信息,用于前端展示和修改
+    //   const userInfo = JSON.parse(UserInfo)
+    //   // console.log('UserInfo',UserInfo)
+    //   // console.log('userKey',userKey)
+    //   // console.log('headUrl',headUrl)
+    //   commit('SET_NAME', userKey)
+    //   commit('SET_AVATAR', headUrl)
+    //   commit('SET_USERSDB',userInfo)
+    //   //Todo: 把数据库user 放入currentUser
+    //   resolve(userInfo)
+    // })
   },
 
   // user logout
@@ -141,6 +141,7 @@ const actions = {
       // }).catch(error => {
       //   reject(error)
       // })
+      console.log('logout')
       removeToken() // must remove  token  first
         resetRouter()
         commit('RESET_STATE')
