@@ -18,7 +18,7 @@
 import Sidebar from './Sidebar'
 import AppMain from '@/ModuleLayout/components/AppMain'
 import TagsView from '@/ModuleLayout/components/TagsView'
-import Navbar from '@/components/NavBar'
+import Navbar from '@/ModuleLayout/components/NavBar'
 import ResizeMixin from '@/ModuleLayout/mixin/ResizeHandler'
 
 export default {

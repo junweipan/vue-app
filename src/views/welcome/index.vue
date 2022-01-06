@@ -115,7 +115,7 @@ export default {
 .dashboard {
   &-container {
     margin: 30px;
-    
+    flex-direction: column;
   }
   &-text {
     font-size: 30px;

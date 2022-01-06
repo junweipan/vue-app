@@ -31,7 +31,7 @@
               <el-button type="primary" @click.native="onEditInfo" plain>修改信息</el-button>
             </el-col>
             <el-col :span="12" style="width: 100%; text-align: center"> 
-              <el-button type="info" @click.native="onLogout" plain>安全退出</el-button> 
+              <el-button type="warning" @click.native="onLogout" plain>安全退出</el-button> 
               </el-col>
           </el-row>
         </el-select>
