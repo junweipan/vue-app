@@ -1,5 +1,5 @@
-/* Layout - ModuleOne */
-import ModuleContract from '@/ModuleContract'
+/* Layout - Module */
+import ModuleLayout from '@/ModuleLayout/moduleLayout'
 
 import { contractRoutes } from './contractRoutes'
 import { valueRoutes } from './valueRoutes'
@@ -26,11 +26,11 @@ import { analysisRoutes } from './analysisRoutes'
  */
 
 /**
- * constantRoutes
+ * rootRoutes
  * a base page that does not have permission requirements
  * all roles can be accessed 
  */
-export const constantRoutes = [
+export const rootRoutes = [
   {
     path: '/login',
     component: () => import('@/views/login/index'),
@@ -47,7 +47,7 @@ export const constantRoutes = [
     children: [
       {
         path: '/',
-        component: ModuleContract,
+        component: ModuleLayout,
         redirect: '/welcome',
         children: [{
           path: 'welcome',
@@ -64,7 +64,7 @@ export const constantRoutes = [
   },
   {
     path: '/redirect',
-    component: ModuleContract,
+    component: ModuleLayout,
     hidden: true,
     children: [
       {

@@ -23,12 +23,17 @@ import { mapGetters } from 'vuex'
 import Logo from '@/ModuleLayout/components/Sidebar/Logo'
 import SidebarItem from '@/ModuleLayout/components/Sidebar/SidebarItem'
 import variables from '@/styles/variables.scss'
-import { ModuleSettingRoutes } from './ModuleSettingRoutes'
 
 import { getToken } from '@/utils/auth' // get token from cookie
 
 export default {
   components: { SidebarItem, Logo },
+  props:{
+    moduleRoutes:{ 
+            type: Array,
+            default: []
+        },
+  },
   computed: {
     ...mapGetters([
       'sidebar'
@@ -38,9 +43,9 @@ export default {
       // 完整路径
       // return this.$router.options.routes
 
-      // 部分路由, 控制页面显示
+      // 部分路由, 控制页面显示 每次改变路由要检查token权限
       const hasToken = getToken()
-      return ModuleSettingRoutes;
+      return this.moduleRoutes;
     },
     activeMenu() {
       const route = this.$route
