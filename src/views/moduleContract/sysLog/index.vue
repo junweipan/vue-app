@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard-container">
+  <div class="sysLog-container">
     <h1>系统日志</h1>
         <!-- 条件查询 -->
         <el-form :inline="true" :model="query" size="mini">
@@ -269,7 +269,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.dashboard {
+.sysLog {
   &-container {
     margin: 30px;
   }

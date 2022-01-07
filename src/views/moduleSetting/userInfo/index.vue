@@ -150,6 +150,7 @@ export default {
 <style scope>
 .dashboard-container {
   display: flex;
+  flex-direction:row;
 }
 .userForm {
   width: 50%;

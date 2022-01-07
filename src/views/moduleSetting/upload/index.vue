@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard-container">
+  <div class="dashboard">
       <h1>upload</h1>
       <div class="uploads">
       <drag-upload></drag-upload>  
@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style scope>
-.dashboard-container {
+.dashboard {
     margin:50px
 }
 .uploads{
