@@ -1,6 +1,6 @@
 import service from '@/utils/request'
 import qs from 'qs'
-const baseUrl = 'https://localhost:443'
+const baseUrl = 'https://localhost'
 export default {
 
     // 条件查询fun列表 

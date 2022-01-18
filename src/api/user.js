@@ -2,7 +2,7 @@ import request from '@/utils/request'
 import qs from 'qs'
 
 
-const baseUrl = 'https://localhost:443'
+const baseUrl = 'https://localhost'
 export function login(data) {
   var qs_data = qs.stringify({
     ...data

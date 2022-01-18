@@ -24,6 +24,8 @@ export default {
   components:{
     'chart-a1': ChartA1,
     'chart-a2': ChartA2
+  },
+  mounted(){
   }
 }
 </script>

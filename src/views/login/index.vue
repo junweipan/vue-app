@@ -283,7 +283,7 @@ $light_gray: #eee;
     padding: 50px 100px 50px 100px;
     top: 300px;
     left: 600px;
-    background-color: rgb(28, 164, 168,0.6);
+    background-color: rgba(34, 72, 129, 0.8);
     border-radius: 2%;
   }
 

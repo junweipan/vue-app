@@ -11,6 +11,9 @@
       <top-level-menu></top-level-menu>
       <el-menu-item class="userList">
         <el-select v-model="value" @change="setAcivateType">
+          <template v-slot:prefix>
+            <i class="el-icon-user"></i>
+          </template>
           <el-option
             v-for="user in usersdb"
             :key="user.id"
@@ -28,11 +31,15 @@
 
           <el-row class="editUser">
             <el-col :span="12" style="width: 100%; text-align: center">
-              <el-button type="primary" @click.native="onEditInfo" plain>修改信息</el-button>
+              <el-button type="primary" @click.native="onEditInfo" plain
+                >修改信息</el-button
+              >
             </el-col>
-            <el-col :span="12" style="width: 100%; text-align: center"> 
-              <el-button type="warning" @click.native="onLogout" plain>安全退出</el-button> 
-              </el-col>
+            <el-col :span="12" style="width: 100%; text-align: center">
+              <el-button type="warning" @click.native="onLogout" plain
+                >安全退出</el-button
+              >
+            </el-col>
           </el-row>
         </el-select>
       </el-menu-item>
@@ -52,7 +59,7 @@ import UserCard from "./UserCard";
 export default {
   data() {
     return {
-      id:"",
+      id: "",
       activeIndex: "1",
       activeIndex2: "1",
       value: "",
@@ -63,8 +70,8 @@ export default {
     "top-level-menu": TopLevalMenu,
     "user-card": UserCard,
   },
-  created(){
-    this.value = this.currentUser.client
+  created() {
+    this.value = this.currentUser.client;
   },
   methods: {
     handleSelect(key, keyPath) {
@@ -72,9 +79,9 @@ export default {
     },
     setAcivateType(id) {
       // TODO 把当前client 发给服务器, 再刷一下服务器数据 - users 信息需要放在store里
-      this.$store.dispatch('user/switchCurrentUser',id);
-     
-     // 样式设置
+      this.$store.dispatch("user/switchCurrentUser", id);
+
+      // 样式设置
       const index = this.usersdb.findIndex((item) => item.id == id);
       // 把其他type置成info, 把选中的item type 置成success
       this.usersdb.forEach((element) => {
@@ -101,10 +108,10 @@ export default {
     },
     onLogout() {
       // todo: 清除用户信息, 跳转回首页或login页面
-      this.$store.dispatch('user/logout').then((res)=>{
+      this.$store.dispatch("user/logout").then((res) => {
         // 刷新整个浏览器, 会通过permission.js 中的逻辑返回login页面
-        this.$router.go(0)
-      })
+        this.$router.go(0);
+      });
     },
   },
   computed: {
@@ -137,6 +144,7 @@ export default {
   position: fixed;
   right: 0;
   z-index: 9;
+  border: none;
   /* width: calc(100% - 210px);
   -webkit-transition: width 0.28s;
   transition: width 0.28s; */

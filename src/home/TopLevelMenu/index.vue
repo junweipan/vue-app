@@ -3,7 +3,7 @@
         <!-- <el-dropdown :hide-on-click="false"> 点击后不隐藏-->
        <el-dropdown trigger="click">
         <span class="el-dropdown-link">
-        <i class="el-icon-menu"></i>合同管理
+        <i class="el-icon-menu"></i>{{menuName}}
         </span>
         <el-dropdown-menu :class = "elDropdownMenuClass" slot="dropdown">
         <el-dropdown-item>
@@ -14,24 +14,24 @@
             <el-row :gutter="20">
             <el-col :span="8">
               <router-link to="/contract-module">
-                <icon-text-button  :imgUrl="require('@/assets/touzi.png')" menuText="合同管理"></icon-text-button>
+                <icon-text-button  :imgUrl="require('@/assets/touzi.png')" menuText="合同管理" @click.native="changeMenuText('合同管理')"></icon-text-button>
               </router-link>
             </el-col>
             <el-col :span="8">
               <router-link to="/value-module">
-                <icon-text-button :imgUrl="require('@/assets/shangpu.png')" menuText="产值分配"></icon-text-button>
+                <icon-text-button :imgUrl="require('@/assets/shangpu.png')" menuText="产值分配" @click.native="changeMenuText('产值分配')"></icon-text-button>
               </router-link>
             </el-col>
             <el-col :span="8">
               <router-link to="/analysis-module">
-                <icon-text-button :imgUrl="require('@/assets/tjfx.png')" menuText="统计分析"></icon-text-button>
+                <icon-text-button :imgUrl="require('@/assets/tjfx.png')" menuText="统计分析" @click.native="changeMenuText('统计分析')"></icon-text-button>
               </router-link>
             </el-col>
             </el-row>   
             <el-row :gutter="20">
             <el-col :span="8">
               <router-link to="/setting-module">
-                <icon-text-button :imgUrl="require('@/assets/tongyong.png')" menuText="系统设置"></icon-text-button>
+                <icon-text-button :imgUrl="require('@/assets/tongyong.png')" menuText="系统设置" @click.native="changeMenuText('系统设置')"></icon-text-button>
               </router-link>
             </el-col>
             </el-row>            
@@ -47,14 +47,17 @@ import IconTextButton from './iconTextButton.vue'
   export default {
     data() {
       return {
-        
+        menuName: '合同管理'
       };
     },
     components:{
         IconTextButton
     },
     methods: {
-     
+     changeMenuText(menuName){
+       this.menuName = menuName
+       console.log(this.menuName)
+     }
     },
     computed:{
       sidebar() {
@@ -87,6 +90,9 @@ import IconTextButton from './iconTextButton.vue'
   border: hidden;
 }
 
+.el-dropdown-link{
+  font-size: 1.5rem;
+}
 .el-dropdown-menu__item {
   padding: 0;
 }
