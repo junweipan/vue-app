@@ -5,6 +5,7 @@ import { contractRoutes } from './contractRoutes'
 import { valueRoutes } from './valueRoutes'
 import { settingRoutes } from './settingRoutes'
 import { analysisRoutes } from './analysisRoutes'
+import {nestedRoutes } from './nested'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -60,6 +61,7 @@ export const rootRoutes = [
       valueRoutes,
       analysisRoutes,
       settingRoutes,
+      nestedRoutes
     ]
   },
   {

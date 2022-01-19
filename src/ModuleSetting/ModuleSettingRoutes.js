@@ -9,13 +9,34 @@ export const ModuleSettingRoutes = [
     },
     {
         "path": "/setting-module",
-        "redirect": "/setting-module/dashboard",
-        "name": "dashboard",
+        "redirect": "/setting-module/sys-setting/branch-info",
         "meta": {
-            "title": "系统设置",
-            "icon": "el-icon-notebook-2"
+            "title": "",
+            "icon": ""
         },
         "children": [
+            {
+                "path": 'sys-setting',
+                "meta": { "title": '系统配置' },
+                "redirect": '/setting-module/sys-setting/branch-info',
+                "children": [
+                  {
+                    "path": 'branch-info',
+                    "name": 'BranchInfo',
+                    "meta": { "title": '机构信息维护' }
+                  },
+                  {
+                    "path": 'role-info',
+                    "name": 'RoleInfo',
+                    "meta": { "title": '角色信息维护' }
+                  },
+                  {
+                    "path": 'operator',
+                    "name": 'Operator',
+                    "meta": { "title": '操作员管理' },
+                  },
+                ]
+              },
             {
                 "path": "dashboard",
                 "name": "Dashboard",

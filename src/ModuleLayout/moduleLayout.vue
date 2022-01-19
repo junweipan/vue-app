@@ -23,7 +23,8 @@ import AppMain from "@/ModuleLayout/components/AppMain";
 import TagsView from "@/ModuleLayout/components/TagsView";
 import Navbar from "@/ModuleLayout/components/NavBar";
 import ResizeMixin from "@/ModuleLayout/mixin/ResizeHandler";
-
+// 测试全部路由
+// import {rootRoutes} from '@/router/rootRoutes'
 export default {
   name: "ModuleLayout",
   components: {
@@ -37,6 +38,7 @@ export default {
       type: Array,
       // 默认module的路由
       default: () => {
+        //return rootRoutes;
         return [
           {
             path: "welcome",
