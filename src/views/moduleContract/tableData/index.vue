@@ -219,6 +219,7 @@ export default {
         .getPersonInfo(this.query, this.page.current, this.page.size)
         .then((response) => {
           this.tableData = response.data.rows;
+          console.log(this.tableData)
         });
     },
     // fetchData() {

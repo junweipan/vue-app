@@ -23,7 +23,13 @@ export const ModuleSettingRoutes = [
                   {
                     "path": 'branch-info',
                     "name": 'BranchInfo',
-                    "meta": { "title": '机构信息维护' }
+                    "meta": { "title": '机构信息维护' },
+                  },
+                  {
+                    "path": 'branch-info-edit-add',
+                    "name": 'BranchInfoEditAdd',
+                    "meta": { "title": '机构增加/修改' },
+                    // "hidden":true
                   },
                   {
                     "path": 'role-info',
@@ -37,14 +43,14 @@ export const ModuleSettingRoutes = [
                   },
                 ]
               },
-            {
-                "path": "dashboard",
-                "name": "Dashboard",
-                "meta": {
-                    "title": "Home page",
-                    "icon": "el-icon-s-home"
-                }
-            },
+            // {
+            //     "path": "dashboard",
+            //     "name": "Dashboard",
+            //     "meta": {
+            //         "title": "Home page",
+            //         "icon": "el-icon-s-home"
+            //     }
+            // },
             {
                 "path": "user-info",
                 "name": "UserInfo",

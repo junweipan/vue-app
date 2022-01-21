@@ -23,6 +23,12 @@ export const settingRoutes = {
           meta: { title: '机构信息维护' }
         },
         {
+          path: 'branch-info-edit-add',
+          component: () => import('@/views/moduleSetting/sysSetting/branchInfo/branchEditAdd'),
+          name: 'BranchInfoEditAdd',
+          meta: { title: '机构增加/修改' }
+        },
+        {
           path: 'role-info',
           component: () => import('@/views/moduleSetting/sysSetting/roleInfo'),
           name: 'RoleInfo',
@@ -36,12 +42,12 @@ export const settingRoutes = {
         },
       ]
     },
-    {
-      path: 'dashboard',
-      name: 'Dashboard-Setting',
-      component: () => import('@/views/moduleSetting/dashboard/index'),
-      meta: { title: '系统设置-主页', icon: 'userInfo', affix: false }
-    },
+    // {
+    //   path: 'dashboard',
+    //   name: 'Dashboard-Setting',
+    //   component: () => import('@/views/moduleSetting/dashboard/index'),
+    //   meta: { title: '系统设置-主页', icon: 'userInfo', affix: false }
+    // },
     {
       path: 'user-info',
       name: 'UserInfo',

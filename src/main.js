@@ -49,6 +49,7 @@ Vue.config.productionTip = false
 //全局过滤器 - e.g. 0 -> 女, 1-> 男
 import '@/filter/personInfoFilter'
 import '@/filter/sysLogFilter'
+import '@/filter/sysSettingFilter'
 
 //使用echarts 作图, 设置为全局
 Vue.prototype.$echarts = echarts
