@@ -29,7 +29,7 @@ export const ModuleSettingRoutes = [
                     "path": 'branch-info-edit-add',
                     "name": 'BranchInfoEditAdd',
                     "meta": { "title": '机构增加/修改' },
-                    // "hidden":true
+                    "hidden":true
                   },
                   {
                     "path": 'role-info',

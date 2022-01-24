@@ -17,8 +17,8 @@
           <el-option
             v-for="item in brhTypes"
             :key="item.code"
-            :label="item.name"
-            :value="item.name"
+            :label="item.brhType"
+            :value="item.brhType"
           >
           </el-option>
         </el-select>
@@ -65,6 +65,8 @@
       :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
       highlight-current-row
       @row-click="onhandleRowClick"
+      :header-cell-style="rowClass"
+      :cell-style="rowClass"
     >
       <el-table-column label="序号" type="index" width="50" fixed>
       </el-table-column>
@@ -95,10 +97,15 @@
         }}</template>
       </el-table-column>
 
-      <el-table-column label="状态" width="50px">
-        <template slot-scope="scope">{{
-          scope.row.extData.brhSta | branchStatusFormat
-        }}</template>
+      <el-table-column label="状态" width="80px">
+        <template slot-scope="scope">
+          <div slot="reference" class="name-wrapper">
+            <el-tag
+              :type="scope.row.extData.brhSta == '1' ? 'success' : 'danger'"
+              >{{ scope.row.extData.brhSta | branchStatusFormat }}</el-tag
+            >
+          </div></template
+        >
       </el-table-column>
       <el-table-column prop="extData.contName" label="联系人" width="100px">
       </el-table-column>
@@ -129,10 +136,10 @@
 // import Edit from "./edit";
 import branchData from "./branchInfo.json";
 const brhTypes = [
-  { code: "00", name: "集团本级" },
-  { code: "01", name: "一级子公司" },
-  { code: "02", name: "二级子公司" },
-  { code: "03", name: "三级级子公司" },
+  { code: "00", brhType: "集团本级" },
+  { code: "01", brhType: "一级子公司" },
+  { code: "02", brhType: "二级子公司" },
+  { code: "03", brhType: "三级子公司" },
 ];
 export default {
   name: "roleTable",
@@ -144,7 +151,8 @@ export default {
       tableData: branchData.arrayList,
       // multipleSelection: [],
       brhTypes,
-      getSelectedBranch: {},
+      getSelectedBranch: null,
+      getSubBranch: null,
       query: {}, // 查询条件
       page: {
         // 分页对象
@@ -178,19 +186,95 @@ export default {
     // },
   },
   methods: {
-    onAddBranch(event) {
-      console.log(event);
-      //跳转到新增页面, 携带title参数
-      // this.$router.push({
-      //   path: "/contract-module/tabledata-edit",
-      //   query: {
-      //     title: "新增数据",
-      //   },
-      // });
+    onAddBranch() {
+      if (!this.getSelectedBranch) {
+        this.$alert("请选择一个上级机构", "提示", {
+          confirmButtonText: "确定",
+          type: "warning",
+        })
+          .then(() => {})
+          .catch(() => {});
+
+        return;
+      }
+      // 跳转到新增页面, 携带title参数
+      this.$router.push({
+        path: "/setting-module/sys-setting/branch-info-edit-add",
+        query: {
+          title: "新增机构",
+          branch: this.getSubBranch,
+        },
+      });
     },
-    onEditBranch() {},
-    onActivateBranch() {},
-    onDeactivateBranch() {},
+    onEditBranch() {
+      if (!this.getSelectedBranch) {
+        this.$alert("请先选择一个机构", "提示", {
+          confirmButtonText: "确定",
+          type: "warning",
+        })
+          .then(() => {})
+          .catch(() => {});
+        return;
+      }
+      // 跳转到新增页面, 携带title参数
+      this.$router.push({
+        path: "/setting-module/sys-setting/branch-info-edit-add",
+        query: {
+          title: "修改机构",
+          branch: this.getSelectedBranch,
+        },
+      });
+    },
+    onActivateBranch() {
+      if (!this.getSelectedBranch) {
+        this.$alert("请先选择一个机构", "提示", {
+          confirmButtonText: "确定",
+          type: "warning",
+        })
+          .then(() => {})
+          .catch(() => {});
+        return;
+      }
+      if (this.getSelectedBranch.brhSta == "1") {
+        this.$alert("该机构已启用. 不能重复启用", "提示", {
+          confirmButtonText: "确定",
+          type: "warning",
+        })
+          .then(() => {})
+          .catch(() => {});
+        return;
+      }
+      this.getSelectedBranch.brhSta = "1";
+      this.$message({
+        message: "成功启用该机构",
+        type: "success",
+      });
+    },
+    onDeactivateBranch() {
+      if (!this.getSelectedBranch) {
+        this.$alert("请先选择一个机构", "提示", {
+          confirmButtonText: "确定",
+          type: "warning",
+        })
+          .then(() => {})
+          .catch(() => {});
+        return;
+      }
+      if (this.getSelectedBranch.brhSta == "0") {
+        this.$alert("该机构已停用. 不能重复停用", "提示", {
+          confirmButtonText: "确定",
+          type: "warning",
+        })
+          .then(() => {})
+          .catch(() => {});
+        return;
+      }
+      this.getSelectedBranch.brhSta = "0";
+      this.$message({
+        message: "成功停用该机构",
+        type: "success",
+      });
+    },
     // val 是切换之后的每页显示多少条
     handleSizeChange(val) {
       this.page.size = val;
@@ -198,8 +282,15 @@ export default {
     },
     // 选中table行后触发
     onhandleRowClick(row, column, event) {
-      
-      this.getSelectedBranch = row.extData
+      //获取当前branch,
+      this.getSelectedBranch = row.extData;
+      //增加一项brhTypeName
+      this.getSelectedBranch.brhTypeName = this.getBranchTypeName(
+        this.getSelectedBranch.brhType
+      );
+      //获取下级branch
+      this.getSubBranch = this.getSubBranchType(this.getSelectedBranch.brhType);
+
       console.log(this.getSelectedBranch);
     },
     handlePageCurrentChange() {},
@@ -209,6 +300,25 @@ export default {
         .then((response) => {
           this.tableData = response.data.rows;
         });
+    },
+    //根据当前公司类型,获取下级子公司类型
+    getBranchTypeName(key) {
+      for (let index = 0; index < this.brhTypes.length; index++) {
+        if (index == this.brhTypes.length - 1) {
+          return null;
+        } else if (this.brhTypes[index].code == key) {
+          return this.brhTypes[index].brhType;
+        }
+      }
+    },
+    getSubBranchType(key) {
+      for (let index = 0; index < this.brhTypes.length; index++) {
+        if (index == this.brhTypes.length - 1) {
+          return null;
+        } else if (this.brhTypes[index].code == key) {
+          return this.brhTypes[index + 1];
+        }
+      }
     },
     handleSelectionChange(val) {
       this.multipleSelection = val;
@@ -290,6 +400,10 @@ export default {
           // 取消删除，不用理会
         });
     },
+    rowClass() {
+      //表格数据居中显示
+      return "text-align:center";
+    },
   },
 };
 </script>
@@ -297,7 +411,6 @@ export default {
 <style lang="scss" scoped>
 .el-table {
   color: #1d1b1b;
-  
 }
 .dashboard {
   &-container {

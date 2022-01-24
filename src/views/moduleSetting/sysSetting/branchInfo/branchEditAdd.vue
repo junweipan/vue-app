@@ -10,64 +10,65 @@
     >
       <el-row :gutter="40">
         <el-col :span="6">
-          <el-form-item label="机构名称:">
-            <el-input
-              :disabled="title === '编辑'"
-              v-model="formData.idNo"
-            ></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="6">
-          <el-form-item label="机构简称:" prop="telno">
-            <el-input v-model="formData.telno"></el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row :gutter="40">
-        <el-col :span="6">
-          <el-form-item label="机构类型:"><br/>
+          <el-form-item label="机构类型:"
+            ><br />
+            
             <el-select
-              v-model="formData.bankName"
-              filterable
-              placeholder="请选择"
+              style="width: 100%"
+              v-model="formData.branch.brhTypeName"
+              disabled
             >
-              <el-option
-                v-for="item in bankTypeList"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
+              <!-- <el-option
+                v-for="item in brhTypes"
+                :key="item.code"
+                :label="item.brhType"
+                :value="item.code"
               >
-              </el-option>
+              </el-option> -->
             </el-select>
           </el-form-item>
         </el-col>
         <el-col :span="6">
-          <el-form-item label="联系人:" prop="post">
-            <el-input v-model="formData.post"></el-input>
+          <el-form-item label="机构名称:">
+            <el-input
+              :disabled="title === '编辑'"
+              v-model="formData.branch.brhName"
+            ></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="机构简称:">
+            <el-input v-model="formData.branch.brhNickname"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
       <el-row :gutter="40">
         <el-col :span="6">
-          <el-form-item label="联系人电话:" prop="telno">
-            <el-input v-model="formData.telno"></el-input>
+          <el-form-item label="联系人:">
+            <el-input v-model="formData.branch.contName"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="联系人电话:">
+            <el-input v-model="formData.branch.contPhone"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
+
       <el-row :gutter="40">
         <el-col :span="12"> </el-col>
       </el-row>
       <el-row :gutter="40">
         <el-col :span="12">
-          <el-form-item label="描述:" prop="bankCardNumber">
-            <el-input v-model="formData.bankCardNumber"></el-input>
+          <el-form-item label="描述:">
+            <el-input v-model="formData.branch.brhDesc"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
       <el-row :gutter="40">
         <el-col :span="12">
           <el-form-item label="地址:">
-            <el-input v-model="formData.bankCardNumber"></el-input>
+            <el-input v-model="formData.branch.addr"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
@@ -87,31 +88,32 @@ export default {
   data() {
     return {
       title: "",
-      formData: {},
-      bankTypeList: [
-        { value: "11", label: "浙商银行" },
-        { value: "12", label: "杭州银行" },
-        { value: "13", label: "浙江民泰商业银行" },
-        { value: "14", label: "浙江省农村信用社联合社" },
-        { value: "15", label: "浙江稠州商业银行" },
-        { value: "16", label: "台州银行" },
-        { value: "17", label: "绍兴银行" },
-        { value: "1", label: "中国银行" },
-        { value: "2", label: "农业银行" },
-        { value: "3", label: "建设银行" },
-        { value: "4", label: "工商银行" },
-        { value: "5", label: "邮政储蓄银行" },
-        { value: "6", label: "交通银行" },
-        { value: "7", label: "浦发银行" },
-        { value: "8", label: "中信银行" },
-        { value: "9", label: "民生银行" },
-        { value: "10", label: "华夏银行" },
-      ],
+      formData: {
+        branch: {
+          brhType: "",
+          brhTypeName:"",
+          brhname: "",
+          brhNickname: "",
+          contName: "",
+          contPhone: "",
+          addr: "",
+          brhDesc: "",
+        },
+      },
+      // brhTypes: [
+      //   { code: "00", brhType: "集团本级" },
+      //   { code: "01", brhType: "一级子公司" },
+      //   { code: "02", brhType: "二级子公司" },
+      //   { code: "03", brhType: "三级子公司" },
+      // ],
     };
   },
-  created() {
-    // this.title = this.$route.query.title;
-    // this.formData = this.$route.query.formData;
+  computed: {
+  },
+  mounted() {
+    this.title = this.$route.query.title;
+    this.formData.branch = this.$route.query.branch;
+    console.log(this.formData.branch)
   },
   methods: {
     // 重置

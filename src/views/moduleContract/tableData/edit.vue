@@ -145,7 +145,7 @@ export default {
       },
     };
   },
-  created() {
+  mounted() {
     this.title = this.$route.query.title;
     this.formData = this.$route.query.formData;
   },
