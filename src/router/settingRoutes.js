@@ -35,6 +35,12 @@ export const settingRoutes = {
           meta: { title: '角色信息维护' }
         },
         {
+          path: 'role-info-edit-add',
+          component: () => import('@/views/moduleSetting/sysSetting/roleInfo/roleEditAdd'),
+          name: 'RoleInfoEditAdd',
+          meta: { title: '角色增加/修改' }
+        },
+        {
           path: 'operator',
           component: () => import('@/views/moduleSetting/sysSetting/operator'),
           name: 'Operator',

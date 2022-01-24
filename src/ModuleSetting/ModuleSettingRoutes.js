@@ -37,6 +37,12 @@ export const ModuleSettingRoutes = [
                     "meta": { "title": '角色信息维护' }
                   },
                   {
+                    "path": 'role-info-edit-add',
+                    "name": 'RoleInfoEditAdd',
+                    "meta": { "title": '角色增加/修改' },
+                    // "hidden":true
+                  },
+                  {
                     "path": 'operator',
                     "name": 'Operator',
                     "meta": { "title": '操作员管理' },

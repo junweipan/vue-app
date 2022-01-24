@@ -147,13 +147,13 @@ export default {
       this.page.current = val;
       this.fetchData();
     },
-    fetchData() {
-      api
-        .getPersonInfo(this.query, this.page.current, this.page.size)
-        .then((response) => {
-          this.tableData = response.data.rows;
-        });
-    },
+    // fetchData() {
+    //   api
+    //     .getPersonInfo(this.query, this.page.current, this.page.size)
+    //     .then((response) => {
+    //       this.tableData = response.data.rows;
+    //     });
+    // },
     handleSelectionChange(val) {
       this.multipleSelection = val;
     },

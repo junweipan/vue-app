@@ -65,6 +65,7 @@
       :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
       highlight-current-row
       @row-click="onhandleRowClick"
+      @row-dblclick="onEditBranch"
       :header-cell-style="rowClass"
       :cell-style="rowClass"
     >
