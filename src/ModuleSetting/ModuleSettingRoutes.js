@@ -40,7 +40,7 @@ export const ModuleSettingRoutes = [
                     "path": 'role-info-edit-add',
                     "name": 'RoleInfoEditAdd',
                     "meta": { "title": '角色增加/修改' },
-                    // "hidden":true
+                    "hidden":true
                   },
                   {
                     "path": 'operator',

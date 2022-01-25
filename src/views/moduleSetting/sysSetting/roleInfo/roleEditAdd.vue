@@ -38,11 +38,15 @@
             </el-form-item>
           </el-row>
         </el-col>
+        <el-col :span="4" style="height: 500px">
+          <!-- 占位 -->
+        </el-col>
         <el-col :span="12">
-          <p>选择权限项:</p>
-          <el-scrollbar id="scrollbar" style="height: 500px">
-            <func-tree></func-tree>
-          </el-scrollbar>
+          <el-form-item label="选择权限项:">
+            <el-scrollbar id="scrollbar" style="height: 500px">
+              <func-tree ref="functree" :treeNode="treeCheckedNode"></func-tree>
+            </el-scrollbar>
+          </el-form-item>
         </el-col>
       </el-row>
 
@@ -70,6 +74,7 @@ export default {
     return {
       title: "",
       roleTypes,
+      treeCheckedNode: [],
       formData: {
         role: {
           roleName: "",
@@ -80,11 +85,13 @@ export default {
       },
     };
   },
-  computed: {},
   mounted() {
     this.title = this.$route.query.title;
-    this.formData.branch = this.$route.query.branch;
-    console.log(this.formData.branch);
+    this.formData.role = this.$route.query.role;
+  },
+  // 调用beforeMount hook, treeCheckedNode 数据要在template mounted 之前就准备好
+  beforeMount() {
+    this.treeCheckedNode = this.$route.query.checkedNode;
   },
   methods: {
     // 重置
@@ -92,52 +99,16 @@ export default {
       // 将表单清空
       this.$refs["formData"].resetFields();
     },
-
+    setCheckedNodes() {
+      this.$refs.functree.setCheckedNodes();
+    },
+    resetChecked() {
+      this.$refs.functree.resetChecked();
+    },
     // 提交表单数据
-    submitForm(formName) {
-      // console.log("提交对象", this.formData);
-      // console.log("$route", this.$route);
-      // this.onReset();
-      // //关闭当前标签并跳转回父组件
-      // const view = this.$route;
-      // this.$store
-      //   .dispatch("tagsView/delView", view)
-      //   .then(() => {
-      //     this.$router.back();
-      //   });
-      // this.$refs[formName].validate((valid) => {
-      //     if (valid) {
-      //         // 校验通过，提交表单数据
-      //         this.submitData()
-      //     } else {
-      //         // console.log('error submit!!');
-      //         return false;
-      //     }
-      // })
-    },
+    submitForm(formName) {},
 
-    async submitData() {
-      // let response = null;
-      // if (this.formData.id) {
-      //   // 编辑
-      //   // response = await api.update(this.formData);
-      // } else {
-      //   // 新增
-      //   // response = await api.add(this.formData);
-      // }
-      // if (response.code === 20000) {
-      //   this.$message({
-      //     message: "保存成功",
-      //     type: "success",
-      //   });
-      //   // Todo: 回到表格页
-      // } else {
-      //   this.$message({
-      //     message: "保存失败",
-      //     type: "error",
-      //   });
-      // }
-    },
+    async submitData() {},
   },
 };
 </script>

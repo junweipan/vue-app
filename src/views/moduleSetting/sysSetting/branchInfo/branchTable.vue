@@ -296,13 +296,13 @@ export default {
     },
     handlePageCurrentChange() {},
     fetchData() {
-      api
-        .getPersonInfo(this.query, this.page.current, this.page.size)
-        .then((response) => {
-          this.tableData = response.data.rows;
-        });
+      // api
+      //   .getPersonInfo(this.query, this.page.current, this.page.size)
+      //   .then((response) => {
+      //     this.tableData = response.data.rows;
+      //   });
     },
-    //根据当前公司类型,获取下级子公司类型
+    //根据当前公司类型code,获取公司类型Name
     getBranchTypeName(key) {
       for (let index = 0; index < this.brhTypes.length; index++) {
         if (index == this.brhTypes.length - 1) {
@@ -312,6 +312,7 @@ export default {
         }
       }
     },
+    //根据当前公司类型,获取下级子公司类型
     getSubBranchType(key) {
       for (let index = 0; index < this.brhTypes.length; index++) {
         if (index == this.brhTypes.length - 1) {
@@ -321,59 +322,18 @@ export default {
         }
       }
     },
-    handleSelectionChange(val) {
-      this.multipleSelection = val;
-    },
     // 条件查询
     queryData() {
       // 将页码变为1，第1页
-      this.page.pagesize = 20;
-      this.page.current = 1;
-      this.fetchData();
+      // this.page.pagesize = 20;
+      // this.page.current = 1;
+      // this.fetchData();
     },
     // 重置
     reload() {
-      this.query = {};
-      this.fetchData();
+      // this.query = {};
+      // this.fetchData();
     },
-    // 子组件会触发此事件方法来关闭窗口
-    remoteClose() {
-      this.edit.formData = {};
-      this.edit.visible = false;
-      this.query = {};
-      this.fetchData();
-    },
-    // 打开新增窗口
-    openAdd() {
-      //跳转到新增页面, 携带title参数
-      this.$router.push({
-        path: "/contract-module/tabledata-edit",
-        query: {
-          title: "新增数据",
-        },
-      });
-    },
-
-    handleEdit(idNo) {
-      // 通过id查询详情
-      this.query.idNo = idNo;
-      // console.log('query',this.query.idNo)
-      api.getPersonInfoById(this.query).then((response) => {
-        if (response.status === 200) {
-          // 将查询的详情传递
-          //console.log(response.data)
-          //跳转到新增页面, 携带title参数, formdata
-          this.$router.push({
-            path: "/contract-module/tabledata-edit",
-            query: {
-              title: "编辑数据",
-              formData: response.data.rows[0],
-            },
-          });
-        }
-      });
-    },
-
     handleDelete(id) {
       this.$confirm("确认删除这条记录吗?", "提示", {
         confirmButtonText: "确定",
@@ -405,14 +365,12 @@ export default {
       //表格数据居中显示
       return "text-align:center";
     },
+    
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.el-table {
-  color: #1d1b1b;
-}
 .dashboard {
   &-container {
     margin: 5px;

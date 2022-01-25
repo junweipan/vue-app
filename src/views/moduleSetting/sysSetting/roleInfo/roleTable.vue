@@ -1,10 +1,12 @@
 <template>
   <div class="dashboard-container">
-<el-row>
-  <el-col :span="24"><div class="grid-content bg-purple-dark">
-    <div class="grid-text">查询条件</div> 
-    </div></el-col>
-</el-row>
+    <el-row>
+      <el-col :span="24"
+        ><div class="grid-content bg-purple-dark">
+          <div class="grid-text">查询条件</div>
+        </div></el-col
+      >
+    </el-row>
     <!-- 条件查询 -->
     <el-form :inline="true" :model="query" size="mini">
       <el-form-item label="角色名称:">
@@ -21,19 +23,22 @@
           @click="openAdd"
           >新增角色</el-button
         >
-        <el-button 
-        icon="el-icon-circle-plus-outline" 
-        type="warning"
+        <el-button
+          icon="el-icon-circle-plus-outline"
+          type="warning"
+          @click="openEdit"
           >修改角色</el-button
         >
         <el-button
           icon="el-icon-circle-plus-outline"
           type="success"
+          @click="onActivateRole"
           >启用</el-button
         >
         <el-button
           icon="el-icon-circle-plus-outline"
           type="danger"
+          @click="onDeactivateRole"
           >注销</el-button
         >
         <el-button icon="el-icon-refresh" @click="reload"> 重置</el-button>
@@ -48,30 +53,36 @@
       style="width: 100%"
       height="600"
       border
-      @selection-change="handleSelectionChange"
+      highlight-current-row
+      @row-click="handleSelectionChange"
+      :header-cell-style="rowClass"
+      :cell-style="rowClass"
     >
-      <el-table-column
-      label="序号"
-      type="index"
-      width="50">
-    </el-table-column>
+      <el-table-column label="序号" type="index" width="50"> </el-table-column>
 
       <el-table-column label="角色名称" width="auto">
         <template slot-scope="scope">{{ scope.row.roleName }}</template>
-         </el-table-column>
-
-      <el-table-column label="角色状态" width="auto">
-        <template slot-scope="scope">{{ scope.row.roleState | roleStatusFormat}}</template>
       </el-table-column>
 
+      <el-table-column label="角色状态" width="auto">
+        <template slot-scope="scope">
+          <div slot="reference" class="name-wrapper">
+            <el-tag
+              :type="scope.row.roleState == '0' ? 'success' : 'danger'"
+              >{{ scope.row.roleState | roleStatusFormat }}</el-tag
+            >
+          </div></template
+        >
+      </el-table-column>
       <el-table-column label="角色类型" width="110">
-        <template slot-scope="scope">{{ scope.row.roleType | roleTypeFormat }}</template>
+        <template slot-scope="scope">{{
+          scope.row.roleType | roleTypeFormat
+        }}</template>
       </el-table-column>
 
       <el-table-column label="角色概述">
         <template slot-scope="scope">{{ scope.row.roleDesc }}</template>
       </el-table-column>
-
     </el-table>
 
     <!-- 分页组件 -->
@@ -94,16 +105,18 @@
 <script>
 // import api from "@/api/personInfoMock";
 // import Edit from "./edit";
-import roleData from './role.json'
-
+import roleData from "./role.json";
+import checkTree from './checkTree.json'
 export default {
   name: "roleTable",
   components: {
     // edit: Edit, // Edit: Edit
   },
   data() {
-    return { 
+    return {
       tableData: roleData.rows,
+      selectedRole: null,
+      tree3: [],
       // multipleSelection: [],
       query: {}, // 查询条件
       page: {
@@ -112,15 +125,13 @@ export default {
         size: 20, // 每页显示多少条
         total: 50, // 总记录数
       },
-      // edit: {
-      //   title: "",
-      //   visible: false,
-      //   formData: {},
-      // },
     };
   },
   filters: {},
   computed: {},
+  mounted(){
+    this.treeNode = checkTree.jsonArray[0].functions
+  },
   created() {
     // this.fetchData()
   },
@@ -137,102 +148,97 @@ export default {
     // },
   },
   methods: {
-    // val 是切换之后的每页显示多少条
-    handleSizeChange(val) {
-      this.page.size = val;
-      this.fetchData();
-    },
-    // 当页码改变后触发到此方法，val 是当前点击（或输入）的那个页码，
-    handleCurrentChange(val) {
-      this.page.current = val;
-      this.fetchData();
-    },
-    // fetchData() {
-    //   api
-    //     .getPersonInfo(this.query, this.page.current, this.page.size)
-    //     .then((response) => {
-    //       this.tableData = response.data.rows;
-    //     });
-    // },
-    handleSelectionChange(val) {
-      this.multipleSelection = val;
-    },
-    // 条件查询
-    queryData() {
-      // 将页码变为1，第1页
-      this.page.pagesize = 20;
-      this.page.current = 1;
-      this.fetchData();
-    },
-    // 重置
-    reload() {
-      this.query = {};
-      this.fetchData();
-    },
-    // 子组件会触发此事件方法来关闭窗口
-    remoteClose() {
-      this.edit.formData = {};
-      this.edit.visible = false;
-      this.query = {};
-      this.fetchData();
-    },
-    // 打开新增窗口
     openAdd() {
       //跳转到新增页面, 携带title参数
       this.$router.push({
-        path: "/contract-module/tabledata-edit",
+        path: "/setting-module/sys-setting/role-info-edit-add",
         query: {
-          title: "新增数据",
+          title: "新增角色",
+          role: {},
         },
       });
     },
-
-    handleEdit(idNo) {
-      // 通过id查询详情
-      this.query.idNo = idNo;
-      // console.log('query',this.query.idNo)
-      api.getPersonInfoById(this.query).then((response) => {
-        if (response.status === 200) {
-          // 将查询的详情传递
-          //console.log(response.data)
-          //跳转到新增页面, 携带title参数, formdata
-          this.$router.push({
-            path: "/contract-module/tabledata-edit",
-            query: {
-              title: "编辑数据",
-              formData: response.data.rows[0],
-            },
-          });
-        }
+    openEdit() {
+      //检查是否选中某行
+      if (!this.selectedRole) {
+        this.$alert("请先选择一个角色", "提示", {
+          confirmButtonText: "确定",
+          type: "warning",
+        })
+          .then(() => {})
+          .catch(() => {});
+        return;
+      }
+      //跳转到新增页面, 携带title, 选中role,role的tree信息
+      this.$router.push({
+        path: "/setting-module/sys-setting/role-info-edit-add",
+        query: {
+          title: "修改角色",
+          role: this.selectedRole,
+          checkedNode:this.treeNode
+        },
       });
     },
-
-    handleDelete(id) {
-      this.$confirm("确认删除这条记录吗?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning",
-      })
-        .then(() => {
-          // 发送删除请求
-          // api.deleteById(id).then(response => {
-          //     // 处理响应结果提示
-          //     this.$message({
-          //         type: response.code === 20000 ? 'success': 'error',
-          //         message: response.message
-          //     })
-          this.$message({
-            type: "success",
-            message: id + "已删除",
-          });
-          // })
-          console.log(id, "已删除");
-          // 刷新列表数据
-          this.fetchData();
+    onActivateRole() {
+      if (!this.selectedRole) {
+        this.$alert("请先选择一个角色", "提示", {
+          confirmButtonText: "确定",
+          type: "warning",
         })
-        .catch(() => {
-          // 取消删除，不用理会
-        });
+          .then(() => {})
+          .catch(() => {});
+        return;
+      }
+      if (this.selectedRole.roleState == "0") {
+        this.$alert("该机构已启用. 不能重复启用", "提示", {
+          confirmButtonText: "确定",
+          type: "warning",
+        })
+          .then(() => {})
+          .catch(() => {});
+        return;
+      }
+      this.selectedRole.roleState = "0";
+      this.$message({
+        message: "成功启用该机构",
+        type: "success",
+      });
+    },
+    onDeactivateRole() {
+      if (!this.selectedRole) {
+        this.$alert("请先选择一个角色", "提示", {
+          confirmButtonText: "确定",
+          type: "warning",
+        })
+          .then(() => {})
+          .catch(() => {});
+        return;
+      }
+      if (this.selectedRole.roleState == "1") {
+        this.$alert("该机构已注销. 不能重复注销", "提示", {
+          confirmButtonText: "确定",
+          type: "warning",
+        })
+          .then(() => {})
+          .catch(() => {});
+        return;
+      }
+      this.selectedRole.roleState = "1";
+      this.$message({
+        message: "成功停用该机构",
+        type: "success",
+      });
+    },
+    handleSelectionChange(val) {
+      this.selectedRole = val;
+    },
+    reload() {},
+    queryData() {},
+    handleSizeChange() {},
+    handleCurrentChange() {},
+    rowClass() {
+      //表格数据居中显示
+      return "text-align:center";
     },
   },
 };
@@ -256,28 +262,28 @@ export default {
   color: rgb(255, 255, 255);
   margin-left: 20px;
 }
-  .el-col {
-    border-radius: 4px;
-  }
-  .bg-purple-dark {
-    background: #99a9bf;
-  }
-  .bg-purple {
-    background: #d3dce6;
-  }
-  .bg-purple-light {
-    background: #e5e9f2;
-  }
-  .grid-content {
-    border-radius: 4px;
-    min-height: 36px;
-    display: flex;
-    align-items: center;
-    height: 50px;
-    margin-bottom: 20px;
-  }
-  .row-bg {
-    padding: 10px 0;
-    background-color: #f9fafc;
-  }
+.el-col {
+  border-radius: 4px;
+}
+.bg-purple-dark {
+  background: #99a9bf;
+}
+.bg-purple {
+  background: #d3dce6;
+}
+.bg-purple-light {
+  background: #e5e9f2;
+}
+.grid-content {
+  border-radius: 4px;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  margin-bottom: 20px;
+}
+.row-bg {
+  padding: 10px 0;
+  background-color: #f9fafc;
+}
 </style>
