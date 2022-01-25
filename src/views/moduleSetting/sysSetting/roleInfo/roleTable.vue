@@ -55,6 +55,7 @@
       border
       highlight-current-row
       @row-click="handleSelectionChange"
+      @row-dblclick="openEdit"
       :header-cell-style="rowClass"
       :cell-style="rowClass"
     >
@@ -247,7 +248,7 @@ export default {
 <style lang="scss" scoped>
 .dashboard {
   &-container {
-    margin: 5px;
+    margin: 0px;
   }
   &-text {
     font-size: 30px;

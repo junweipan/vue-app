@@ -131,7 +131,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .btn {
   display: flex;
   flex-direction: row;

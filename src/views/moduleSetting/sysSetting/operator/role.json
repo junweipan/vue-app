@@ -1,0 +1,162 @@
+{
+    "rows": [
+        {
+            "crtOpr": null,
+            "updOpr": null,
+            "crtTime": 1607410056000,
+            "updTime": 1635238907929,
+            "roleId": 1,
+            "roleName": "开发人员（汇总）",
+            "roleState": "0",
+            "roleType": "01",
+            "roleDesc": "开发人员"
+        },
+        {
+            "crtOpr": null,
+            "updOpr": null,
+            "crtTime": 1607410380431,
+            "updTime": 1608896055964,
+            "roleId": 2,
+            "roleName": "商铺管理员",
+            "roleState": "0",
+            "roleType": "02",
+            "roleDesc": "城投置业商铺管理员"
+        },
+        {
+            "crtOpr": null,
+            "updOpr": null,
+            "crtTime": 1607410424104,
+            "updTime": 1611739030698,
+            "roleId": 4,
+            "roleName": "资产管理员",
+            "roleState": "0",
+            "roleType": "02",
+            "roleDesc": "本级资产管理员"
+        },
+        {
+            "crtOpr": null,
+            "updOpr": null,
+            "crtTime": 1607410494366,
+            "updTime": 1632621562143,
+            "roleId": 6,
+            "roleName": "资产汇总岗",
+            "roleState": "0",
+            "roleType": "01",
+            "roleDesc": "资产汇总岗（本级及下属单位）"
+        },
+        {
+            "crtOpr": null,
+            "updOpr": "admin",
+            "crtTime": 1611736705089,
+            "updTime": 1611736797787,
+            "roleId": 22,
+            "roleName": "资产财务",
+            "roleState": "0",
+            "roleType": "02",
+            "roleDesc": null
+        },
+        {
+            "crtOpr": null,
+            "updOpr": null,
+            "crtTime": 1614152861591,
+            "updTime": 1614658522681,
+            "roleId": 42,
+            "roleName": "智慧城市资产管理",
+            "roleState": "0",
+            "roleType": "01",
+            "roleDesc": null
+        },
+        {
+            "crtOpr": null,
+            "updOpr": null,
+            "crtTime": 1616140403453,
+            "updTime": 1627952432214,
+            "roleId": 62,
+            "roleName": "集团企管部",
+            "roleState": "0",
+            "roleType": "01",
+            "roleDesc": null
+        },
+        {
+            "crtOpr": null,
+            "updOpr": null,
+            "crtTime": 1619318904335,
+            "updTime": 1619319022835,
+            "roleId": 82,
+            "roleName": "测试",
+            "roleState": "0",
+            "roleType": "01",
+            "roleDesc": null
+        },
+        {
+            "crtOpr": null,
+            "updOpr": null,
+            "crtTime": 1625146147483,
+            "updTime": null,
+            "roleId": 102,
+            "roleName": "开发人员（本级）",
+            "roleState": "0",
+            "roleType": "02",
+            "roleDesc": "开发人员（本级）"
+        },
+        {
+            "crtOpr": null,
+            "updOpr": null,
+            "crtTime": 1625209789051,
+            "updTime": 1628480496665,
+            "roleId": 104,
+            "roleName": "企业超级管理员",
+            "roleState": "0",
+            "roleType": "02",
+            "roleDesc": "企业超级管理员（本级）"
+        },
+        {
+            "crtOpr": null,
+            "updOpr": null,
+            "crtTime": 1625209821388,
+            "updTime": 1625451523070,
+            "roleId": 106,
+            "roleName": "企业资产管理员（本级）",
+            "roleState": "0",
+            "roleType": "02",
+            "roleDesc": "企业资产管理员（本级）"
+        },
+        {
+            "crtOpr": null,
+            "updOpr": null,
+            "crtTime": 1625209905695,
+            "updTime": 1640146097150,
+            "roleId": 108,
+            "roleName": "企业资产管理员（汇总）",
+            "roleState": "0",
+            "roleType": "01",
+            "roleDesc": "企业资产管理员（汇总）"
+        },
+        {
+            "crtOpr": null,
+            "updOpr": null,
+            "crtTime": 1635294813967,
+            "updTime": 1635296034821,
+            "roleId": 122,
+            "roleName": "城投投资",
+            "roleState": "0",
+            "roleType": "02",
+            "roleDesc": null
+        },
+        {
+            "crtOpr": null,
+            "updOpr": null,
+            "crtTime": 1635493746286,
+            "updTime": 1635494450917,
+            "roleId": 142,
+            "roleName": "查询岗",
+            "roleState": "0",
+            "roleType": "01",
+            "roleDesc": "查询岗"
+        }
+    ],
+    "status": 200,
+    "totalCount": 14,
+    "curPage": 1,
+    "totalPages": 1
+}

@@ -1,84 +1,85 @@
 <template>
-  <div class="container">
-    <h2>{{ title }}</h2>
-    <el-form
-      ref="formData"
-      :model="formData"
-      label-position="right"
-      style="width: 100%"
-      status-icon
-    >
-      <el-row :gutter="40">
-        <el-col :span="6">
-          <el-form-item label="机构类型:"
-            ><br />
-            
-            <el-select
-              style="width: 100%"
-              v-model="formData.branch.brhTypeName"
-              disabled
-            >
-              <!-- <el-option
+  <div>
+    <el-button round @click="backHome">返回</el-button>
+    <div class="container">
+      <h2>{{ title }}</h2>
+      <el-form
+        ref="formData"
+        :model="formData"
+        label-position="right"
+        style="width: 100%"
+        status-icon
+      >
+        <el-row :gutter="40">
+          <el-col :span="6">
+            <el-form-item label="机构类型:"
+              ><br />
+
+              <el-select
+                style="width: 100%"
+                v-model="formData.branch.brhTypeName"
+                disabled
+              >
+                <!-- <el-option
                 v-for="item in brhTypes"
                 :key="item.code"
                 :label="item.brhType"
                 :value="item.code"
               >
               </el-option> -->
-            </el-select>
-          </el-form-item>
-        </el-col>
-        <el-col :span="6">
-          <el-form-item label="机构名称:">
-            <el-input
-              v-model="formData.branch.brhName"
-            ></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="6">
-          <el-form-item label="机构简称:">
-            <el-input v-model="formData.branch.brhNickname"></el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row :gutter="40">
-        <el-col :span="6">
-          <el-form-item label="联系人:">
-            <el-input v-model="formData.branch.contName"></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="6">
-          <el-form-item label="联系人电话:">
-            <el-input v-model="formData.branch.contPhone"></el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="6">
+            <el-form-item label="机构名称:">
+              <el-input v-model="formData.branch.brhName"></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="6">
+            <el-form-item label="机构简称:">
+              <el-input v-model="formData.branch.brhNickname"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="40">
+          <el-col :span="6">
+            <el-form-item label="联系人:">
+              <el-input v-model="formData.branch.contName"></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="6">
+            <el-form-item label="联系人电话:">
+              <el-input v-model="formData.branch.contPhone"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
 
-      <el-row :gutter="40">
-        <el-col :span="12"> </el-col>
-      </el-row>
-      <el-row :gutter="40">
-        <el-col :span="12">
-          <el-form-item label="描述:">
-            <el-input v-model="formData.branch.brhDesc"></el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row :gutter="40">
-        <el-col :span="12">
-          <el-form-item label="地址:">
-            <el-input v-model="formData.branch.addr"></el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
+        <el-row :gutter="40">
+          <el-col :span="12"> </el-col>
+        </el-row>
+        <el-row :gutter="40">
+          <el-col :span="12">
+            <el-form-item label="描述:">
+              <el-input v-model="formData.branch.brhDesc"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="40">
+          <el-col :span="12">
+            <el-form-item label="地址:">
+              <el-input v-model="formData.branch.addr"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
 
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('formData')" size="mini"
-          >确定</el-button
-        >
-        <el-button size="mini" @click="onReset">取消</el-button>
-      </el-form-item>
-    </el-form>
+        <el-form-item>
+          <el-button type="primary" @click="submitForm('formData')" size="mini"
+            >确定</el-button
+          >
+          <el-button size="mini" @click="onReset">取消</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
   </div>
 </template>
 <script>
@@ -90,7 +91,7 @@ export default {
       formData: {
         branch: {
           brhType: "",
-          brhTypeName:"",
+          brhTypeName: "",
           brhname: "",
           brhNickname: "",
           contName: "",
@@ -107,12 +108,10 @@ export default {
       // ],
     };
   },
-  computed: {
-  },
+  computed: {},
   mounted() {
     this.title = this.$route.query.title;
     this.formData.branch = this.$route.query.branch;
-    console.log(this.formData.branch)
   },
   methods: {
     // 重置
@@ -120,7 +119,13 @@ export default {
       // 将表单清空
       this.$refs["formData"].resetFields();
     },
-
+    backHome() {
+      //关闭当前标签并跳转回父组件
+      const view = this.$route;
+      this.$store.dispatch("tagsView/delView", view).then(() => {
+        this.$router.back();
+      });
+    },
     // 提交表单数据
     submitForm(formName) {
       // console.log("提交对象", this.formData);

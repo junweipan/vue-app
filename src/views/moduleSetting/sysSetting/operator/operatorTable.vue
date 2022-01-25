@@ -1,17 +1,17 @@
 <template>
   <div class="dashboard-container">
-    <el-row :gutter="20">
-      <el-col :span="24"
-        ><div class="grid-content bg-purple-dark">
-          <div class="grid-text">查询条件</div>
-        </div></el-col
-      >
-    </el-row>
-    <!-- 条件查询 -->
-    <el-form :model="query">
-      <el-row type="flex" class="row-bg" :gutter="20" >
-        <el-col :span="12">
-          <el-form-item label="所属机构">
+    <el-form :model="query" inline>
+      <!-- 条件查询 -->
+      <el-row>
+        <el-col :span="24"
+          ><div class="grid-content bg-purple-dark">
+            <div class="grid-text">查询条件</div>
+          </div></el-col
+        >
+      </el-row>
+      <el-row class="row-bg" :gutter="20">
+        <el-col :span="6">
+          <el-form-item label="所属机构:">
             <el-input></el-input>
           </el-form-item>
         </el-col>
@@ -21,13 +21,12 @@
           </el-form-item>
         </el-col>
         <el-col :span="6">
-          <el-form-item label="姓名:">
+          <el-form-item label="操作员姓名:">
             <el-input v-model.trim="query.role"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
-      <!-- <el-row type="flex" class="row-bg" :gutter="20"> </el-row> -->
-      <el-row type="flex" class="row-bg" :gutter="20">
+      <el-row class="row-bg" :gutter="20">
         <el-col :span="24">
           <el-button icon="el-icon-search" type="primary" @click="queryData"
             >查询</el-button
@@ -67,7 +66,7 @@
       :data="tableData"
       tooltip-effect="dark"
       style="width: 100%"
-      height="600"
+      height="500px"
       border
       @selection-change="handleSelectionChange"
     >
@@ -279,7 +278,7 @@ export default {
 <style lang="scss" scoped>
 .dashboard {
   &-container {
-    margin: 5px;
+    margin: 0px;
   }
   &-text {
     font-size: 30px;
@@ -316,5 +315,6 @@ export default {
 }
 .row-bg {
   background-color: #ffffff;
+  margin: 0;
 }
 </style>

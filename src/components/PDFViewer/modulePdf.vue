@@ -140,7 +140,7 @@ export default {
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .imglist {
   width: 500px;
   padding-top: 20px;

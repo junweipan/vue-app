@@ -1,0 +1,349 @@
+{
+    "totalCount": 1,
+    "totalPages": 1,
+    "curPage": 1,
+    "status": 200,
+    "arrayList": [
+        {
+            "text": "舟山海城建设投资集团有限公司",
+            "extData": {
+                "crtOpr": null,
+                "updOpr": "admin",
+                "crtTime": null,
+                "updTime": 1609211394388,
+                "misc": null,
+                "brhId": "0001",
+                "brhName": "舟山海城建设投资集团有限公司",
+                "brhNickname": "城投集团",
+                "upBrhId": "-",
+                "brhSta": "1",
+                "brhType": "00",
+                "contName": null,
+                "contPhone": "0580-2296000",
+                "addr": "舟山市新城田螺峙路480号城投大厦",
+                "brhDesc": null
+            },
+            "children": [
+                {
+                    "text": "舟山市蓝焰燃气有限公司",
+                    "extData": {
+                        "crtOpr": null,
+                        "updOpr": "admin",
+                        "crtTime": null,
+                        "updTime": 1609211719655,
+                        "misc": null,
+                        "brhId": "0011",
+                        "brhName": "舟山市蓝焰燃气有限公司",
+                        "brhNickname": "蓝焰燃气",
+                        "upBrhId": "0001",
+                        "brhSta": "1",
+                        "brhType": "01",
+                        "contName": null,
+                        "contPhone": "0580-2820971",
+                        "addr": "浙江省舟山市定海区临城街道海景道475号",
+                        "brhDesc": null
+                    },
+                    "children": null
+                },
+                {
+                    "text": "舟山海城置业有限公司",
+                    "extData": {
+                        "crtOpr": null,
+                        "updOpr": "58000121200",
+                        "crtTime": null,
+                        "updTime": 1626315221279,
+                        "misc": null,
+                        "brhId": "0012",
+                        "brhName": "舟山海城置业有限公司",
+                        "brhNickname": "城投置业",
+                        "upBrhId": "0001",
+                        "brhSta": "1",
+                        "brhType": "01",
+                        "contName": null,
+                        "contPhone": "0580-2083178",
+                        "addr": "舟山市定海区临城街道金岛路11号田螺峙商务大楼11—13层",
+                        "brhDesc": null
+                    },
+                    "children": [
+                        {
+                            "text": "舟山海城儿童公园管理有限公司",
+                            "extData": {
+                                "crtOpr": null,
+                                "updOpr": null,
+                                "crtTime": null,
+                                "updTime": null,
+                                "misc": null,
+                                "brhId": "0021",
+                                "brhName": "舟山海城儿童公园管理有限公司",
+                                "brhNickname": "儿童公园",
+                                "upBrhId": "0012",
+                                "brhSta": "1",
+                                "brhType": "02",
+                                "contName": null,
+                                "contPhone": null,
+                                "addr": null,
+                                "brhDesc": null
+                            },
+                            "children": null
+                        },
+                        {
+                            "text": "舟山城置物业管理有限公司",
+                            "extData": {
+                                "crtOpr": null,
+                                "updOpr": null,
+                                "crtTime": null,
+                                "updTime": null,
+                                "misc": null,
+                                "brhId": "0022",
+                                "brhName": "舟山城置物业管理有限公司",
+                                "brhNickname": "城置物业",
+                                "upBrhId": "0012",
+                                "brhSta": "1",
+                                "brhType": "02",
+                                "contName": null,
+                                "contPhone": null,
+                                "addr": null,
+                                "brhDesc": null
+                            },
+                            "children": null
+                        },
+                        {
+                            "text": "舟山海城文化传媒有限公司",
+                            "extData": {
+                                "crtOpr": null,
+                                "updOpr": null,
+                                "crtTime": null,
+                                "updTime": null,
+                                "misc": null,
+                                "brhId": "0023",
+                                "brhName": "舟山海城文化传媒有限公司",
+                                "brhNickname": "城投传媒",
+                                "upBrhId": "0012",
+                                "brhSta": "1",
+                                "brhType": "02",
+                                "contName": null,
+                                "contPhone": null,
+                                "addr": null,
+                                "brhDesc": null
+                            },
+                            "children": null
+                        }
+                    ]
+                },
+                {
+                    "text": "舟山海城建设有限公司",
+                    "extData": {
+                        "crtOpr": null,
+                        "updOpr": null,
+                        "crtTime": null,
+                        "updTime": null,
+                        "misc": null,
+                        "brhId": "0013",
+                        "brhName": "舟山海城建设有限公司",
+                        "brhNickname": "城投建设",
+                        "upBrhId": "0001",
+                        "brhSta": "1",
+                        "brhType": "01",
+                        "contName": null,
+                        "contPhone": null,
+                        "addr": null,
+                        "brhDesc": null
+                    },
+                    "children": [
+                        {
+                            "text": "舟山海城市政园林绿化有限公司",
+                            "extData": {
+                                "crtOpr": null,
+                                "updOpr": null,
+                                "crtTime": null,
+                                "updTime": null,
+                                "misc": null,
+                                "brhId": "0024",
+                                "brhName": "舟山海城市政园林绿化有限公司",
+                                "brhNickname": "城投绿化",
+                                "upBrhId": "0013",
+                                "brhSta": "1",
+                                "brhType": "02",
+                                "contName": null,
+                                "contPhone": null,
+                                "addr": null,
+                                "brhDesc": null
+                            },
+                            "children": null
+                        }
+                    ]
+                },
+                {
+                    "text": "舟山海城房产开发建设有限公司",
+                    "extData": {
+                        "crtOpr": null,
+                        "updOpr": null,
+                        "crtTime": null,
+                        "updTime": null,
+                        "misc": null,
+                        "brhId": "0014",
+                        "brhName": "舟山海城房产开发建设有限公司",
+                        "brhNickname": "城投房建",
+                        "upBrhId": "0001",
+                        "brhSta": "1",
+                        "brhType": "01",
+                        "contName": null,
+                        "contPhone": null,
+                        "addr": null,
+                        "brhDesc": null
+                    },
+                    "children": null
+                },
+                {
+                    "text": "舟山海城投资有限公司",
+                    "extData": {
+                        "crtOpr": null,
+                        "updOpr": null,
+                        "crtTime": null,
+                        "updTime": null,
+                        "misc": null,
+                        "brhId": "0015",
+                        "brhName": "舟山海城投资有限公司",
+                        "brhNickname": "城投投资",
+                        "upBrhId": "0001",
+                        "brhSta": "1",
+                        "brhType": "01",
+                        "contName": null,
+                        "contPhone": null,
+                        "addr": null,
+                        "brhDesc": null
+                    },
+                    "children": [
+                        {
+                            "text": "舟山城联实业有限公司",
+                            "extData": {
+                                "crtOpr": null,
+                                "updOpr": null,
+                                "crtTime": null,
+                                "updTime": null,
+                                "misc": null,
+                                "brhId": "0025",
+                                "brhName": "舟山城联实业有限公司",
+                                "brhNickname": "城联实业",
+                                "upBrhId": "0015",
+                                "brhSta": "1",
+                                "brhType": "02",
+                                "contName": null,
+                                "contPhone": null,
+                                "addr": null,
+                                "brhDesc": null
+                            },
+                            "children": null
+                        },
+                        {
+                            "text": "浙江自贸区海城租赁有限公司",
+                            "extData": {
+                                "crtOpr": null,
+                                "updOpr": null,
+                                "crtTime": null,
+                                "updTime": null,
+                                "misc": null,
+                                "brhId": "0027",
+                                "brhName": "浙江自贸区海城租赁有限公司",
+                                "brhNickname": "城投自贸区租赁",
+                                "upBrhId": "0015",
+                                "brhSta": "1",
+                                "brhType": "02",
+                                "contName": null,
+                                "contPhone": null,
+                                "addr": null,
+                                "brhDesc": null
+                            },
+                            "children": null
+                        }
+                    ]
+                },
+                {
+                    "text": "舟山市规划建筑设计研究院",
+                    "extData": {
+                        "crtOpr": null,
+                        "updOpr": null,
+                        "crtTime": null,
+                        "updTime": null,
+                        "misc": null,
+                        "brhId": "0016",
+                        "brhName": "舟山市规划建筑设计研究院",
+                        "brhNickname": "建筑设计院",
+                        "upBrhId": "0001",
+                        "brhSta": "1",
+                        "brhType": "01",
+                        "contName": null,
+                        "contPhone": null,
+                        "addr": null,
+                        "brhDesc": null
+                    },
+                    "children": null
+                },
+                {
+                    "text": "舟山市城市规划设计研究院",
+                    "extData": {
+                        "crtOpr": null,
+                        "updOpr": null,
+                        "crtTime": null,
+                        "updTime": null,
+                        "misc": null,
+                        "brhId": "0017",
+                        "brhName": "舟山市城市规划设计研究院",
+                        "brhNickname": "规划设计院",
+                        "upBrhId": "0001",
+                        "brhSta": "1",
+                        "brhType": "01",
+                        "contName": null,
+                        "contPhone": null,
+                        "addr": null,
+                        "brhDesc": null
+                    },
+                    "children": null
+                },
+                {
+                    "text": "舟山市智慧城市运营有限公司",
+                    "extData": {
+                        "crtOpr": null,
+                        "updOpr": "admin",
+                        "crtTime": null,
+                        "updTime": 1611736286593,
+                        "misc": null,
+                        "brhId": "0018",
+                        "brhName": "舟山市智慧城市运营有限公司",
+                        "brhNickname": "城投智慧",
+                        "upBrhId": "0001",
+                        "brhSta": "1",
+                        "brhType": "01",
+                        "contName": null,
+                        "contPhone": null,
+                        "addr": null,
+                        "brhDesc": null
+                    },
+                    "children": null
+                },
+                {
+                    "text": "舟山海城环保综合利用有限公司",
+                    "extData": {
+                        "crtOpr": null,
+                        "updOpr": null,
+                        "crtTime": null,
+                        "updTime": null,
+                        "misc": null,
+                        "brhId": "0026",
+                        "brhName": "舟山海城环保综合利用有限公司",
+                        "brhNickname": "城投环保",
+                        "upBrhId": "0001",
+                        "brhSta": "1",
+                        "brhType": "01",
+                        "contName": null,
+                        "contPhone": null,
+                        "addr": null,
+                        "brhDesc": null
+                    },
+                    "children": null
+                }
+            ]
+        }
+    ],
+    "jsonArray": null
+}

@@ -291,8 +291,6 @@ export default {
       );
       //获取下级branch
       this.getSubBranch = this.getSubBranchType(this.getSelectedBranch.brhType);
-
-      console.log(this.getSelectedBranch);
     },
     handlePageCurrentChange() {},
     fetchData() {
