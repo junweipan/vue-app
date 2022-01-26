@@ -46,6 +46,12 @@ export const settingRoutes = {
           name: 'Operator',
           meta: { title: '操作员管理' },
         },
+        {
+          path: 'operator-edit-add',
+          component: () => import('@/views/moduleSetting/sysSetting/operator/operatorEditAdd'),
+          name: 'OperatorEditAdd',
+          meta: { title: '操作员增加/修改' },
+        },
       ]
     },
     // {

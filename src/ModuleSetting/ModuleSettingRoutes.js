@@ -20,35 +20,41 @@ export const ModuleSettingRoutes = [
                 "meta": { "title": '系统配置' },
                 "redirect": '/setting-module/sys-setting/branch-info',
                 "children": [
-                  {
-                    "path": 'branch-info',
-                    "name": 'BranchInfo',
-                    "meta": { "title": '机构信息维护' },
-                  },
-                  {
-                    "path": 'branch-info-edit-add',
-                    "name": 'BranchInfoEditAdd',
-                    "meta": { "title": '机构增加/修改' },
-                    "hidden":true
-                  },
-                  {
-                    "path": 'role-info',
-                    "name": 'RoleInfo',
-                    "meta": { "title": '角色信息维护' }
-                  },
-                  {
-                    "path": 'role-info-edit-add',
-                    "name": 'RoleInfoEditAdd',
-                    "meta": { "title": '角色增加/修改' },
-                    "hidden":true
-                  },
-                  {
-                    "path": 'operator',
-                    "name": 'Operator',
-                    "meta": { "title": '操作员管理' },
-                  },
+                    {
+                        "path": 'branch-info',
+                        "name": 'BranchInfo',
+                        "meta": { "title": '机构信息维护' },
+                    },
+                    {
+                        "path": 'branch-info-edit-add',
+                        "name": 'BranchInfoEditAdd',
+                        "meta": { "title": '机构增加/修改' },
+                        "hidden": true
+                    },
+                    {
+                        "path": 'role-info',
+                        "name": 'RoleInfo',
+                        "meta": { "title": '角色信息维护' }
+                    },
+                    {
+                        "path": 'role-info-edit-add',
+                        "name": 'RoleInfoEditAdd',
+                        "meta": { "title": '角色增加/修改' },
+                        "hidden": true
+                    },
+                    {
+                        "path": 'operator',
+                        "name": 'Operator',
+                        "meta": { "title": '操作员管理' },
+                    }, 
+                    {
+                        "path": 'operator-edit-add',
+                        "name": 'OperatorEditAdd',
+                        "meta": { "title": '操作员增加/修改' },
+                        // "hidden": true
+                    },
                 ]
-              },
+            },
             // {
             //     "path": "dashboard",
             //     "name": "Dashboard",

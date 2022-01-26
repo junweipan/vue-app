@@ -1,7 +1,6 @@
 <template>
   <div class="dashboard-container">
     <el-form :model="query" inline>
-      <!-- 条件查询 -->
       <el-row>
         <el-col :span="24"
           ><div class="grid-content bg-purple-dark">
@@ -9,10 +8,29 @@
           </div></el-col
         >
       </el-row>
+      <!-- 条件查询 -->
       <el-row class="row-bg" :gutter="20">
         <el-col :span="6">
           <el-form-item label="所属机构:">
-            <el-input></el-input>
+            <el-select
+              v-model="selectedBranch"
+              placeholder="请选择"
+              ref="selectReport"
+            >
+              <el-option
+                :value="selectedBranch"
+                :label="selectedBranch"
+                style="height: auto"
+              >
+                <el-tree
+                  :data="brhTree"
+                  :props="treeProps"
+                  :render-after-expand="true"
+                  :expand-on-click-node="false"
+                  @node-click="handleNodeClick"
+                ></el-tree>
+              </el-option>
+            </el-select>
           </el-form-item>
         </el-col>
         <el-col :span="6">
@@ -26,6 +44,7 @@
           </el-form-item>
         </el-col>
       </el-row>
+      <!-- 查询按钮 -->
       <el-row class="row-bg" :gutter="20">
         <el-col :span="24">
           <el-button icon="el-icon-search" type="primary" @click="queryData"
@@ -37,19 +56,34 @@
             @click="openAdd"
             >新增角色</el-button
           >
-          <el-button icon="el-icon-circle-plus-outline" type="warning"
+          <el-button
+            icon="el-icon-circle-plus-outline"
+            type="warning"
+            @click="onEdit"
             >修改角色</el-button
           >
-          <el-button icon="el-icon-circle-plus-outline" type="success"
+          <el-button
+            icon="el-icon-circle-plus-outline"
+            type="success"
+            @click="onActivateRole"
             >启用</el-button
           >
-          <el-button icon="el-icon-circle-plus-outline" type="danger"
+          <el-button
+            icon="el-icon-circle-plus-outline"
+            type="danger"
+            @click="onDeactivateRole"
             >注销</el-button
           >
-          <el-button icon="el-icon-circle-plus-outline" type="danger"
+          <el-button
+            icon="el-icon-circle-plus-outline"
+            type="danger"
+            @click="onDeleteRole"
             >删除用户</el-button
           >
-          <el-button icon="el-icon-circle-plus-outline" type="warning"
+          <el-button
+            icon="el-icon-circle-plus-outline"
+            type="warning"
+            @click="onPwdReset"
             >密码重置</el-button
           >
           <el-button icon="el-icon-refresh" @click="reload"
@@ -62,13 +96,16 @@
 
     <!--显示主要数据table-->
     <el-table
-      ref="multipleTable"
       :data="tableData"
       tooltip-effect="dark"
       style="width: 100%"
       height="500px"
       border
-      @selection-change="handleSelectionChange"
+      highlight-current-row
+      @row-click="onhandleRowClick"
+      @row-dblclick="onEditOperator"
+      :header-cell-style="rowClass"
+      :cell-style="rowClass"
     >
       <el-table-column label="序号" type="index" width="50"> </el-table-column>
 
@@ -124,24 +161,28 @@
       >
       </el-pagination>
     </div>
-    <!-- <edit :title="edit.title" :visible="edit.visible" :formData="edit.formData" :remoteClose="remoteClose"/> -->
   </div>
 </template>
 
 <script>
-// import api from "@/api/personInfoMock";
-// import Edit from "./edit";
 import operatorData from "./operator.json";
-
+import branchInfo from "./branchInfo.json";
 export default {
   name: "operatorTable",
-  components: {
-    // edit: Edit, // Edit: Edit
-  },
+  components: {},
   data() {
     return {
       tableData: operatorData.rows,
-      // multipleSelection: [],
+      selectedBranch: "",
+      selectedOperator: {},
+      brhTree: branchInfo.arrayList,
+      treeProps: {
+        //配置选项:此处定义el-tree的label和children为指定属性,如果不定义取默认，即label和children
+        value: "brhId",
+        children: "children",
+        label: "text",
+      },
+
       query: {}, // 查询条件
       page: {
         // 分页对象
@@ -149,31 +190,25 @@ export default {
         size: 20, // 每页显示多少条
         total: 67, // 总记录数
       },
-      // edit: {
-      //   title: "",
-      //   visible: false,
-      //   formData: {},
-      // },
     };
   },
-  filters: {},
-  computed: {},
-  created() {
-    // this.fetchData()
-  },
-  watch: {
-    // $route(to, from) {
-    //   // react to route changes...
-    //   this.user = this.$route.query.user;
-    // },
-    // "query.reg": {
-    //   handler: function () {
-    //     this.fetchData();
-    //   },
-    //   immediate: true,
-    // },
-  },
   methods: {
+    handleNodeClick(node) {
+      console.log(node);
+      this.selectedBranch = node.text;
+      if (node.id != 0) {
+      }
+      this.$refs.selectReport.blur();
+    },
+    onhandleRowClick(row, column, event) {
+      //获取当前operator,
+      this.selectedOperator = row;
+    },
+    onEditOperator() {},
+    onActivateRole() {},
+    onDeactivateRole() {},
+    onDeleteRole() {},
+    onPwdReset() {},
     // val 是切换之后的每页显示多少条
     handleSizeChange(val) {
       this.page.size = val;
@@ -191,9 +226,6 @@ export default {
           this.tableData = response.data.rows;
         });
     },
-    handleSelectionChange(val) {
-      this.multipleSelection = val;
-    },
     // 条件查询
     queryData() {
       // 将页码变为1，第1页
@@ -206,24 +238,27 @@ export default {
       this.query = {};
       this.fetchData();
     },
-    // 子组件会触发此事件方法来关闭窗口
-    remoteClose() {
-      this.edit.formData = {};
-      this.edit.visible = false;
-      this.query = {};
-      this.fetchData();
-    },
     // 打开新增窗口
     openAdd() {
       //跳转到新增页面, 携带title参数
       this.$router.push({
-        path: "/contract-module/tabledata-edit",
+        path: "/setting-module/sys-setting/operator-edit-add",
         query: {
           title: "新增数据",
+          operator: {},
         },
       });
     },
-
+    onEdit() {
+      //跳转到新增页面, 携带title参数
+      this.$router.push({
+        path: "/setting-module/sys-setting/operator-edit-add",
+        query: {
+          title: "修改数据",
+          operator: this.selectedOperator,
+        },
+      });
+    },
     handleEdit(idNo) {
       // 通过id查询详情
       this.query.idNo = idNo;
@@ -244,32 +279,10 @@ export default {
       });
     },
 
-    handleDelete(id) {
-      this.$confirm("确认删除这条记录吗?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning",
-      })
-        .then(() => {
-          // 发送删除请求
-          // api.deleteById(id).then(response => {
-          //     // 处理响应结果提示
-          //     this.$message({
-          //         type: response.code === 20000 ? 'success': 'error',
-          //         message: response.message
-          //     })
-          this.$message({
-            type: "success",
-            message: id + "已删除",
-          });
-          // })
-          console.log(id, "已删除");
-          // 刷新列表数据
-          this.fetchData();
-        })
-        .catch(() => {
-          // 取消删除，不用理会
-        });
+    handleDelete(id) {},
+    rowClass() {
+      //表格数据居中显示
+      return "text-align:center";
     },
   },
 };
@@ -284,6 +297,9 @@ export default {
     font-size: 30px;
     line-height: 46px;
   }
+}
+::v-deep .el-input {
+  width: 120%;
 }
 .pagination {
   float: right;

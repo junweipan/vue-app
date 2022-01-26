@@ -128,7 +128,6 @@
       >
       </el-pagination>
     </div>
-    <!-- <edit :title="edit.title" :visible="edit.visible" :formData="edit.formData" :remoteClose="remoteClose"/> -->
   </div>
 </template>
 
