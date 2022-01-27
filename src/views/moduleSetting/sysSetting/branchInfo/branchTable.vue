@@ -1,12 +1,8 @@
 <template>
   <div class="dashboard-container">
-    <el-row style="margin-bottom: -20px">
-      <el-col :span="24"
-        ><div class="grid-content bg-purple-dark">
-          <div class="grid-text">查询条件</div>
-        </div></el-col
-      >
-    </el-row>
+    <div class="grid-content bg-purple-dark">
+      <div class="grid-text">查询条件</div>
+    </div>
     <!-- 条件查询 -->
     <el-form :inline="true" :model="query" size="mini">
       <el-form-item label="机构名称:">
@@ -66,8 +62,8 @@
       highlight-current-row
       @row-click="onhandleRowClick"
       @row-dblclick="onEditBranch"
-      :header-cell-style="rowClass"
-      :cell-style="rowClass"
+      :header-cell-style="{'text-align':'center'}"
+      :cell-style="{'text-align':'center'}"
     >
       <el-table-column label="序号" type="index" width="50" fixed>
       </el-table-column>
@@ -358,51 +354,33 @@ export default {
           // 取消删除，不用理会
         });
     },
-    rowClass() {
-      //表格数据居中显示
-      return "text-align:center";
-    },
-    
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.dashboard {
-  &-container {
-    margin: 5px;
-  }
+.dashboard-container {
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
 }
 .pagination {
-  float: right;
+  align-self: flex-end;
   margin-top: 20px;
 }
 .grid-text {
   color: rgb(255, 255, 255);
   margin-left: 20px;
 }
-.el-col {
-  border-radius: 4px;
-}
+
 .bg-purple-dark {
   background: #99a9bf;
 }
-.bg-purple {
-  background: #d3dce6;
-}
-.bg-purple-light {
-  background: #e5e9f2;
-}
 .grid-content {
   border-radius: 4px;
-  min-height: 36px;
   display: flex;
   align-items: center;
   height: 50px;
-  margin-bottom: 20px;
-}
-.row-bg {
-  padding: 10px 0;
-  background-color: #f9fafc;
+  margin-bottom: 10px;
 }
 </style>

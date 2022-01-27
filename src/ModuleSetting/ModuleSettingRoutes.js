@@ -51,7 +51,7 @@ export const ModuleSettingRoutes = [
                         "path": 'operator-edit-add',
                         "name": 'OperatorEditAdd',
                         "meta": { "title": '操作员增加/修改' },
-                        // "hidden": true
+                        "hidden": true
                     },
                 ]
             },

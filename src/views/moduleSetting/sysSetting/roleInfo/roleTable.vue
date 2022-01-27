@@ -1,12 +1,8 @@
 <template>
   <div class="dashboard-container">
-    <el-row>
-      <el-col :span="24"
-        ><div class="grid-content bg-purple-dark">
-          <div class="grid-text">查询条件</div>
-        </div></el-col
-      >
-    </el-row>
+    <div class="grid-content bg-purple-dark">
+      <div class="grid-text">查询条件</div>
+    </div>
     <!-- 条件查询按钮 -->
     <el-form :inline="true" :model="query" size="mini">
       <el-form-item label="角色名称:">
@@ -46,7 +42,7 @@
     </el-form>
 
     <!--显示主要数据table-->
-    <el-table 
+    <el-table
       ref="multipleTable"
       :data="tableData"
       tooltip-effect="dark"
@@ -241,45 +237,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.dashboard {
-  &-container {
-    margin: 0px;
-  }
-  &-text {
-    font-size: 30px;
-    line-height: 46px;
-  }
+.dashboard-container {
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
 }
 .pagination {
-  float: right;
   margin-top: 20px;
+  align-self: flex-end
 }
 .grid-text {
   color: rgb(255, 255, 255);
   margin-left: 20px;
 }
-.el-col {
-  border-radius: 4px;
-}
+
 .bg-purple-dark {
   background: #99a9bf;
 }
-.bg-purple {
-  background: #d3dce6;
-}
-.bg-purple-light {
-  background: #e5e9f2;
-}
 .grid-content {
   border-radius: 4px;
-  min-height: 36px;
   display: flex;
   align-items: center;
   height: 50px;
-  margin-bottom: 20px;
-}
-.row-bg {
-  padding: 10px 0;
-  background-color: #f9fafc;
+  margin-bottom: 10px;
 }
 </style>
