@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard-container">
-    <el-row>
+    <el-row style="margin-bottom: -20px">
       <el-col :span="24"
         ><div class="grid-content bg-purple-dark">
           <div class="grid-text">查询条件</div>
@@ -76,14 +76,14 @@
         prop="extData.brhId"
         label="机构编号"
         sortable
-        width="auto"
+        width="150"
       >
       </el-table-column>
 
       <el-table-column prop="extData.brhName" label="机构名称" width="auto">
       </el-table-column>
 
-      <el-table-column prop="extData.brhNickname" label="机构简称" width="auto">
+      <el-table-column prop="extData.brhNickname" label="机构简称" width="120">
       </el-table-column>
 
       <el-table-column prop="extData.upBrhId" label="上级机构名称 " width="auto"
@@ -92,7 +92,7 @@
         }}</template>
       </el-table-column>
 
-      <el-table-column label="机构类型" width="auto">
+      <el-table-column label="机构类型" width="120">
         <template slot-scope="scope">{{
           scope.row.extData.brhType | branchTypeFormat
         }}</template>
@@ -108,9 +108,9 @@
           </div></template
         >
       </el-table-column>
-      <el-table-column prop="extData.contName" label="联系人" width="100px">
+      <el-table-column prop="extData.contName" label="联系人" width="120px">
       </el-table-column>
-      <el-table-column prop="extData.contPhone" label="联系人电话" width="auto">
+      <el-table-column prop="extData.contPhone" label="联系人电话" width="150">
       </el-table-column>
 
       <el-table-column prop="extData.brhName" label="地址"> </el-table-column>
@@ -371,10 +371,6 @@ export default {
 .dashboard {
   &-container {
     margin: 5px;
-  }
-  &-text {
-    font-size: 30px;
-    line-height: 46px;
   }
 }
 .pagination {

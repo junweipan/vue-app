@@ -47,10 +47,10 @@ Vue.filter('upBranchIdFormat', function (value) {
 
 
 // operator filter
-const operatorStatus = { "0": '正常', "1": '注销',"2":"初始化" }
+const operatorStatus = { "0": '正常', "1": '注销',"2":'初始化' }
 
 Vue.filter('operatorStatusFormat', function (value) {
-    return roleStatus[value]
+    return `${operatorStatus[value]}`
 })
 
 

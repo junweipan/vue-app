@@ -7,7 +7,7 @@
         </div></el-col
       >
     </el-row>
-    <!-- 条件查询 -->
+    <!-- 条件查询按钮 -->
     <el-form :inline="true" :model="query" size="mini">
       <el-form-item label="角色名称:">
         <el-input v-model.trim="query.role"></el-input>
@@ -46,7 +46,7 @@
     </el-form>
 
     <!--显示主要数据table-->
-    <el-table
+    <el-table 
       ref="multipleTable"
       :data="tableData"
       tooltip-effect="dark"
@@ -56,8 +56,8 @@
       highlight-current-row
       @row-click="handleSelectionChange"
       @row-dblclick="openEdit"
-      :header-cell-style="rowClass"
-      :cell-style="rowClass"
+      :header-cell-style="{ 'text-align': 'center' }"
+      :cell-style="{ 'text-align': 'center' }"
     >
       <el-table-column label="序号" type="index" width="50"> </el-table-column>
 
@@ -65,13 +65,12 @@
         <template slot-scope="scope">{{ scope.row.roleName }}</template>
       </el-table-column>
 
-      <el-table-column label="角色状态" width="auto">
+      <el-table-column label="角色状态" width="120">
         <template slot-scope="scope">
           <div slot="reference" class="name-wrapper">
-            <el-tag
-              :type="scope.row.roleState == '0' ? 'success' : 'danger'"
-              >{{ scope.row.roleState | roleStatusFormat }}</el-tag
-            >
+            <el-tag :type="scope.row.roleState == '0' ? 'success' : 'danger'">{{
+              scope.row.roleState | roleStatusFormat
+            }}</el-tag>
           </div></template
         >
       </el-table-column>
@@ -107,7 +106,7 @@
 // import api from "@/api/personInfoMock";
 // import Edit from "./edit";
 import roleData from "./role.json";
-import checkTree from './checkTree.json'
+import checkTree from "./checkTree.json";
 export default {
   name: "roleTable",
   components: {
@@ -130,8 +129,8 @@ export default {
   },
   filters: {},
   computed: {},
-  mounted(){
-    this.treeNode = checkTree.jsonArray[0].functions
+  mounted() {
+    this.treeNode = checkTree.jsonArray[0].functions;
   },
   created() {
     // this.fetchData()
@@ -176,7 +175,7 @@ export default {
         query: {
           title: "修改角色",
           role: this.selectedRole,
-          checkedNode:this.treeNode
+          checkedNode: this.treeNode,
         },
       });
     },
@@ -237,10 +236,6 @@ export default {
     queryData() {},
     handleSizeChange() {},
     handleCurrentChange() {},
-    rowClass() {
-      //表格数据居中显示
-      return "text-align:center";
-    },
   },
 };
 </script>
