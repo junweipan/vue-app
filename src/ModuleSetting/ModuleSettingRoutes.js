@@ -1,13 +1,5 @@
 export const ModuleSettingRoutes = [
     {
-        "path": "/login",
-        "hidden": true
-    },
-    {
-        "path": "/404",
-        "hidden": true
-    },
-    {
         "path": "/setting-module",
         "redirect": "/setting-module/sys-setting/branch-info",
         "meta": {
@@ -28,8 +20,7 @@ export const ModuleSettingRoutes = [
                     {
                         "path": 'branch-info-edit-add',
                         "name": 'BranchInfoEditAdd',
-                        "meta": { "title": '机构增加/修改' },
-                        "hidden": true
+                        "meta": { "title": '机构增加/修改', "roles":['admin'] },
                     },
                     {
                         "path": 'role-info',
@@ -39,14 +30,13 @@ export const ModuleSettingRoutes = [
                     {
                         "path": 'role-info-edit-add',
                         "name": 'RoleInfoEditAdd',
-                        "meta": { "title": '角色增加/修改' },
-                        "hidden": true
+                        "meta": { "title": '角色增加/修改',"roles":['admin'] }
                     },
                     {
                         "path": 'operator',
                         "name": 'Operator',
                         "meta": { "title": '操作员管理' },
-                    }, 
+                    },
                     {
                         "path": 'operator-edit-add',
                         "name": 'OperatorEditAdd',
@@ -88,19 +78,5 @@ export const ModuleSettingRoutes = [
                 }
             }
         ]
-    },
-    {
-        "path": "/redirect",
-        "hidden": true,
-        "children": [
-            {
-                "path": "/redirect/:path(.*)"
-            }
-        ]
-    },
-    {
-        "path": "*",
-        "redirect": "/404",
-        "hidden": true
     }
 ]
