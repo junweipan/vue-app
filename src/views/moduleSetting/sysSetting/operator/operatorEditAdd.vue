@@ -95,7 +95,7 @@
                 :filter-method="filterMethod"
                 filter-placeholder="请输入角色名"
                 v-model="value"
-                :data="data"
+                :data="transferData"
               >
               </el-transfer>
             </el-col>
@@ -111,25 +111,13 @@
   </div>
 </template>
 <script>
-import roleList from "./roleList.json";
 export default {
   props: {},
   data() {
-    const generateData = (_) => {
-      const data = [];
-      roleList.allRole.forEach((item, index) => {
-        data.push({
-          label: item.desc,
-          key: index,
-          code: item.value,
-        });
-      });
-      return data;
-    };
     return {
       title: "",
-      data: generateData(),
-      value: [],
+      transferData: [],
+      value: [1,3],
       filterMethod(query, item) {
         return item.label.indexOf(query) > -1;
       },
@@ -160,6 +148,7 @@ export default {
   mounted() {
     this.title = this.$route.query.title;
     this.formData.operator = this.$route.query.operator;
+    this.transferData = this.$route.query.role;
   },
   methods: {
     // 重置

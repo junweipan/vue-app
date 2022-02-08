@@ -3,8 +3,9 @@
     <div class="grid-content bg-purple-dark">
       <div class="grid-text">查询条件</div>
     </div>
-    <!-- 条件查询 -->
+
     <el-form :model="query" inline size="mini">
+      <!-- 条件查询 -->
       <div>
         <el-form-item label="所属操作员:">
           <el-select
@@ -36,7 +37,7 @@
       </div>
 
       <!-- 查询按钮 -->
-      <div>
+      <div style="margin-bottom:-20px">
         <el-button
           size="mini"
           icon="el-icon-search"
@@ -48,15 +49,15 @@
           size="mini"
           icon="el-icon-circle-plus-outline"
           type="primary"
-          @click="openAdd"
-          >新增角色</el-button
+          @click="onAddOperator"
+          >新增操作员</el-button
         >
         <el-button
           size="mini"
           icon="el-icon-circle-plus-outline"
           type="warning"
-          @click="onEdit"
-          >修改角色</el-button
+          @click="onEditOperator"
+          >修改操作员</el-button
         >
         <el-button
           size="mini"
@@ -112,8 +113,8 @@
       highlight-current-row
       @row-click="onhandleRowClick"
       @row-dblclick="onEditOperator"
-      :header-cell-style="{'text-align':'center'}"
-      :cell-style="{'text-align':'center'}"
+      :header-cell-style="{ 'text-align': 'center' }"
+      :cell-style="{ 'text-align': 'center' }"
     >
       <el-table-column label="序号" type="index" width="50"> </el-table-column>
 
@@ -185,6 +186,7 @@
 <script>
 import operatorData from "./operator.json";
 import branchInfo from "./branchInfo.json";
+import roleList from "./roleList.json";
 export default {
   name: "operatorTable",
   components: {},
@@ -201,6 +203,7 @@ export default {
         label: "text",
       },
       dialogVisible: false,
+      transferData: [],
       query: {}, // 查询条件
       page: {
         // 分页对象
@@ -211,6 +214,17 @@ export default {
     };
   },
   methods: {
+    generateData(){
+      const data = [];
+      roleList.allRole.forEach((item, index) => {
+        data.push({
+          label: item.desc,
+          key: index,
+          code: item.value,
+        });
+      });
+      return data;
+    },
     handleNodeClick(node) {
       console.log(node);
       this.selectedBranch = node.text;
@@ -222,7 +236,40 @@ export default {
       //获取当前operator,
       this.selectedOperator = row;
     },
-    onEditOperator() {},
+    // 打开新增Operator窗口
+    onAddOperator() {
+      this.transferData = []
+      this.$router.push({
+        path: "/setting-module/sys-setting/operator-edit-add",
+        query: {
+          title: "新增数据",
+          operator: {},
+          role: this.transferData
+        },
+      });
+    },
+    // 打开修改Operator窗口
+    onEditOperator() {
+      if (!this.selectedOperator) {
+        this.$alert("请先选择一个操作员", "提示", {
+          confirmButtonText: "确定",
+          type: "warning",
+        })
+          .then(() => {})
+          .catch(() => {});
+        return;
+      }
+      // call API 获得该operator的role
+      this.transferData = this.generateData()
+      this.$router.push({
+        path: "/setting-module/sys-setting/operator-edit-add",
+        query: {
+          title: "修改数据",
+          operator: this.selectedOperator,
+          role: this.transferData
+        },
+      });
+    },
     onActivateOperator() {
       if (!this.selectedOperator) {
         this.$alert("请先选择一个操作员", "提示", {
@@ -337,28 +384,6 @@ export default {
       this.query = {};
       this.fetchData();
     },
-    // 打开新增窗口
-    openAdd() {
-      //跳转到新增页面, 携带title参数
-      this.$router.push({
-        path: "/setting-module/sys-setting/operator-edit-add",
-        query: {
-          title: "新增数据",
-          operator: {},
-        },
-      });
-    },
-    onEdit() {
-      //跳转到新增页面, 携带title参数
-      this.$router.push({
-        path: "/setting-module/sys-setting/operator-edit-add",
-        query: {
-          title: "修改数据",
-          operator: this.selectedOperator,
-        },
-      });
-    },
-
     handleDelete(id) {},
   },
 };

@@ -1,0 +1,18 @@
+{
+    "success": true,
+    "msg": "[
+        {\"funGroup\":\"合同管理\",\"funGroupId\":201,\"funName\":\"合同管理（一期）\",\"funType\":0,\"funcId\":20101,\"url\":\"/page/contract/20101\"},
+        {\"funGroup\":\"项目产值管理\",\"funGroupId\":101,\"funName\":\"产值分配申请\",\"funType\":0,\"funcId\":10101,\"url\":\"/page/czfp/10101\"},
+        {\"funGroup\":\"项目产值管理\",\"funGroupId\":101,\"funName\":\"项目产值审核\",\"funType\":0,\"funcId\":10102,\"url\":\"/page/czfp/10102\"},
+        {\"funGroup\":\"项目产值管理\",\"funGroupId\":101,\"funName\":\"项目产值查询\",\"funType\":0,\"funcId\":10103,\"url\":\"/page/czfp/10103\"},
+        {\"funGroup\":\"项目产值管理\",\"funGroupId\":101,\"funName\":\"产值二次分配\",\"funType\":0,\"funcId\":10104,\"url\":\"/page/czfp/10104\"},
+        {\"funGroup\":\"分配方案管理\",\"funGroupId\":501,\"funName\":\"分配方案审核\",\"funType\":0,\"funcId\":50103,\"url\":\"/page/czfp/50103\"},
+        {\"funGroup\":\"分配方案管理\",\"funGroupId\":501,\"funName\":\"分配方案查询\",\"funType\":0,\"funcId\":50104,\"url\":\"/page/czfp/50104\"},
+        {\"funGroup\":\"分配方案填报\",\"funGroupId\":502,\"funName\":\"分配方案填报\",\"funType\":0,\"funcId\":50202,\"url\":\"/page/czfp/50202\"},
+        {\"funGroup\":\"分配方案填报\",\"funGroupId\":502,\"funName\":\"分配方案查询\",\"funType\":0,\"funcId\":50204,\"url\":\"/page/czfp/50204\"},
+        {\"funGroup\":\"统计分析\",\"funGroupId\":301,\"funName\":\"部门产值项目统计\",\"funType\":0,\"funcId\":30101,\"url\":\"/page/statsAnls/30101\"},{\"funGroup\":\"统计分析\",\"funGroupId\":301,\"funName\":\"员工产值分配统计\",\"funType\":0,\"funcId\":30102,\"url\":\"/page/statsAnls/30102\"},{\"funGroup\":\"基础管理\",\"funGroupId\":401,\"funName\":\"机构信息维护\",\"funType\":0,\"funcId\":40101,\"url\":\"/page/sysPages/40101\"},{\"funGroup\":\"基础管理\",\"funGroupId\":401,\"funName\":\"部门信息维护\",\"funType\":0,\"funcId\":40102,\"url\":\"/page/basicInfoManage/40102\"},{\"funGroup\":\"基础管理\",\"funGroupId\":401,\"funName\":\"岗位信息维护\",\"funType\":0,\"funcId\":40103,\"url\":\"/page/basicInfoManage/40103\"},{\"funGroup\":\"基础管理\",\"funGroupId\":401,\"funName\":\"员工信息维护\",\"funType\":0,\"funcId\":40104,\"url\":\"/page/basicInfoManage/40104\"},{\"funGroup\":\"系统管理\",\"funGroupId\":402,\"funName\":\"角色信息维护\",\"funType\":0,\"funcId\":40201,\"url\":\"/page/sysPages/40201\"},{\"funGroup\":\"系统管理\",\"funGroupId\":402,\"funName\":\"审核流程配置\",\"funType\":0,\"funcId\":40202,\"url\":\"/page/approvalProcess/40202\"},{\"funGroup\":\"系统管理\",\"funGroupId\":402,\"funName\":\"操作员管理\",\"funType\":0,\"funcId\":40203,\"url\":\"/page/sysPages/40203\"},{\"funGroup\":\"系统管理\",\"funGroupId\":402,\"funName\":\"操作日志查询\",\"funType\":0,\"funcId\":40204,\"url\":\"/page/sysPages/40204\"},{\"funGroup\":\"系统管理\",\"funGroupId\":402,\"funName\":\"系统参数配置\",\"funType\":0,\"funcId\":40205,\"url\":\"/page/sysPages/40205\"},{\"funGroup\":\"配置管理\",\"funGroupId\":403,\"funName\":\"工程类型维护\",\"funType\":0,\"funcId\":40301,\"url\":\"/page/configManage/40301\"},
+        {\"funGroup\":\"配置管理\",\"funGroupId\":403,\"funName\":\"工种岗位比例配置\",\"funType\":0,\"funcId\":40303,\"url\":\"/page/configManage/40303\"},
+        {\"funGroup\":\"配置管理\",\"funGroupId\":403,\"funName\":\"业务参数配置\",\"funType\":0,\"funcId\":40304,\"url\":\"/page/configManage/40304\"}]",
+    "code": "00",
+    "arrayList": null
+}

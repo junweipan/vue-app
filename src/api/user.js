@@ -2,7 +2,7 @@ import request from '@/utils/request'
 import qs from 'qs'
 
 
-const baseUrl = 'https://localhost'
+const baseUrl = 'http://10.100.98.221/MainConsole'
 export function login(data) {
   var qs_data = qs.stringify({
     ...data
@@ -17,8 +17,7 @@ export function login(data) {
 
 export function getCaptcha() {
   return request({
-    url: baseUrl+ '/captcha/get',
-    // url: '/vue-admin-template/user/login',
+    url: baseUrl+ '/system/validateCode',
     method: 'get',
   })
 }
