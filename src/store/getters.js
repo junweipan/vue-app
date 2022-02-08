@@ -4,6 +4,7 @@ const getters = {
   token: store => store.user.token,
   avatar: store => store.user.avatar,
   name: store => store.user.name,
+  roles: state => state.user.roles,
   currentUser: store => store.user.currentUser,
   usersdb: store => store.user.usersdb,
   visitedViews: store => store.tagsView.visitedViews,

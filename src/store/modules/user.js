@@ -9,6 +9,7 @@ const getDefaultState = () => {
     token: getToken(),
     name: '',
     avatar: '',
+    roles:["editor"],
     // 默认当前用户
     currentUser:{
       id:'1',
@@ -48,6 +49,9 @@ const mutations = {
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
+  },
+  SET_ROLES: (state, roles) => {
+    state.roles = roles
   },
   SET_CURRENTUSER: (state, currentUser) => {
     state.currentUser = currentUser

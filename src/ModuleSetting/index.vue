@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import ModuleLayout from "@/ModuleLayout/moduleLayout";
 import { ModuleSettingRoutes } from "./ModuleSettingRoutes";
 
@@ -13,16 +14,19 @@ export default {
     // 动态路由, 会根据服务器获取, 传入modulelayout后再传给sidebarlayout组件
     ModuleSettingRoutes,
   },
+  computed: {
+    ...mapGetters(["roles"]),
+  },
   mounted() {
     this.asyncRoutes = this.filterRoutes(
       ModuleSettingRoutes,
-      this.currentRoles
+      this.roles
     );
   },
   data() {
     return {
       asyncRoutes: [],
-      currentRoles: ["admin"]
+      // currentRoles: ["admin"],
     };
   },
   methods: {
@@ -33,7 +37,7 @@ export default {
         return true;
       }
     },
-  // 根据currentRoles控制sidebar显示的路由
+    // 根据store中的roles控制sidebar显示的路由
     filterRoutes(routes, roles) {
       const res = [];
       routes.forEach((route) => {

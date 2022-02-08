@@ -20,7 +20,7 @@
         </el-select>
       </el-form-item>
       <el-form-item>
-        <el-button icon="el-icon-search" type="primary" @click="queryData"
+        <el-button v-permission="['editor']" icon="el-icon-search" type="primary" @click="queryData"
           >查询</el-button
         >
         <el-button
@@ -130,6 +130,7 @@
 <script>
 // import api from "@/api/personInfoMock";
 // import Edit from "./edit";
+import permission from '@/directive/permission/index.js' // 权限判断指令
 import branchData from "./branchInfo.json";
 const brhTypes = [
   { code: "00", brhType: "集团本级" },
@@ -142,6 +143,7 @@ export default {
   components: {
     // edit: Edit, // Edit: Edit
   },
+  directives: { permission },
   data() {
     return {
       tableData: branchData.arrayList,

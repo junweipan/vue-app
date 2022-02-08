@@ -41,18 +41,10 @@ export const ModuleSettingRoutes = [
                         "path": 'operator-edit-add',
                         "name": 'OperatorEditAdd',
                         "meta": { "title": '操作员增加/修改' },
-                        "hidden": true
+                        "meta": { "title": '角色增加/修改',"roles":['admin'] }
                     },
                 ]
             },
-            // {
-            //     "path": "dashboard",
-            //     "name": "Dashboard",
-            //     "meta": {
-            //         "title": "Home page",
-            //         "icon": "el-icon-s-home"
-            //     }
-            // },
             {
                 "path": "user-info",
                 "name": "UserInfo",
