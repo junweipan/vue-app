@@ -11,8 +11,8 @@ export const ModuleSettingRoutes = [
         "path": "/setting-module",
         "redirect": "/setting-module/sys-setting/branch-info",
         "meta": {
-            "title": "",
-            "icon": ""
+            "title": "系统管理",
+            "icon": "el-icon-s-home"
         },
         "children": [
             {

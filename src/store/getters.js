@@ -8,7 +8,5 @@ const getters = {
   usersdb: store => store.user.usersdb,
   visitedViews: store => store.tagsView.visitedViews,
   cachedViews: store => store.tagsView.cachedViews,
-  moduleTwoVisitedViews: store => store.moduleTwoTagsView.visitedViews,
-  moduleTwoCachedViews: store => store.moduleTwoTagsView.cachedViews,
 }
 export default getters
