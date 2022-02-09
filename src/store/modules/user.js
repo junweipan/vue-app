@@ -1,37 +1,46 @@
 import { login, logout, getInfo } from '@/api/user'
-import { getToken, setToken, removeToken, getUserInfo } from '@/utils/auth'
+import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
-
-
+//后端返回data:
+// oprName: 操作员名称
+// roleInfoList: 操作员所有的roles
+// roleName: 当前的role
+// roleType: 当前role的type, 本级02或汇总01
+// brhName: 操作员所属机构
+const fakeToken = "vue_admin_template_token"
 const getDefaultState = () => {
   return {
     token: getToken(),
-    name: '',
+    oprName: '',
+    brhName: '',
     avatar: '',
-    roles:["editor"],
+    roles: ["editor"],
+    currentRoleName: '',
+    currentRoleType: '',
+
     // 默认当前用户
-    currentUser:{
-      id:'1',
+    currentUser: {
+      id: '1',
       client: '舟山市规划建筑设计院有限公司',
       level: '本级',
-      type:'success',
-      autority:'开发人员'
+      type: 'success',
+      autority: '开发人员'
     },
     // mock user info db
     usersdb: [{
-        id:'1',
-        client: '舟山市规划建筑设计院有限公司',
-        level: '本级',
-        type:'success',
-        autority:'开发人员'
-      }, {
-        id:'2',
-        client: 'XXXX有限公司',
-        level: '一级',
-        type:'info',
-        autority:'普通用户'
-      }]
+      id: '1',
+      client: '舟山市规划建筑设计院有限公司',
+      level: '本级',
+      type: 'success',
+      autority: '开发人员'
+    }, {
+      id: '2',
+      client: 'XXXX有限公司',
+      level: '一级',
+      type: 'info',
+      autority: '普通用户'
+    }]
   }
 }
 
@@ -53,6 +62,18 @@ const mutations = {
   SET_ROLES: (state, roles) => {
     state.roles = roles
   },
+  SET_OPR_NAME: (state, oprName) => {
+    state.oprName = oprName
+  },
+  SET_BRH_NAME: (state, brhName) => {
+    state.brhName = brhName
+  },
+  SET_CURRENT_ROLE_NAME: (state, currentRoleName) => {
+    state.currentRoleName = currentRoleName
+  },
+  SET_CURRENT_ROLE_TYPE: (state, currentRoleType) => {
+    state.currentRoleType = currentRoleType
+  },
   SET_CURRENTUSER: (state, currentUser) => {
     state.currentUser = currentUser
   },
@@ -63,75 +84,55 @@ const mutations = {
     state.routes = routes
   }
 }
-
 const actions = {
-  switchCurrentUser({ commit, state }, userId){
-    const user = state.usersdb.find((user)=>{
+  switchCurrentUser({ commit, state }, userId) {
+    const user = state.usersdb.find((user) => {
       return user.id == userId
     })
     commit('SET_CURRENTUSER', user)
   },
-  //  用户登录后获得其路由表
-  // getRoutes() {
-  //   return new Promise((resolve, reject) => {
-  //     getRoutes().then(response => {
-  //       const { data } = response
-  //       // format routes
-  //       var formatRoutes = {}
 
-  //       resolve()
-  //     }).catch(error => {
-  //       reject(error)
-  //     })
-  //   })
-  // },
-  // user login
-  login({ commit }, userInfo) {
-    const { username, password } = userInfo
+  login({ commit }, userCredential) {
     return new Promise((resolve, reject) => {
-      login({ userKey: username.trim(), userSecret: password }).then(response => {
-       const { data } = response
-        commit('SET_TOKEN', data) //存入 store
-        setToken(data) // 存入cookie
+      login(userCredential).then(response => {
+        //套了多层data, 后续需要优化
+        const { data } = response.data
+        const { oprName, roleInfoList, roleName, roleType, brhName } = data
+
+        //存入 store
+        commit('SET_OPR_NAME', oprName)
+        commit('SET_ROLES', roleInfoList)
+        commit('SET_CURRENT_ROLE_NAME', roleName)
+        commit('SET_CURRENT_ROLE_TYPE', roleType)
+        commit('SET_BRH_NAME', brhName)
+        
+        // 存入cookie
+        setToken(fakeToken)
         resolve()
       }).catch(error => {
         reject(error)
-     })
+      })
     })
   },
 
-  // 根据Cookie中的token, 解析出用户姓名, 头像
   getInfo({ commit, state }) {
-    // return new Promise((resolve, reject) => {
-    //   // getInfo(state.token).then(response => {
-    //   //   const { data } = response
+    return new Promise((resolve, reject) => {
+      getInfo(state.token).then(response => {
+        // const { data } = response
 
-    //   //   if (!data) {
-    //   //     return reject('Verification failed, please Login again.')
-    //   //   }
+        // if (!data) {
+        //   return reject('Verification failed, please Login again.')
+        // }
 
-    //   //   const { name, avatar } = data
+        // const { oprName, roleInfoList, roleName, roleType, brhName } = data
 
-    //   //   commit('SET_NAME', name)
-    //   //   commit('SET_AVATAR', avatar)
-    //   //   resolve(data)
-    //   // }).catch(error => {
-    //   //   reject(error)
-    //   // })
-    //   // getUserInfo 返回浏览器中的Cookie对象 (json)
-    //   var UserInfo = getUserInfo()
-    //   const { userKey, headUrl } = JSON.parse(UserInfo)
-    //   // 整体打包个人信息,用于前端展示和修改
-    //   const userInfo = JSON.parse(UserInfo)
-    //   // console.log('UserInfo',UserInfo)
-    //   // console.log('userKey',userKey)
-    //   // console.log('headUrl',headUrl)
-    //   commit('SET_NAME', userKey)
-    //   commit('SET_AVATAR', headUrl)
-    //   commit('SET_USERSDB',userInfo)
-    //   //Todo: 把数据库user 放入currentUser
-    //   resolve(userInfo)
-    // })
+        // commit('SET_NAME', name)
+        // commit('SET_AVATAR', avatar)
+        resolve(state.roles)
+      }).catch(error => {
+        reject(error)
+      })
+    })
   },
 
   // user logout
@@ -147,9 +148,9 @@ const actions = {
       // })
       console.log('logout')
       removeToken() // must remove  token  first
-        resetRouter()
-        commit('RESET_STATE')
-        resolve()
+      resetRouter()
+      commit('RESET_STATE')
+      resolve()
     })
   },
 

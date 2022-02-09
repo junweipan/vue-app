@@ -6,7 +6,7 @@ import { getToken } from '@/utils/auth'
 
 // create an axios instance  /test
 const service = axios.create({
-  baseURL: "https://localhost/", // url = base url + request url
+  baseURL: "http://localhost:8080/", // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000 // request timeout
 })
@@ -40,14 +40,14 @@ service.interceptors.response.use(
   */
 
   /**
-   * Determine the request status by custom code
+   * Determine the request code by custom status
    * Here is just an example
-   * You can also judge the status by HTTP Status Code
+   * You can also judge the code by HTTP Status Code
    */
   response => {
-    const res = response.data
+    const res = response
 
-    // if the custom code is not 200, it is judged as an error.
+    // if the custom status is not 200, it is judged as an error.
     // backend return 200 or 0, 任何一个code都可以表示是成功
     if (res.status !== 200 && res.status !== 0) {
       Message({

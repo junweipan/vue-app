@@ -51,16 +51,12 @@
         </span>
       </el-form-item>
 
-      <el-form-item
-        v-if="loginCount <= 3"
-        prop="verifycode"
-        style="line-height: 0px"
-      >
+      <el-form-item prop="validateCode" style="line-height: 0px">
         <el-row :gutter="20">
           <el-col :span="12">
             <el-input
-              v-model="loginForm.verifycode"
-              ref="verifycode"
+              v-model="loginForm.validateCode"
+              ref="validateCode"
               placeholder="验证码"
               style="width: 100%"
             ></el-input>
@@ -102,13 +98,6 @@ import { getCaptcha } from "@/api/user";
 export default {
   name: "Login",
   data() {
-    // const validateUsername = (rule, value, callback) => {
-    //   if (!validUsername(value)) {
-    //     callback(new Error('Please enter the correct user name'))
-    //   } else {
-    //     callback()
-    //   }
-    // }
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
         callback(new Error("The password can not be less than 6 digits"));
@@ -120,10 +109,10 @@ export default {
       loginForm: {
         username: "admin",
         password: "123456",
-        verifycode: "请输入右边验证码",
+        validateCode: "1111",
       },
       identifyCode: "",
-      identifyimg: "",
+      identifyimg: Object,
       loginRules: {
         // username: [{ required: true, trigger: 'blur', validator: validateUsername }],
         password: [
@@ -131,7 +120,6 @@ export default {
         ],
       },
       loading: false,
-      loginCount: 0, //记录错误密码或用户名输入次数, 超过三次需要验证码
       passwordType: "password",
       redirect: undefined,
     };
@@ -147,9 +135,8 @@ export default {
   methods: {
     refreshCode() {
       getCaptcha().then((response) => {
-        console.log(response)
-        // this.identifyCode = response.data.key;
-        // this.identifyimg = response.data.value;
+        console.log(response);
+        this.identifyimg = response.data;
       });
     },
     showPwd() {
@@ -162,46 +149,19 @@ export default {
         this.$refs.password.focus();
       });
     },
-    checkCaptcha() {
-      if (this.loginCount < 3) {
-        return null;
-      } else if (this.loginCount >= 3) {
-        this.refreshCode();
-        if (this.identifyCode === this.loginForm.verifycode) {
-          // 重置登录次数
-          this.loginCount = 0;
-          console.log(this.identifyCode, this.loginForm.verifycode);
-          return true;
-        } else {
-          return false;
-        }
-      }
-    },
     handleLogin() {
+      console.log("form",this.loginForm)
       this.$refs.loginForm.validate((valid) => {
-        // 累计登录次数
-        this.loginCount++;
-        // 首先做前端验证码校验, loginCount<3时,CapchaPass为null
-        let CapchaPass = this.checkCaptcha();
-        if (valid && (CapchaPass || CapchaPass === null)) {
-          this.loading = true;
-          this.$store
-            .dispatch("user/login", this.loginForm)
-            .then(() => {
-              console.log("loginCount", this.loginCount);
-              this.$router.push({ path: this.redirect || "/" });
-              this.loading = false;
-            })
-            .catch(() => {
-              this.loading = false;
-              // this.$message('这是一条消息提示 wrong crecidental');
-              console.log("wrong crecidental", this.loginCount);
-            });
-        } else {
-          this.$message.warning("请输入正确验证码");
-          //console.log('capcha is wrong')
-          return false;
-        }
+        this.loading = true;
+        this.$store
+          .dispatch("user/login", this.loginForm)
+          .then(() => {
+            this.$router.push({ path: this.redirect || "/" });
+            this.loading = false;
+          })
+          .catch(() => {
+            this.loading = false;
+          });
       });
     },
   },

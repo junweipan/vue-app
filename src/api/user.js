@@ -2,33 +2,42 @@ import request from '@/utils/request'
 import qs from 'qs'
 
 
-const baseUrl = 'http://10.100.98.221/MainConsole'
-export function login(data) {
-  var qs_data = qs.stringify({
-    ...data
-    })
-  return request({
-    url: baseUrl + '/login/check',
-    // url: '/vue-admin-template/user/login',
+const baseUrl = '/ZSADConsole_war_exploded'
+export function login({username,password,validateCode}) {
+  var formData = new FormData(); // Currently empty
+  formData.append('oprid', username);
+  formData.append('password', password);
+  formData.append('validateCode', validateCode);
+  return request({ // Promise
+    url: baseUrl + '/system2/login2',
     method: 'post',
-    data: qs_data
+    data: formData
   })
 }
 
 export function getCaptcha() {
+  console.log("getCaptcha")
   return request({
-    url: baseUrl+ '/system/validateCode',
+    url: baseUrl + '/system/validateCode',
     method: 'get',
   })
 }
 
+export function getInfo(token) {
+  // return request({
+  //   url: '/vue-element-admin/user/info',
+  //   method: 'get',
+  //   params: { token }
+  // })
+}
 
-export function changePassword(userKey,oldSecret,newSecret) {
+
+export function changePassword(userKey, oldSecret, newSecret) {
   var qs_data = qs.stringify({
     userKey,
     oldSecret,
     newSecret
-    })
+  })
 
   return request({
     url: baseUrl + '/user/changeSecret',
