@@ -150,7 +150,6 @@ export default {
       });
     },
     handleLogin() {
-      console.log("form",this.loginForm)
       this.$refs.loginForm.validate((valid) => {
         this.loading = true;
         this.$store

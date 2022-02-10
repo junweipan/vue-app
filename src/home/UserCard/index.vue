@@ -1,15 +1,9 @@
 <template>
-  <div class="userCard" :class="type == 'success' ? 'selected' : ''">
-    <span><i class="el-icon-location"></i>{{ client }}</span>
+  <div class="userCard">
+    <span><i class="el-icon-location"></i>{{ branch }}</span>
     <div class="checkTag">
-      <span><i class="el-icon-s-custom"></i>{{ level }} </span>
-      <el-tag :type="type"
-        ><i
-          :class="type == 'success' ? elIconCheck : ''"
-          style="cursor: pointer"
-          >{{ autority }}</i
-        ></el-tag
-      >
+      <span><i class="el-icon-s-custom"></i>{{ roleType | roleTypeFormat}} </span>
+      <el-tag><i style="cursor: pointer">{{ roleName }}</i></el-tag>
     </div>
   </div>
 </template>
@@ -21,25 +15,20 @@ export default {
   props: {
     id: {
       // e.g.1
-      type: String,
-      default: "",
+      type: Number,
+      default: 0
     },
-    client: {
+    branch: {
       // e.g.舟山市规划建筑设计院有限公司
       type: String,
       default: "",
     },
-    level: {
+    roleType: {
       // e.g.本级
       type: String,
       default: "",
     },
-    type: {
-      // e.g.success
-      type: String,
-      default: "",
-    },
-    autority: {
+    roleName: {
       // e.g.开发
       type: String,
       default: "",
@@ -60,6 +49,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// 去掉i默认斜体样式
+i{ font-style:normal}
+
 .selected {
   color: #409eff;
   font-weight: 700;

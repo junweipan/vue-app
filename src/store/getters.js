@@ -7,6 +7,7 @@ const getters = {
   roles: state => state.user.roles,
   oprName: state => state.user.oprName,
   brhName: state => state.user.brhName,
+  currentRoleId: state => state.user.currentRoleId,
   currentRoleName: state => state.user.currentRoleName,
   currentRoleType: state => state.user.currentRoleType,
   currentUser: store => store.user.currentUser,

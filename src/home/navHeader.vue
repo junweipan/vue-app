@@ -10,22 +10,22 @@
     >
       <top-level-menu></top-level-menu>
       <el-menu-item class="userList">
-        <el-select v-model="value" @change="setAcivateType">
+        <el-select v-model="value" @change="switchRole">
           <template v-slot:prefix>
             <i class="el-icon-user"></i>
           </template>
+
           <el-option
-            v-for="user in usersdb"
-            :key="user.id"
-            :label="user.client"
-            :value="user.id"
+            v-for="role in roles"
+            :key="role.roleId"
+            :label="role.roleName + ': ' + oprName"
+            :value="role.roleName"
           >
             <user-card
-              :id="user.id"
-              :client="user.client"
-              :level="user.level"
-              :type="user.type"
-              :autority="user.autority"
+              :id="role.roleId"
+              :branch="brhName"
+              :roleType="role.roleType"
+              :roleName="role.roleName"
             ></user-card>
           </el-option>
 
@@ -65,17 +65,38 @@ export default {
       value: "",
     };
   },
+  computed: {
+    ...mapGetters(["roles", "currentRoleName", "brhName", "oprName"]),
+    sidebar() {
+      return this.$store.state.app.sidebar;
+    },
+    classObj() {
+      return {
+        hideSidebar: !this.sidebar.opened,
+        openSidebar: this.sidebar.opened,
+        withoutAnimation: this.sidebar.withoutAnimation,
+        mobile: this.device === "mobile",
+      };
+    },
+  },
   components: {
     "message-list": MessageList,
     "top-level-menu": TopLevalMenu,
     "user-card": UserCard,
   },
-  created() {
-    this.value = this.currentUser.client;
+  mounted() {
+    this.value = this.currentRoleName;
+    console.log(this.roles);
   },
   methods: {
     handleSelect(key, keyPath) {
       // console.log(key, keyPath);
+    },
+    switchRole() {
+      console.log("roles:", this.value);
+      //TODO
+      //1, 改变store中的role
+      //2, 刷新页面, 重新显示sidebar menu 和 button
     },
     setAcivateType(id) {
       // TODO 把当前client 发给服务器, 再刷一下服务器数据 - users 信息需要放在store里
@@ -93,15 +114,8 @@ export default {
       this.$router.push({
         path: "/",
       });
-      //   // 跳转到该用户下的路由界面->模拟效果
-      //   if(id == '1'){
-      //       this.$router.push('/value-module');
-      //   }else if(id == '2'){
-      //       this.$router.push('/analysis-module');
-      //   }
     },
     onEditInfo() {
-      // console.log(this.currentUser)
       this.$router.push({
         path: "/setting-module/user-info",
       });
@@ -112,20 +126,6 @@ export default {
         // 刷新整个浏览器, 会通过permission.js 中的逻辑返回login页面
         this.$router.go(0);
       });
-    },
-  },
-  computed: {
-    ...mapGetters(["usersdb", "currentUser"]),
-    sidebar() {
-      return this.$store.state.app.sidebar;
-    },
-    classObj() {
-      return {
-        hideSidebar: !this.sidebar.opened,
-        openSidebar: this.sidebar.opened,
-        withoutAnimation: this.sidebar.withoutAnimation,
-        mobile: this.device === "mobile",
-      };
     },
   },
 };
@@ -152,7 +152,6 @@ export default {
   //   left: 0;
   // }
 }
-
 ::v-deep .el-input__inner {
   width: 230px;
   height: 60px;
@@ -161,9 +160,6 @@ export default {
   // padding-right: 15px;
   //border: none;
 }
-// ::v-deep .el-select .el-input .el-select__caret {
-//   color: transparent;
-// }
 .el-select-dropdown__item {
   height: auto;
   cursor: auto;

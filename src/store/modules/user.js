@@ -15,7 +15,8 @@ const getDefaultState = () => {
     oprName: '',
     brhName: '',
     avatar: '',
-    roles: ["editor"],
+    roles: null,
+    currentRoleId:'',
     currentRoleName: '',
     currentRoleType: '',
 
@@ -68,6 +69,9 @@ const mutations = {
   SET_BRH_NAME: (state, brhName) => {
     state.brhName = brhName
   },
+  SET_CURRENT_ROLE_ID: (state, currentRoleId) => {
+    state.currentRoleId = currentRoleId
+  },
   SET_CURRENT_ROLE_NAME: (state, currentRoleName) => {
     state.currentRoleName = currentRoleName
   },
@@ -97,15 +101,16 @@ const actions = {
       login(userCredential).then(response => {
         //套了多层data, 后续需要优化
         const { data } = response.data
-        const { oprName, roleInfoList, roleName, roleType, brhName } = data
+        const { roleId, oprName, roleInfoList, roleName, roleType, brhName } = data
 
         //存入 store
         commit('SET_OPR_NAME', oprName)
         commit('SET_ROLES', roleInfoList)
+        commit('SET_CURRENT_ROLE_ID', roleId)
         commit('SET_CURRENT_ROLE_NAME', roleName)
         commit('SET_CURRENT_ROLE_TYPE', roleType)
         commit('SET_BRH_NAME', brhName)
-        
+
         // 存入cookie
         setToken(fakeToken)
         resolve()
