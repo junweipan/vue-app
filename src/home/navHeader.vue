@@ -10,20 +10,20 @@
     >
       <top-level-menu></top-level-menu>
       <el-menu-item class="userList">
-        <el-select v-model="value" @change="switchRole">
+        <el-select v-model="roleId" @change="switchRole" no-data-text=" ">
           <template v-slot:prefix>
             <i class="el-icon-user"></i>
           </template>
 
           <el-option
-            v-for="role in roles"
+            v-for="role in operator.roleInfoList"
             :key="role.roleId"
-            :label="role.roleName + ': ' + oprName"
-            :value="role.roleName"
+            :label="'角色: ' + role.roleName"
+            :value="role.roleId"
           >
             <user-card
               :id="role.roleId"
-              :branch="brhName"
+              :branch="operator.brhName"
               :roleType="role.roleType"
               :roleName="role.roleName"
             ></user-card>
@@ -62,11 +62,11 @@ export default {
       id: "",
       activeIndex: "1",
       activeIndex2: "1",
-      value: "",
+      roleId: "",
     };
   },
   computed: {
-    ...mapGetters(["roles", "currentRoleName", "brhName", "oprName"]),
+    ...mapGetters(["operator","currentRoleID"]),
     sidebar() {
       return this.$store.state.app.sidebar;
     },
@@ -85,21 +85,20 @@ export default {
     "user-card": UserCard,
   },
   mounted() {
-    this.value = this.currentRoleName;
-    console.log(this.roles);
+    this.roleId = this.operator.roleId;
+    console.log("this.operator.roleId", this.operator.roleId);
   },
   methods: {
     handleSelect(key, keyPath) {
       // console.log(key, keyPath);
     },
     switchRole() {
-      const roleName = this.value
-      this.$store.dispatch("user/changeRole", roleName)
-      this.$router.go(0);
-      //TODO
-      //1, 改变store中的role
-      //2, 把新的role存入cookie
-      //3, 刷新页面, 重新显示sidebar menu 和 button
+      //1, 刷新store中的roleID
+      //2, 刷新cookie中的roleID
+      //3, 重新渲染页面, 重新显示sidebar menu 和 button
+      this.$store.dispatch("user/changeRole", this.roleId);
+      console.log('store', this.currentRoleID)
+      // this.$router.go(0);
     },
     onEditInfo() {
       this.$router.push({

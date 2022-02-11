@@ -50,7 +50,6 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import CropperImage from "@/components/CropperImage/index";
 import ChangePassword from "./changePassword.vue";
 
@@ -68,7 +67,6 @@ export default {
     };
   },
   computed: {
-    ...mapGetters([]),
   },
   watch: {
     $route() {

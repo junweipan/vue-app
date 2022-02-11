@@ -2,6 +2,7 @@ import Cookies from 'js-cookie'
 
 const TokenKey = 'vue_admin_template_token'
 const Operator = "operator"
+const RoleID = 'roleId'
 export function getToken() {
   return Cookies.get(TokenKey)
 }
@@ -22,6 +23,18 @@ export function getOperator() {
 
 export function setOperator(opr) {
   return Cookies.set(Operator, opr)
+}
+
+
+export function removeRoleID() {
+  return Cookies.remove(RoleID)
+}
+export function getRoleID() {
+  return Cookies.get(RoleID)
+}
+
+export function setRoleID(roleId) {
+  return Cookies.set(RoleID, roleId)
 }
 
 

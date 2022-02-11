@@ -6,12 +6,8 @@ const getters = {
   // const { oprId, roleId, oprName, roleInfoList, 
   // roleName, roleType, brhName } = operator
   roles: state => state.user.operator.roleInfoList,
-  oprId: state => state.user.operator.oprId,
-  oprName: state => state.user.operator.oprName,
-  brhName: state => state.user.operator.brhName,
-  currentRoleId: state => state.user.operator.roleId,
-  currentRoleName: state => state.user.operator.roleName,
-  currentRoleType: state => state.user.operator.roleType,
+  operator: state => state.user.operator,
+  currentRoleID: state => state.user.currentRoleID,
   visitedViews: store => store.tagsView.visitedViews,
   cachedViews: store => store.tagsView.cachedViews,
 }

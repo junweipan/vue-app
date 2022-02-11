@@ -25,7 +25,7 @@
           name="username"
           type="text"
           tabindex="1"
-          auto-complete="off"
+          auto-complete="on"
         />
       </el-form-item>
 

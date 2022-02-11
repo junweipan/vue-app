@@ -1,7 +1,7 @@
 import { login, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
-import { getOperator,removeOperator,setOperator } from '../../utils/auth'
+import { getOperator,removeOperator,setOperator, getRoleID,removeRoleID,setRoleID} from '../../utils/auth'
 
 //后端返回data:
 // oprName: 操作员名称
@@ -14,6 +14,7 @@ const getDefaultState = () => {
   return {
     token: getToken(),
     operator:{},
+    currentRoleID:{},
     avatar: '',
   }
 }
@@ -33,14 +34,18 @@ const mutations = {
   SET_OPERATOR: (state, operator) => {
     state.operator = operator
   },
+  SET_CURRENT_ROLE_ID: (state, roleId) => {
+    state.currentRoleID = roleId
+  },
   SET_OPERATOR_ROLE: (state, roleName) => {
     state.operator.roleName = roleName
   }
 }
 const actions = {
-  changeRole({ commit }, roleName){
-    commit('SET_OPERATOR_ROLE', roleName)
-    setOperator(operator)
+  changeRole({ commit,state }, roleId){
+    //刷新cookie和store中的current role ID
+    commit('SET_CURRENT_ROLE_ID', roleId)
+    setRoleID(roleId)
   },
   login({ commit }, userCredential) {
     return new Promise((resolve, reject) => {
@@ -50,12 +55,14 @@ const actions = {
         const operator = data
         //operator中的成员
         const { oprId, roleId, oprName, roleInfoList, roleName, roleType, brhName } = operator
+        
         //存入operator -> store
         commit('SET_OPERATOR', operator)
-        console.log('check',operator )
+        commit('SET_CURRENT_ROLE_ID', operator.roleId)
         // 存入cookie
         setToken(fakeToken)
         setOperator(operator)
+        setRoleID(roleId)
         resolve()
       }).catch(error => {
         reject(error)
@@ -101,8 +108,9 @@ const actions = {
       console.log('logout')
       removeToken() // must remove  token  first
       removeOperator()
-      resetRouter()
+      removeRoleID()
       commit('RESET_STATE')
+      resetRouter()
       resolve()
     })
   },
