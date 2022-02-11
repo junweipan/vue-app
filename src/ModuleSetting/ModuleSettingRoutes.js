@@ -30,7 +30,7 @@ export const ModuleSettingRoutes = [
                     {
                         "path": 'role-info-edit-add',
                         "name": 'RoleInfoEditAdd',
-                        "meta": { "title": '角色增加/修改',"roles":['admin'] }
+                        "meta": { "title": '角色增加/修改',"roles":[11] }
                     },
                     {
                         "path": 'operator',
@@ -41,7 +41,7 @@ export const ModuleSettingRoutes = [
                         "path": 'operator-edit-add',
                         "name": 'OperatorEditAdd',
                         "meta": { "title": '操作员增加/修改' },
-                        "meta": { "title": '角色增加/修改',"roles":['admin'] }
+                        "meta": { "title": '角色增加/修改',"roles":[11] }
                     },
                 ]
             },

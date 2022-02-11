@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 import ModuleLayout from "@/ModuleLayout/moduleLayout";
 import { ModuleSettingRoutes } from "./ModuleSettingRoutes";
 
@@ -15,13 +15,21 @@ export default {
     ModuleSettingRoutes,
   },
   computed: {
-    ...mapGetters(["roles"]),
+    ...mapGetters(["roles", "currentRoleID"]),
   },
   mounted() {
-    this.asyncRoutes = this.filterRoutes(
-      ModuleSettingRoutes,
-      this.roles
-    );
+    this.asyncRoutes = this.filterRoutes(ModuleSettingRoutes, 
+    this.currentRoleID);
+  },
+  watch: {
+    // 监视store中的roleID改变时, 刷新menu路由
+    currentRoleID: {
+      handler: function () {
+        this.asyncRoutes = this.filterRoutes(ModuleSettingRoutes, 
+        this.currentRoleID);
+      },
+      immediate: true,
+    },
   },
   data() {
     return {
@@ -29,21 +37,23 @@ export default {
     };
   },
   methods: {
-    hasPermission(roles, route) {
+    hasPermission(role, route) {
       if (route.meta && route.meta.roles) {
-        return roles.some((role) => route.meta.roles.includes(role));
+        // console.log("1",roles)
+        // console.log("2",route.meta.roles)
+        return route.meta.roles.includes(role);
       } else {
         return true;
       }
     },
     // 根据store中的roles控制sidebar显示的路由
-    filterRoutes(routes, roles) {
+    filterRoutes(routes, role) {
       const res = [];
       routes.forEach((route) => {
         const tmp = { ...route };
-        if (this.hasPermission(roles, tmp)) {
+        if (this.hasPermission(role, tmp)) {
           if (tmp.children) {
-            tmp.children = this.filterRoutes(tmp.children, roles);
+            tmp.children = this.filterRoutes(tmp.children, role);
           }
           res.push(tmp);
         }
