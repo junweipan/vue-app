@@ -1,6 +1,7 @@
 import { login, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
+import { getOperator,removeOperator,setOperator } from '../../utils/auth'
 
 //后端返回data:
 // oprName: 操作员名称
@@ -12,36 +13,8 @@ const fakeToken = "vue_admin_template_token"
 const getDefaultState = () => {
   return {
     token: getToken(),
-    oprName: '',
-    brhName: '',
+    operator:{},
     avatar: '',
-    roles: null,
-    currentRoleId:'',
-    currentRoleName: '',
-    currentRoleType: '',
-
-    // 默认当前用户
-    currentUser: {
-      id: '1',
-      client: '舟山市规划建筑设计院有限公司',
-      level: '本级',
-      type: 'success',
-      autority: '开发人员'
-    },
-    // mock user info db
-    usersdb: [{
-      id: '1',
-      client: '舟山市规划建筑设计院有限公司',
-      level: '本级',
-      type: 'success',
-      autority: '开发人员'
-    }, {
-      id: '2',
-      client: 'XXXX有限公司',
-      level: '一级',
-      type: 'info',
-      autority: '普通用户'
-    }]
   }
 }
 
@@ -54,65 +27,35 @@ const mutations = {
   SET_TOKEN: (state, token) => {
     state.token = token
   },
-  SET_NAME: (state, name) => {
-    state.name = name
-  },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
   },
-  SET_ROLES: (state, roles) => {
-    state.roles = roles
+  SET_OPERATOR: (state, operator) => {
+    state.operator = operator
   },
-  SET_OPR_NAME: (state, oprName) => {
-    state.oprName = oprName
-  },
-  SET_BRH_NAME: (state, brhName) => {
-    state.brhName = brhName
-  },
-  SET_CURRENT_ROLE_ID: (state, currentRoleId) => {
-    state.currentRoleId = currentRoleId
-  },
-  SET_CURRENT_ROLE_NAME: (state, currentRoleName) => {
-    state.currentRoleName = currentRoleName
-  },
-  SET_CURRENT_ROLE_TYPE: (state, currentRoleType) => {
-    state.currentRoleType = currentRoleType
-  },
-  SET_CURRENTUSER: (state, currentUser) => {
-    state.currentUser = currentUser
-  },
-  SET_USERSDB: (state, usersdb) => {
-    state.usersdb = usersdb
-  },
-  SET_ROUTES: (state, routes) => {
-    state.routes = routes
+  SET_OPERATOR_ROLE: (state, roleName) => {
+    state.operator.roleName = roleName
   }
 }
 const actions = {
-  switchCurrentUser({ commit, state }, userId) {
-    const user = state.usersdb.find((user) => {
-      return user.id == userId
-    })
-    commit('SET_CURRENTUSER', user)
+  changeRole({ commit }, roleName){
+    commit('SET_OPERATOR_ROLE', roleName)
+    setOperator(operator)
   },
-
   login({ commit }, userCredential) {
     return new Promise((resolve, reject) => {
       login(userCredential).then(response => {
         //套了多层data, 后续需要优化
-        const { data } = response.data
-        const { roleId, oprName, roleInfoList, roleName, roleType, brhName } = data
-
-        //存入 store
-        commit('SET_OPR_NAME', oprName)
-        commit('SET_ROLES', roleInfoList)
-        commit('SET_CURRENT_ROLE_ID', roleId)
-        commit('SET_CURRENT_ROLE_NAME', roleName)
-        commit('SET_CURRENT_ROLE_TYPE', roleType)
-        commit('SET_BRH_NAME', brhName)
-
+        const {data}  = response.data
+        const operator = data
+        //operator中的成员
+        const { oprId, roleId, oprName, roleInfoList, roleName, roleType, brhName } = operator
+        //存入operator -> store
+        commit('SET_OPERATOR', operator)
+        console.log('check',operator )
         // 存入cookie
         setToken(fakeToken)
+        setOperator(operator)
         resolve()
       }).catch(error => {
         reject(error)
@@ -121,19 +64,23 @@ const actions = {
   },
 
   getInfo({ commit, state }) {
+    commit('SET_OPERATOR', JSON.parse(getOperator()))
     return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
-        // const { data } = response
-
-        // if (!data) {
-        //   return reject('Verification failed, please Login again.')
-        // }
-
-        // const { oprName, roleInfoList, roleName, roleType, brhName } = data
-
-        // commit('SET_NAME', name)
-        // commit('SET_AVATAR', avatar)
-        resolve(state.roles)
+      getInfo(state.operator.oprId).then(response => {
+        // json data层级有点混乱, 需要优化
+        const { data } = response.data
+        const operator = data
+        console.log('oprID',state.operator.oprId)
+        // console.log('opr',data)
+        console.log(response.data)
+        if (response.data.code !== 200) {
+          return reject('Verification failed, please Login again.')
+        }
+        const { oprId, roleId, oprName, roleInfoList, roleName, roleType, brhName } = operator
+        
+        // 把operator信息存入store
+        commit('SET_OPERATOR', operator)
+        resolve(state.operator.roleInfoList)
       }).catch(error => {
         reject(error)
       })
@@ -153,6 +100,7 @@ const actions = {
       // })
       console.log('logout')
       removeToken() // must remove  token  first
+      removeOperator()
       resetRouter()
       commit('RESET_STATE')
       resolve()

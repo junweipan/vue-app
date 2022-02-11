@@ -19,7 +19,7 @@ router.beforeEach(async (to, from, next) => {
 
     // determine whether the user has logged in
     const hasToken = getToken()
-
+    
     if (hasToken) {
         if (to.path === '/login') {
             // if is logged in, redirect to the home page
@@ -34,7 +34,11 @@ router.beforeEach(async (to, from, next) => {
                 try {
                     // get user info
                     // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
-                    const roles = await store.dispatch('user/getInfo')
+                    console.log("hasRoles",hasRoles)
+                    
+                    //roles 用来做路由url级别控制, 这里不需要使用该功能
+                    const {roles} = await store.dispatch('user/getInfo')
+                    
                     // set the replace: true, so the navigation will not leave a history record
                     next({ ...to, replace: true })
                 } catch (error) {

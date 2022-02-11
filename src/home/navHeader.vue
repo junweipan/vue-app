@@ -93,27 +93,13 @@ export default {
       // console.log(key, keyPath);
     },
     switchRole() {
-      console.log("roles:", this.value);
+      const roleName = this.value
+      this.$store.dispatch("user/changeRole", roleName)
+      this.$router.go(0);
       //TODO
       //1, 改变store中的role
-      //2, 刷新页面, 重新显示sidebar menu 和 button
-    },
-    setAcivateType(id) {
-      // TODO 把当前client 发给服务器, 再刷一下服务器数据 - users 信息需要放在store里
-      this.$store.dispatch("user/switchCurrentUser", id);
-
-      // 样式设置
-      const index = this.usersdb.findIndex((item) => item.id == id);
-      // 把其他type置成info, 把选中的item type 置成success
-      this.usersdb.forEach((element) => {
-        element.type = "info";
-      });
-      this.usersdb[index].type = "success";
-
-      // 切换用户-若token未失效:直接切换, 否则会跳出当前用户登录状态
-      this.$router.push({
-        path: "/",
-      });
+      //2, 把新的role存入cookie
+      //3, 刷新页面, 重新显示sidebar menu 和 button
     },
     onEditInfo() {
       this.$router.push({
@@ -123,7 +109,7 @@ export default {
     onLogout() {
       // todo: 清除用户信息, 跳转回首页或login页面
       this.$store.dispatch("user/logout").then((res) => {
-        // 刷新整个浏览器, 会通过permission.js 中的逻辑返回login页面
+        // 刷新整个浏览器, 会通过permission.js 中的逻辑返回到login页面
         this.$router.go(0);
       });
     },

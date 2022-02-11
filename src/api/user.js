@@ -23,12 +23,14 @@ export function getCaptcha() {
   })
 }
 
-export function getInfo(token) {
-  // return request({
-  //   url: '/vue-element-admin/user/info',
-  //   method: 'get',
-  //   params: { token }
-  // })
+export function getInfo(oprid) {
+  var formData = new FormData(); // Currently empty
+  formData.append('oprid', oprid);
+  return request({
+    url: baseUrl + '/system/getopr',
+    method: 'post',
+    data: formData
+  })
 }
 
 

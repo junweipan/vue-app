@@ -60,7 +60,6 @@ export default {
     ...mapGetters([
       'sidebar',
       'avatar',
-      'usersdb'
     ])
   },
   methods: {

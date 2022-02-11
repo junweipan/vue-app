@@ -68,7 +68,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["usersdb", "currentUser"]),
+    ...mapGetters([]),
   },
   watch: {
     $route() {
@@ -87,21 +87,10 @@ export default {
     },
     freshUserEditInfo() {
       // 修改对象是当前用户store中获取
-      // this.$store.state.user.currentUser
-      this.user = this.currentUser;
     },
     // 提交表单数据
     submitForm(formName) {
       console.log("提交对象", this.formData);
-      // this.$refs[formName].validate((valid) => {
-      //     if (valid) {
-      //         // 校验通过，提交表单数据
-      //         this.submitData()
-      //     } else {
-      //         // console.log('error submit!!');
-      //         return false;
-      //     }
-      // })
     },
     async submitData() {
       let response = null;
