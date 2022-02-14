@@ -20,6 +20,7 @@ export function getCaptcha() {
   return request({
     url: baseUrl + '/system/validateCode',
     method: 'get',
+    responseType: 'blob'
   })
 }
 

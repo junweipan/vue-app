@@ -51,25 +51,26 @@
         </span>
       </el-form-item>
 
-      <el-form-item prop="validateCode" style="line-height: 0px">
-        <el-row :gutter="20">
-          <el-col :span="12">
-            <el-input
+      <el-form-item prop="validateCode">
+        <span class="svg-container">
+          <svg-icon icon-class="password" />
+        </span>
+        <el-input
               v-model="loginForm.validateCode"
               ref="validateCode"
               placeholder="验证码"
-              style="width: 100%"
-            ></el-input>
-          </el-col>
-          <el-col :span="12">
-            <img
+              @focus="getInputFocus($event)"
+            >
+        </el-input>
+        <span class="show-pwd" @click="showPwd">
+          <img
               :src="identifyimg"
               alt="验证码图片"
               @click="refreshCode"
               class="captcha_img"
             />
-          </el-col>
-        </el-row>
+        </span>
+            
       </el-form-item>
 
       <el-button
@@ -111,7 +112,6 @@ export default {
         password: "123456",
         validateCode: "1111",
       },
-      identifyCode: "",
       identifyimg: Object,
       loginRules: {
         // username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -124,6 +124,9 @@ export default {
       redirect: undefined,
     };
   },
+  mounted() {
+    this.refreshCode();
+  },
   watch: {
     $route: {
       handler: function (route) {
@@ -135,8 +138,8 @@ export default {
   methods: {
     refreshCode() {
       getCaptcha().then((response) => {
-        console.log(response);
-        this.identifyimg = response.data;
+        console.log("img", response);
+        this.identifyimg = window.URL.createObjectURL(response.data);
       });
     },
     showPwd() {
@@ -163,6 +166,10 @@ export default {
           });
       });
     },
+    getInputFocus(event) {
+    console.log("event",event)
+     event.currentTarget.select();
+    }
   },
 };
 </script>
@@ -265,8 +272,5 @@ $light_gray: #eee;
 
 .captcha_img {
   cursor: pointer;
-  margin-top: 15px;
-  width: 40%;
-  margin-left: 75px;
 }
 </style>

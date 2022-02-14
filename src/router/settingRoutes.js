@@ -54,6 +54,21 @@ export const settingRoutes = {
         },
       ]
     },
+    {
+      path: 'system',
+      component: () => import('@/views/moduleSetting/manageSystem/index'), // Parent router-view
+      name: 'ManageSystem',
+      meta: { title: '信息管理' },
+      redirect: '/setting-module/system/role-info',
+      children: [
+        {
+          path: 'role-info',
+          component: () => import('@/views/moduleSetting/manageSystem/roleInfo'),
+          name: 'RoleInfo',
+          meta: { title: '角色信息维护' }
+        },
+      ]
+    },
     // {
     //   path: 'dashboard',
     //   name: 'Dashboard-Setting',

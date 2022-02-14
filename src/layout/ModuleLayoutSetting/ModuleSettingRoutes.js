@@ -52,8 +52,29 @@ export const ModuleSettingRoutes = [
                         "meta": { "title": '操作员增加/修改' },
                         "meta": { "title": '角色增加/修改',"roles":[1,11] }
                     },
-                ]
+                ],
+                // "children": [
+                //     {
+                //       "path": 'system',
+                //       "name": 'System',
+                //       "meta": { "title": '信息管理' }
+                //     },
+                //   ]
             },
+            {
+                path: 'system',
+                name: 'ManageSystem',
+                meta: { title: '信息管理' },
+                redirect: '/setting-module/system/role-info',
+                children: [
+                  {
+                    path: 'role-info',
+                    component: () => import('@/views/moduleSetting/manageSystem/roleInfo'),
+                    name: 'RoleInfo',
+                    meta: { title: '角色信息维护' }
+                  },
+                ]
+              },
             {
                 "path": "user-info",
                 "name": "UserInfo",
@@ -78,6 +99,6 @@ export const ModuleSettingRoutes = [
                     "icon": "el-icon-s-custom"
                 }
             }
-        ]
+        ],
     }
 ]
