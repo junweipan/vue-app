@@ -21,13 +21,16 @@ router.beforeEach(async (to, from, next) => {
     const hasToken = getToken()
     
     if (hasToken) {
+        //如果已经登录(token未失效), 则需要把cookie中operator存入store
+        await store.dispatch('user/setOperator')
         if (to.path === '/login') {
             // if is logged in, redirect to the home page
             next({ path: '/' })
             NProgress.done()
         } else {
             // determine whether the user has obtained his permission roles through getInfo
-            const hasRoles = store.getters.roles && store.getters.roles.length > 0
+            // const hasRoles = store.getters.roles && store.getters.roles.length > 0
+            const hasRoles = !!store.getters.currentRoleID
             if (hasRoles) {
                 next()
             } else {
@@ -35,10 +38,8 @@ router.beforeEach(async (to, from, next) => {
                     // get user info
                     // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
                     console.log("hasRoles",hasRoles)
-                    
                     //roles 用来做路由url级别控制, 这里不需要使用该功能
                     const {roles} = await store.dispatch('user/getInfo')
-                    
                     // set the replace: true, so the navigation will not leave a history record
                     next({ ...to, replace: true })
                 } catch (error) {

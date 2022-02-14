@@ -3,8 +3,8 @@ const getters = {
   device: store => store.app.device,
   token: store => store.user.token,
   avatar: store => store.user.avatar,
-  // const { oprId, roleId, oprName, roleInfoList, 
-  // roleName, roleType, brhName } = operator
+  // operator: { oprId, roleId, oprName, roleInfoList, 
+  // roleName, roleType, brhName }
   roles: state => state.user.operator.roleInfoList,
   operator: state => state.user.operator,
   currentRoleID: state => state.user.currentRoleID,

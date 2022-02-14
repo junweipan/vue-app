@@ -1,3 +1,12 @@
+// 角色ID  角色名称
+// 1	   开发人员
+// 22	   产值分配经办人
+// 19	   公司领导
+// 21	   工程主持人
+// 62	   中层领导（财务主管所室负责人）
+// 64	   普通员工
+// 65	   产值工作人员
+// 11	   超级管理员
 export const ModuleSettingRoutes = [
     {
         "path": "/setting-module",
@@ -20,7 +29,7 @@ export const ModuleSettingRoutes = [
                     {
                         "path": 'branch-info-edit-add',
                         "name": 'BranchInfoEditAdd',
-                        "meta": { "title": '机构增加/修改', "roles":['admin'] },
+                        "meta": { "title": '机构增加/修改', "roles":[1,11] },
                     },
                     {
                         "path": 'role-info',
@@ -30,7 +39,7 @@ export const ModuleSettingRoutes = [
                     {
                         "path": 'role-info-edit-add',
                         "name": 'RoleInfoEditAdd',
-                        "meta": { "title": '角色增加/修改',"roles":[11] }
+                        "meta": { "title": '角色增加/修改',"roles":[1,11] }
                     },
                     {
                         "path": 'operator',
@@ -41,7 +50,7 @@ export const ModuleSettingRoutes = [
                         "path": 'operator-edit-add',
                         "name": 'OperatorEditAdd',
                         "meta": { "title": '操作员增加/修改' },
-                        "meta": { "title": '角色增加/修改',"roles":[11] }
+                        "meta": { "title": '角色增加/修改',"roles":[1,11] }
                     },
                 ]
             },

@@ -66,7 +66,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["operator","currentRoleID"]),
+    ...mapGetters(["operator", "currentRoleID"]),
     sidebar() {
       return this.$store.state.app.sidebar;
     },
@@ -86,19 +86,16 @@ export default {
   },
   mounted() {
     this.roleId = this.operator.roleId;
-    console.log("this.operator.roleId", this.operator.roleId);
+    //1, 刷新store中的roleID
+    //2, 刷新cookie中的roleID
+    this.$store.dispatch("user/changeRole", this.roleId);
   },
   methods: {
-    handleSelect(key, keyPath) {
-      // console.log(key, keyPath);
-    },
+    handleSelect(key, keyPath) {},
     switchRole() {
       //1, 刷新store中的roleID
       //2, 刷新cookie中的roleID
-      //3, 重新渲染页面, 重新显示sidebar menu 和 button
       this.$store.dispatch("user/changeRole", this.roleId);
-      console.log('store', this.currentRoleID)
-      // this.$router.go(0);
     },
     onEditInfo() {
       this.$router.push({
@@ -106,7 +103,7 @@ export default {
       });
     },
     onLogout() {
-      // todo: 清除用户信息, 跳转回首页或login页面
+      // 清除用户信息, 跳转回首页或login页面
       this.$store.dispatch("user/logout").then((res) => {
         // 刷新整个浏览器, 会通过permission.js 中的逻辑返回到login页面
         this.$router.go(0);

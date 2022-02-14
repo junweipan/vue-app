@@ -55,7 +55,6 @@ const actions = {
         const operator = data
         //operator中的成员
         const { oprId, roleId, oprName, roleInfoList, roleName, roleType, brhName } = operator
-        
         //存入operator -> store
         commit('SET_OPERATOR', operator)
         commit('SET_CURRENT_ROLE_ID', operator.roleId)
@@ -69,22 +68,22 @@ const actions = {
       })
     })
   },
-
+  
+  setOperator({ commit, state }){
+    commit('SET_OPERATOR', JSON.parse(getOperator()))
+  },
   getInfo({ commit, state }) {
     commit('SET_OPERATOR', JSON.parse(getOperator()))
+    commit('SET_CURRENT_ROLE_ID', JSON.parse(getRoleID()))
     return new Promise((resolve, reject) => {
       getInfo(state.operator.oprId).then(response => {
         // json data层级有点混乱, 需要优化
         const { data } = response.data
         const operator = data
-        console.log('oprID',state.operator.oprId)
-        // console.log('opr',data)
-        console.log(response.data)
         if (response.data.code !== 200) {
           return reject('Verification failed, please Login again.')
         }
         const { oprId, roleId, oprName, roleInfoList, roleName, roleType, brhName } = operator
-        
         // 把operator信息存入store
         commit('SET_OPERATOR', operator)
         resolve(state.operator.roleInfoList)
@@ -97,21 +96,18 @@ const actions = {
   // user logout
   logout({ commit, state }) {
     return new Promise((resolve, reject) => {
-      // logout(state.token).then(() => {
-      //   removeToken() // must remove  token  first
-      //   resetRouter()
-      //   commit('RESET_STATE')
-      //   resolve()
-      // }).catch(error => {
-      //   reject(error)
-      // })
-      console.log('logout')
-      removeToken() // must remove  token  first
-      removeOperator()
-      removeRoleID()
-      commit('RESET_STATE')
-      resetRouter()
-      resolve()
+      logout().then((response) => {
+        console.log(response)
+        removeToken() // must remove  token  first
+        removeOperator()
+        removeRoleID()
+        commit('RESET_STATE')
+        resetRouter()
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
+      
     })
   },
 

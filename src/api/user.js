@@ -23,6 +23,14 @@ export function getCaptcha() {
   })
 }
 
+export function logout() {
+  console.log("logout")
+  return request({
+    url: baseUrl + '/system/loginout',
+    method: 'post',
+  })
+}
+
 export function getInfo(oprid) {
   var formData = new FormData(); // Currently empty
   formData.append('oprid', oprid);

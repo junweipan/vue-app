@@ -15,7 +15,7 @@ export default {
     ModuleSettingRoutes,
   },
   computed: {
-    ...mapGetters(["roles", "currentRoleID"]),
+    ...mapGetters(["currentRoleID"]),
   },
   mounted() {
     this.asyncRoutes = this.filterRoutes(ModuleSettingRoutes, 
@@ -23,6 +23,7 @@ export default {
   },
   watch: {
     // 监视store中的roleID改变时, 刷新menu路由
+    //重新渲染页面
     currentRoleID: {
       handler: function () {
         this.asyncRoutes = this.filterRoutes(ModuleSettingRoutes, 
@@ -39,8 +40,6 @@ export default {
   methods: {
     hasPermission(role, route) {
       if (route.meta && route.meta.roles) {
-        // console.log("1",roles)
-        // console.log("2",route.meta.roles)
         return route.meta.roles.includes(role);
       } else {
         return true;
@@ -58,7 +57,6 @@ export default {
           res.push(tmp);
         }
       });
-
       return res;
     },
   },
