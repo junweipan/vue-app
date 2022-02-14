@@ -4,7 +4,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import ModuleLayout from "@/ModuleLayout/moduleLayout";
+import ModuleLayout from "../ModuleLayout/moduleLayout";
 import { ModuleSettingRoutes } from "./ModuleSettingRoutes";
 
 export default {

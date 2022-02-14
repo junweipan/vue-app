@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ModuleLayout from "@/ModuleLayout/moduleLayout";
+import ModuleLayout from "../ModuleLayout/moduleLayout";
 import { ModuleAnalysisRoutes } from './ModuleAnalysisRoutes'
 
 export default {

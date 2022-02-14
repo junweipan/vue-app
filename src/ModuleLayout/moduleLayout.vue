@@ -18,11 +18,11 @@
 </template>
 
 <script>
-import Sidebar from "@/ModuleLayout/components/Sidebar/SideBarLayout";
-import AppMain from "@/ModuleLayout/components/AppMain";
-import TagsView from "@/ModuleLayout/components/TagsView";
-import Navbar from "@/ModuleLayout/components/NavBar";
-import ResizeMixin from "@/ModuleLayout/mixin/ResizeHandler";
+import Sidebar from "./components/Sidebar/SideBarLayout";
+import AppMain from "./components/AppMain";
+import TagsView from "./components/TagsView";
+import Navbar from "./components/NavBar";
+import ResizeMixin from "./mixin/ResizeHandler";
 // 测试全部路由
 // import {rootRoutes} from '@/router/rootRoutes'
 export default {
