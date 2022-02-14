@@ -1,6 +1,6 @@
 /** When your routing table is too long, you can split it into small modules **/
 
-import ModuleNested from '@/ModuleNested'
+import ModuleNested from '@/layout/ModuleLayoutNested'
 
 export const nestedRoutes = {
   path: '/nested',

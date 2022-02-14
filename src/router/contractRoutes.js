@@ -1,4 +1,4 @@
-import ModuleContract from '@/ModuleContract'
+import ModuleContract from '@/layout/ModuleLayoutContract'
 export const contractRoutes = {
   path: '/contract-module',
   component: ModuleContract,

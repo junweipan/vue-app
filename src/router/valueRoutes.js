@@ -1,4 +1,4 @@
-import ModuleValue from '@/ModuleValue'
+import ModuleValue from '@/layout/ModuleLayoutValue'
 export const valueRoutes = {
     path: '/value-module',
     component: ModuleValue,

@@ -20,8 +20,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import Logo from '@/ModuleLayout/components/Sidebar/Logo'
-import SidebarItem from '@/ModuleLayout/components/Sidebar/SidebarItem'
+import Logo from './Logo'
+import SidebarItem from './SidebarItem'
 import variables from '@/styles/variables.scss'
 
 import { getToken } from '@/utils/auth' // get token from cookie

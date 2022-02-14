@@ -1,5 +1,5 @@
 
-import ModuleAnalysis from '@/ModuleAnalysis'
+import ModuleAnalysis from '@/layout/ModuleLayoutAnalysis'
 export const analysisRoutes = {
     path: '/analysis-module',
     component: ModuleAnalysis,

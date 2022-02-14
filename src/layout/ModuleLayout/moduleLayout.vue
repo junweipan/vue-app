@@ -84,5 +84,5 @@ export default {
 @import "~@/styles/mixin.scss";
 @import "~@/styles/variables.scss";
 
-@import "~@/ModuleLayout/indexStyle.scss";
+@import "~@/layout/ModuleLayout/indexStyle.scss";
 </style>

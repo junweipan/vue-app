@@ -1,5 +1,5 @@
 
-import ModuleSetting from '@/ModuleSetting'
+import ModuleSetting from '@/layout/ModuleLayoutSetting'
 export const settingRoutes = {
   path: '/setting-module',
   component: ModuleSetting,

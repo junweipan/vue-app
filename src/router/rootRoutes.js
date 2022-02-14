@@ -1,5 +1,5 @@
 /* Layout - Module */
-import ModuleLayout from '@/ModuleLayout/moduleLayout'
+import ModuleLayout from '@/layout/ModuleLayout/moduleLayout'
 
 import { contractRoutes } from './contractRoutes'
 import { valueRoutes } from './valueRoutes'
