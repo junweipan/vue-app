@@ -240,7 +240,7 @@ export default {
     onAddOperator() {
       this.transferData = []
       this.$router.push({
-        path: "/setting-module/sys-setting/operator-edit-add",
+        path: "/setting-module/system/operator-edit-add",
         query: {
           title: "新增数据",
           operator: {},
@@ -262,7 +262,7 @@ export default {
       // call API 获得该operator的role
       this.transferData = this.generateData()
       this.$router.push({
-        path: "/setting-module/sys-setting/operator-edit-add",
+        path: "/setting-module/system/operator-edit-add",
         query: {
           title: "修改数据",
           operator: this.selectedOperator,

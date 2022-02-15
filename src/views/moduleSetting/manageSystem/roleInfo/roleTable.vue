@@ -147,7 +147,7 @@ export default {
     openAdd() {
       //跳转到新增页面, 携带title参数
       this.$router.push({
-        path: "/setting-module/sys-setting/role-info-edit-add",
+        path: "/setting-module/system/role-info-edit-add",
         query: {
           title: "新增角色",
           role: {},
@@ -167,7 +167,7 @@ export default {
       }
       //跳转到新增页面, 携带title, 选中role,role的tree信息
       this.$router.push({
-        path: "/setting-module/sys-setting/role-info-edit-add",
+        path: "/setting-module/system/role-info-edit-add",
         query: {
           title: "修改角色",
           role: this.selectedRole,

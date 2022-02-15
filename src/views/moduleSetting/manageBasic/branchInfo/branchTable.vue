@@ -197,7 +197,7 @@ export default {
       }
       // 跳转到新增页面, 携带title参数
       this.$router.push({
-        path: "/setting-module/sys-setting/branch-info-edit-add",
+        path: "/setting-module/basic/branch-info-edit-add",
         query: {
           title: "新增机构",
           branch: this.getSubBranch,
@@ -216,7 +216,7 @@ export default {
       }
       // 跳转到新增页面, 携带title参数
       this.$router.push({
-        path: "/setting-module/sys-setting/branch-info-edit-add",
+        path: "/setting-module/basic/branch-info-edit-add",
         query: {
           title: "修改机构",
           branch: this.getSelectedBranch,
